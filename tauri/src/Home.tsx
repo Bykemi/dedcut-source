@@ -57,6 +57,9 @@ const TRASH = 'M4 7h16M10 11v6M14 11v6M5.5 7l1 13h11l1-13M9 7V4h6v3';
 const GEAR = 'M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0M5 12a7 7 0 1 0 14 0a7 7 0 1 0-14 0M12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8';
 // petite bête (signaler un bug)
 const BUG = 'M9 7.5a3 3 0 0 1 6 0M12 8a5 5 0 0 1 5 5v2a5 5 0 0 1-10 0v-2a5 5 0 0 1 5-5zM12 12v8M7 13H3.5M17 13h3.5M7.5 17.5l-3 2M16.5 17.5l3 2M7.5 9.5l-3-2M16.5 9.5l3-2M10 5L8.5 3M14 5l1.5-2';
+// chevrons de code (code source libre)
+const CODE = 'M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16';
+const SOURCE_URL = 'https://github.com/Bykemi/dedcut-source';
 const openBug = () => (window as unknown as { dedcutBug?: { open(): void } }).dedcutBug?.open();
 const INFO = 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 11v6M12 7.5h.01';
 // enregistrer : cercle + point plein
@@ -391,8 +394,9 @@ export default function Home() {
                 <div className="dc-about-head"><img src={logo()} alt="" /><div><h3>DedCut</h3><p>{t('about.version', { version: api?.version() || '' })} <span className="dc-beta">{t('app.beta')}</span> · {t('app.madeBy', { author: 'ByKemi' })}</p></div></div>
                 <p className="dc-hint dc-betanote">{t('app.betaTip')}</p>
                 <h4>{t('about.links')}</h4>
-                <div className="dc-about-links"><button className="dc-btn" onClick={() => api?.openLink('https://dedcut.com')}>dedcut.com</button><button className="dc-btn" onClick={openBug}><Ico d={BUG} />{t('bug.menu')}</button></div>
+                <div className="dc-about-links"><button className="dc-btn" onClick={() => api?.openLink('https://dedcut.com')}>dedcut.com</button><button className="dc-btn" onClick={openBug}><Ico d={BUG} />{t('bug.menu')}</button><button className="dc-btn" onClick={() => api?.openLink(SOURCE_URL)}><Ico d={CODE} />{t('about.code')}</button></div>
                 <h4>{t('about.licences')}</h4>
+                <p className="dc-hint">{t('about.freeCode')}</p>
                 <p className="dc-hint">{t('about.licencesText')}</p>
                 <button className="dc-btn" onClick={() => api?.openLicences()}>{t('about.openLicences')}</button>
                 <p className="dc-hint">{t('about.original')}</p>

@@ -159,7 +159,9 @@
     "licences": "Licencias de código abierto",
     "licencesText": "DedCut está hecho con software libre (Tauri, React, mp4box.js, mp4-muxer) y se muestra con Microsoft Edge WebView2. Todos los avisos obligatorios se incluyen con el programa.",
     "openLicences": "Ver las licencias",
-    "original": "DedCut tiene su propio diseño y su propio código."
+    "original": "DedCut tiene su propio diseño y su propio código.",
+    "code": "Código fuente",
+    "freeCode": "DedCut es software libre: su código es público en GitHub, con licencia GPL-3.0. Cualquiera puede leerlo para comprobar que no hace nada oculto. El nombre y el logo de DedCut siguen siendo de ByKemi."
   },
   "support": {
     "title": "Apoyar DedCut",

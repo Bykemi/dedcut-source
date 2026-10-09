@@ -158,7 +158,9 @@
     "licences": "开源许可证",
     "licencesText": "DedCut 使用自由软件（Tauri、React、mp4box.js、mp4-muxer）构建，并通过 Microsoft Edge WebView2 显示。所有必需的声明均随软件提供。",
     "openLicences": "查看许可证",
-    "original": "DedCut 拥有自己的设计和自己的代码。"
+    "original": "DedCut 拥有自己的设计和自己的代码。",
+    "code": "源代码",
+    "freeCode": "DedCut 本身也是自由软件：代码以 GPL-3.0 许可证公开在 GitHub 上，任何人都可以阅读，确认它没有隐藏的行为。DedCut 的名称和标志仍归 ByKemi 所有。"
   },
   "support": {
     "title": "支持 DedCut",
