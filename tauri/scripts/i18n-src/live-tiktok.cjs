@@ -1,0 +1,15 @@
+// v4.61 : diffuser sur TikTok (adresse + clé de TikTok LIVE Producer, image verticale 9:16)
+// Colonnes : clé | fr | en | es | de | it | pt | ja | ko | zh-CN
+const L = (k, fr, en, es, de, it, pt, ja, ko, zh) => [k, fr, en, es, de, it, pt, ja, ko, zh];
+module.exports = [
+L('live.tiktokHint',
+  'TikTok : sur ordinateur, ouvre TikTok LIVE Producer (« Où la trouver ? »), choisis un titre, puis copie ici l’URL du serveur et la clé. Elles changent à chaque live. Il faut un compte qui a accès au LIVE (souvent 18 ans et 1 000 abonnés). L’image part en vertical 9:16. Le chat TikTok n’apparaît pas dans DedCut : TikTok ne l’ouvre pas aux autres logiciels.',
+  'TikTok: on a computer, open TikTok LIVE Producer (“Where do I find it?”), choose a title, then copy the server URL and the key here. They change for every live. Your account needs LIVE access (often 18+ and 1,000 followers). The picture is sent vertically, 9:16. The TikTok chat does not show in DedCut: TikTok does not open it to other software.',
+  'TikTok: en el ordenador, abre TikTok LIVE Producer («¿Dónde la encuentro?»), elige un título y copia aquí la URL del servidor y la clave. Cambian en cada directo. Tu cuenta necesita acceso a LIVE (a menudo 18 años y 1000 seguidores). La imagen se envía en vertical 9:16. El chat de TikTok no aparece en DedCut: TikTok no lo abre a otros programas.',
+  'TikTok: Öffne am Computer TikTok LIVE Producer („Wo finde ich ihn?“), wähle einen Titel und kopiere dann Server-URL und Schlüssel hierher. Sie ändern sich bei jedem Live. Dein Konto braucht LIVE-Zugang (oft ab 18 und 1.000 Follower). Das Bild wird hochkant (9:16) gesendet. Der TikTok-Chat erscheint nicht in DedCut: TikTok öffnet ihn nicht für andere Programme.',
+  'TikTok: sul computer apri TikTok LIVE Producer («Dove la trovo?»), scegli un titolo, poi copia qui l’URL del server e la chiave. Cambiano a ogni live. Serve un account con accesso al LIVE (spesso 18 anni e 1.000 follower). L’immagine parte in verticale 9:16. La chat di TikTok non appare in DedCut: TikTok non la apre ad altri programmi.',
+  'TikTok: no computador, abra o TikTok LIVE Producer (“Onde encontrar?”), escolha um título e copie aqui a URL do servidor e a chave. Elas mudam a cada live. Sua conta precisa ter acesso ao LIVE (geralmente 18 anos e 1.000 seguidores). A imagem é enviada na vertical 9:16. O chat do TikTok não aparece no DedCut: o TikTok não o abre para outros programas.',
+  'TikTok：パソコンで TikTok LIVE Producer を開き（「どこにある？」）、タイトルを選んで、サーバー URL とキーをここに貼り付けます。ライブのたびに変わります。LIVE を使えるアカウントが必要です（多くは 18 歳以上・フォロワー 1,000 人）。映像は縦 9:16 で送られます。TikTok のチャットは DedCut に表示されません（TikTok がほかのソフトに公開していないため）。',
+  'TikTok: 컴퓨터에서 TikTok LIVE Producer를 열고(“어디서 찾나요?”) 제목을 고른 뒤, 서버 URL과 키를 여기에 붙여넣으세요. 라이브할 때마다 바뀌어요. LIVE 권한이 있는 계정이 필요해요(보통 18세 이상, 팔로워 1,000명). 화면은 세로 9:16으로 보내져요. TikTok 채팅은 DedCut에 나오지 않아요: TikTok이 다른 프로그램에 열어 두지 않아요.',
+  'TikTok：在电脑上打开 TikTok LIVE Producer（“在哪里找？”），选好标题，然后把服务器 URL 和密钥复制到这里。每次直播都会变化。账号需要有直播权限（通常需年满 18 岁并有 1000 名粉丝）。画面以竖屏 9:16 发送。TikTok 聊天不会显示在 DedCut 中：TikTok 没有向其他软件开放。')
+];

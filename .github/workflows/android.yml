@@ -1,0 +1,120 @@
+# Version Android de DedCut (APK) : fabrication + test dans un téléphone Android virtuel, sur un serveur de GitHub.
+# Se lance : à la main (Actions > DedCut Android > Run workflow), quand le message d'un commit contient [apk],
+# ou à chaque tag de version (v…). Tout reste privé : l'APK et les captures sont dans « Artifacts » (visibles par toi seul).
+# APK de test (« debug ») : installable directement, pas encore pour le Play Store.
+name: DedCut Android
+
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  apk:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v') || contains(github.event.head_commit.message, '[apk]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    defaults:
+      run:
+        working-directory: tauri
+    env:
+      # pas d'informations de débogage Rust : le dossier de fabrication reste petit (sinon le disque de GitHub se remplit)
+      CARGO_PROFILE_DEV_DEBUG: "0"
+      CARGO_INCREMENTAL: "0"
+    steps:
+      # libère ~25 Go sur le serveur de GitHub (outils inutiles ici), en gardant les outils Android
+      - name: Faire de la place sur le disque
+        working-directory: /
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/node_modules /opt/ghc /usr/local/.ghcup /usr/share/swift /usr/local/share/boost /opt/hostedtoolcache/CodeQL /usr/local/share/powershell /usr/local/share/chromium /usr/lib/jvm/temurin-8* /usr/lib/jvm/temurin-11* || true
+          sudo docker image prune --all --force > /dev/null 2>&1 || true
+          df -h /
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tauri/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android,x86_64-linux-android
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tauri/src-tauri -> target
+          save-if: false
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Fabriquer l'APK
+        run: |
+          export NDK_HOME="$ANDROID_NDK_LATEST_HOME"
+          npx tauri android init --ci
+          npx tauri android build --debug --apk --target aarch64 --target x86_64
+          mkdir -p ../android-apk
+          V=$(node -p "require('./src-tauri/tauri.conf.json').version")
+          cp "$(find src-tauri/gen/android -name '*.apk' -path '*debug*' | head -1)" "../android-apk/DedCut_${V}_test.apk"
+          ls -la ../android-apk
+          rm -rf src-tauri/target
+          df -h /
+
+      - name: Préparer le téléphone virtuel
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Tester l'APK dans un téléphone Android virtuel
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          # Android sans les services Google : beaucoup plus léger (avec eux, Android lui-même ne répondait plus)
+          target: default
+          profile: pixel_6
+          # le téléphone virtuel par défaut manque de mémoire : Android lui-même ne répondait plus
+          ram-size: 4096M
+          heap-size: 512M
+          cores: 4
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          disable-animations: true
+          working-directory: tauri
+          script: sh scripts/android-check.sh ../android-apk/*.apk ../android-rapport
+
+      - name: Résumé
+        if: always()
+        run: |
+          echo "### DedCut Android" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Vérification | Résultat | Détail |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| --- | --- | --- |" >> "$GITHUB_STEP_SUMMARY"
+          if ls ../android-apk/*.apk > /dev/null 2>&1; then echo "| L'APK est fabriqué | ✅ | |" >> "$GITHUB_STEP_SUMMARY"; else echo "| L'APK est fabriqué | ❌ | voir le journal |" >> "$GITHUB_STEP_SUMMARY"; fi
+          cat ../android-rapport/android.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "APK, captures d'écran et journal : dans « Artifacts » en bas de cette page." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: APK de test
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dedcut-android-apk
+          path: android-apk
+          if-no-files-found: ignore
+
+      - name: Captures d'écran et journal
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dedcut-android-rapport
+          path: android-rapport
+          if-no-files-found: ignore

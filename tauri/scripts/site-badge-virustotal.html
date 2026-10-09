@@ -1,0 +1,39 @@
+<!--
+  Badge « Vérifié par VirusTotal » pour le site de DedCut (à copier-coller dans site/index.html, près du bouton Télécharger).
+  1) Après chaque publication, scripts/publish-update.cjs affiche le lien VirusTotal de la nouvelle version.
+  2) Dépose DedCut-Installation.exe sur https://www.virustotal.com (onglet « File ») une fois.
+  3) Remplace VT_LINK ci-dessous par ce lien (et le nombre d'antivirus si tu veux l'afficher).
+  Langue : prise dans <html lang="…"> (9 langues de DedCut), anglais sinon. Pas de cookie, pas de script externe.
+-->
+<a class="dc-vt" id="dcVt" href="VT_LINK" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="currentColor" opacity=".25"/><path d="M8 12.5l2.7 2.7L16.5 9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span><b data-vt="t">Vérifié par VirusTotal</b><small data-vt="s">Analysé par plus de 70 antivirus</small></span>
+</a>
+<style>
+  .dc-vt{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(34,197,94,.45);
+    background:rgba(34,197,94,.10);color:#4ade80;text-decoration:none;font-size:13px;line-height:1.25}
+  .dc-vt:hover{background:rgba(34,197,94,.18)}
+  .dc-vt span{display:flex;flex-direction:column}
+  .dc-vt b{color:#e7fbe9;font-weight:600}
+  .dc-vt small{color:#86efac;opacity:.85}
+</style>
+<script>
+(function(){
+  var T={
+    fr:['Vérifié par VirusTotal','Analysé par plus de 70 antivirus'],
+    en:['Checked by VirusTotal','Scanned by 70+ antivirus engines'],
+    es:['Verificado por VirusTotal','Analizado por más de 70 antivirus'],
+    de:['Geprüft von VirusTotal','Von über 70 Virenscannern geprüft'],
+    it:['Verificato da VirusTotal','Analizzato da oltre 70 antivirus'],
+    pt:['Verificado pelo VirusTotal','Analisado por mais de 70 antivírus'],
+    ja:['VirusTotal で確認済み','70 以上のウイルス対策エンジンで検査'],
+    ko:['VirusTotal 검사 완료','70개 이상의 백신으로 검사'],
+    'zh-CN':['已通过 VirusTotal 检测','经 70 多款杀毒引擎扫描']
+  };
+  var l=(document.documentElement.lang||'en'),k=T[l]?l:(T[l.slice(0,2)]?l.slice(0,2):'en'),el=document.getElementById('dcVt');
+  if(!el)return;
+  el.querySelector('[data-vt="t"]').textContent=T[k][0];
+  el.querySelector('[data-vt="s"]').textContent=T[k][1];
+  if(el.getAttribute('href')==='VT_LINK')el.hidden=true; // pas encore de lien : badge caché
+})();
+</script>

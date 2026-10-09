@@ -1,0 +1,123 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "DedCut",
+  "version": "4.67.0",
+  "identifier": "com.bykemi.dedcut",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5178",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "beforeBundleCommand": "node src-tauri/installer/make-ui.cjs"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "create": false,
+        "title": "DedCut",
+        "width": 1440,
+        "height": 880,
+        "minWidth": 1100,
+        "minHeight": 680,
+        "center": true,
+        "backgroundColor": "#09080f",
+        "decorations": false
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "script-src": "'self' 'wasm-unsafe-eval' 'unsafe-eval' blob: 'sha256-tBy9JmHv2/enoSCQsyHw9bHqxRE4YKfP7CiRHizowRs='",
+        "worker-src": "'self' blob:",
+        "style-src": "'self' 'unsafe-inline'",
+        "img-src": "'self' asset: http://asset.localhost blob: data: https:",
+        "media-src": "'self' asset: http://asset.localhost blob: data: https: mediastream:",
+        "font-src": "'self' asset: http://asset.localhost blob: data:",
+        "connect-src": "'self' ipc: http://ipc.localhost asset: http://asset.localhost blob: data: https: wss: http://127.0.0.1:* ws://127.0.0.1:* http://localhost:* ws://localhost:*",
+        "frame-src": "'self' blob: data:",
+        "object-src": "'none'",
+        "base-uri": "'self'",
+        "form-action": "'none'"
+      },
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "$VIDEO/DedCut/**",
+          "$APPLOCALDATA/DedCut/**"
+        ]
+      },
+      "dangerousDisableAssetCspModification": [
+        "style-src"
+      ]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "publisher": "ByKemi",
+    "copyright": "Fait par ByKemi",
+    "shortDescription": "DedCut - logiciel de montage vidéo",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico",
+      "icons/icon.icns",
+      "icons/icon.png"
+    ],
+    "resources": {
+      "../LICENCES-TIERS.txt": "LICENCES-TIERS.txt",
+      "../LICENCES-RUST.txt": "LICENCES-RUST.txt",
+      "../LICENSES/ONNXRuntime-ThirdPartyNotices.txt": "LICENCES-ONNXRuntime.txt"
+    },
+    "fileAssociations": [
+      {
+        "ext": [
+          "dedcut"
+        ],
+        "name": "Projet DedCut",
+        "description": "Projet DedCut",
+        "role": "Editor"
+      }
+    ],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": [
+          "French",
+          "English",
+          "Spanish",
+          "German",
+          "Italian",
+          "PortugueseBR",
+          "Japanese",
+          "Korean",
+          "SimpChinese"
+        ],
+        "displayLanguageSelector": false,
+        "installerIcon": "icons/icon.ico",
+        "sidebarImage": "installer/sidebar.bmp",
+        "headerImage": "installer/header.bmp",
+        "template": "installer/installer.nsi"
+      }
+    },
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEM5RjIxOUM2MkUyMkI4MjEKUldRaHVDSXV4aG55eVZaMVI1RnN6cUhXQWRGZ3F5ejNjZXhCdzk2N0NFOElMSGk2aTFHWWhEOTYK",
+      "endpoints": [
+        "https://github.com/Bykemi/DedCut-mises-a-jour/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}

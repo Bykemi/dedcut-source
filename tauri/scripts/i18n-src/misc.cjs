@@ -1,0 +1,5 @@
+// Textes divers qui étaient encore écrits en dur dans le moteur.
+// Colonnes : clé | fr | en | es | de | it | pt | ja | ko | zh-CN
+module.exports = [
+['gen.termText','> connexion au serveur...\n> contournement du pare-feu... OK\n> accès root obtenu\n> téléchargement des données...','> connecting to server...\n> bypassing firewall... OK\n> root access granted\n> downloading data...','> conectando al servidor...\n> sorteando el cortafuegos... OK\n> acceso root obtenido\n> descargando datos...','> Verbindung zum Server...\n> Firewall wird umgangen... OK\n> Root-Zugriff erhalten\n> Daten werden heruntergeladen...','> connessione al server...\n> aggiramento del firewall... OK\n> accesso root ottenuto\n> download dei dati...','> conectando ao servidor...\n> contornando o firewall... OK\n> acesso root obtido\n> baixando dados...','> サーバーに接続中...\n> ファイアウォールを回避中... OK\n> root 権限を取得\n> データをダウンロード中...','> 서버에 연결 중...\n> 방화벽 우회 중... OK\n> 루트 권한 획득\n> 데이터 다운로드 중...','> 正在连接服务器...\n> 正在绕过防火墙... OK\n> 已获得 root 权限\n> 正在下载数据...'],
+];

@@ -1,0 +1,14 @@
+LICENCES DES BRIQUES RUST DE DEDCUT (générées par cargo-about)
+==============================================================
+{{#each overview}}
+- {{{name}}} : {{count}} brique(s)
+{{/each}}
+
+{{#each licenses}}
+------------------------------------------------------------------------------
+{{{name}}} ({{id}})
+Utilisée par : {{#each used_by}}{{crate.name}} {{crate.version}}{{#unless @last}}, {{/unless}}{{/each}}
+------------------------------------------------------------------------------
+{{{text}}}
+
+{{/each}}

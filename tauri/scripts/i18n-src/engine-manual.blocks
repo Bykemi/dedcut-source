@@ -1,0 +1,309 @@
+@@@ FIND
+function toast(t){const e=$('#toast');e.textContent=t;
+@@@ REPLACE
+function toast(t){const e=$('#toast');e.textContent=T(t);
+@@@ FIND
+const setSave=t=>{$('#sv').textContent=t};
+@@@ REPLACE
+const setSave=t=>{setSave.last=t;$('#sv').textContent=T(t)};
+@@@ FIND
+    if(!type){toast('Format non pris en charge : '+f.name);continue}
+@@@ REPLACE
+    if(!type){toast(T('media.unsupported',{name:f.name}));continue}
+@@@ FIND
+<button data-add="${m.id}" title="Ajouter à la timeline">+</button>${m.type!=='audio'?`<button data-ov="${m.id}" title="Ajouter en incrustation (calque)">⧉</button>`:''}<button class="x" data-del="${m.id}" title="Supprimer ce média">✕</button>
+@@@ REPLACE
+<button data-add="${m.id}" title="${T('media.addTip')}">+</button>${m.type!=='audio'?`<button data-ov="${m.id}" title="${T('media.overlayTip')}">⧉</button>`:''}<button class="x" data-del="${m.id}" title="${T('media.deleteTip')}">✕</button>
+@@@ FIND
+<button data-add="${m.id}" title="Ajouter à la tête de lecture">+</button></div>`).join(''):'<div class="hint">Aucun son importé.</div>';
+@@@ REPLACE
+<button data-add="${m.id}" title="${T('common.addAtPlayhead')}">+</button></div>`).join(''):'<div class="hint">'+T('audio.noSounds')+'</div>';
+@@@ FIND
+$('#slist').innerHTML=Object.entries(SOUNDS).map(([k,s])=>`<div class="srow"><button data-sprev="${k}" title="Écouter">${ico('play',14)}</button><span>${s.name}</span><span class="hint">${s.dur}s</span><button data-snd="${k}" title="Ajouter à la tête de lecture">+</button></div>`).join('');
+@@@ REPLACE
+function renderSounds(){$('#slist').innerHTML=Object.entries(SOUNDS).map(([k,s])=>`<div class="srow"><button data-sprev="${k}" title="${T('common.listen')}">${ico('play',14)}</button><span>${T(s.name)}</span><span class="hint">${s.dur}s</span><button data-snd="${k}" title="${T('common.addAtPlayhead')}">+</button></div>`).join('')}
+renderSounds();
+@@@ FIND
+  const s=SOUNDS[key],name=s.name+'.wav';let m=media.find(x=>x.name===name||(OLDSND[key]&&x.name===OLDSND[key]+'.wav'));
+@@@ REPLACE
+  // nom de fichier fixe (indépendant de la langue) pour réutiliser le même bruitage
+  const s=SOUNDS[key],name='DedCut-'+key+'.wav';let m=media.find(x=>x.name===name||(OLDSND[key]&&x.name===OLDSND[key]+'.wav'));
+@@@ FIND
+'Arrêt sur image '+fmt(time).replace(':','m')+'.png'
+@@@ REPLACE
+T('freeze.fileName',{time:fmt(time).replace(':','m')})+'.png'
+@@@ FIND
+  if(c.gen)return GN[c.gen]||c.gen;
+@@@ REPLACE
+  if(c.gen)return GN[c.gen]?T(GN[c.gen]):c.gen;
+@@@ FIND
+  $('#tll').innerHTML=[0,1,2].map(r=>{const T=tracks[r];return`<div class="trh" style="height:${TH[r]}px"><span>${TN[r]}</span>${r<2?`<button data-trk="${r}" data-tt="hide" class="${T.hide?'act':''}" title="${T.hide?'Afficher':'Masquer'} la piste">${ico(T.hide?'eyeoff':'eye',15)}</button>`:''}${r!==1?`<button data-trk="${r}" data-tt="mute" class="${T.mute?'act':''}" title="${T.mute?T('voice.enable'):T('keys.split')} le son">${ico(T.mute?'mute':'vol',15)}</button>`:''}<button data-trk="${r}" data-tt="lock" class="${T.lock?'act':''}" title="${T.lock?T('tl.unlock'):T('tl.lock')}">${ico(T.lock?'lock':'unlock',15)}</button></div>`}).join('');
+@@@ REPLACE
+  $('#tll').innerHTML=[0,1,2].map(r=>{const tk=tracks[r];return`<div class="trh" style="height:${TH[r]}px"><span>${T(TN[r])}</span>${r<2?`<button data-trk="${r}" data-tt="hide" class="${tk.hide?'act':''}" title="${tk.hide?T('tl.showTrack'):T('tl.hideTrack')}">${ico(tk.hide?'eyeoff':'eye',15)}</button>`:''}${r!==1?`<button data-trk="${r}" data-tt="mute" class="${tk.mute?'act':''}" title="${tk.mute?T('tl.unmute'):T('tl.mute')}">${ico(tk.mute?'mute':'vol',15)}</button>`:''}<button data-trk="${r}" data-tt="lock" class="${tk.lock?'act':''}" title="${tk.lock?T('tl.unlock'):T('tl.lock')}">${ico(tk.lock?'lock':'unlock',15)}</button></div>`}).join('');
+@@@ FIND
+const T=tracks[+b.dataset.trk];T[b.dataset.tt]=!T[b.dataset.tt];
+@@@ REPLACE
+const tk=tracks[+b.dataset.trk];tk[b.dataset.tt]=!tk[b.dataset.tt];
+@@@ FIND
+  const lab=(l,k)=>l+(kf&&KK.includes(k)?T('insp.keyMark'):'');
+@@@ REPLACE
+  const lab=(l,k)=>T(l)+(kf&&KK.includes(k)?T('insp.keyMark'):'');
+@@@ FIND
+  const N=(l,k,st=.1)=>`<div class="fld"><label>${l}</label>
+@@@ REPLACE
+  const N=(l,k,st=.1)=>`<div class="fld"><label>${T(l)}</label>
+@@@ FIND
+  const CK=(l,k)=>`<label class="chk"><span>${l}</span>
+@@@ REPLACE
+  const CK=(l,k)=>`<label class="chk"><span>${T(l)}</span>
+@@@ FIND
+  const CO=(l,k)=>`<div class="fld"><label>${l}</label>
+@@@ REPLACE
+  const CO=(l,k)=>`<div class="fld"><label>${T(l)}</label>
+@@@ FIND
+  const SE=(l,k,o)=>`<div class="fld"><label>${l}</label><select data-k="${k}" data-t="s">${o.map(([v,n])=>`<option value="${v}" ${String(V(k)??o[0][0])===v?'selected':''}>${n}</option>`).join('')}</select></div>`;
+  const S=(t,inner)=>`<div class="sec"><h4>${t}</h4>${inner}</div>`;
+@@@ REPLACE
+  const SE=(l,k,o)=>`<div class="fld"><label>${T(l)}</label><select data-k="${k}" data-t="s">${o.map(([v,n])=>`<option value="${v}" ${String(V(k)??o[0][0])===v?'selected':''}>${T(n)}</option>`).join('')}</select></div>`;
+  const S=(t,inner)=>`<div class="sec"><h4>${T(t)}</h4>${inner}</div>`;
+@@@ FIND
+  const kfBar=()=>`<div class="kfbar"><button data-act="kfprev" title="Image clé précédente">${ico('prev',14)}</button><button data-act="kf" class="kfb ${kfAt(c,time-c.start)?'on':''}" title="Ajouter / retirer une image clé à la tête de lecture (K)">◆ Image clé</button><button data-act="kfnext" title="Image clé suivante">${ico('next',14)}</button>${kf?`<button data-act="kfclear" title="Supprimer toutes les images clés">✕</button>`:''}</div>`;
+@@@ REPLACE
+  const kfBar=()=>`<div class="kfbar"><button data-act="kfprev" title="${T('kf.prevTip')}">${ico('prev',14)}</button><button data-act="kf" class="kfb ${kfAt(c,time-c.start)?'on':''}" title="${T('kf.toggleTip')}">${T('kf.button')}</button><button data-act="kfnext" title="${T('kf.nextTip')}">${ico('next',14)}</button>${kf?`<button data-act="kfclear" title="${T('kf.clearTip')}">✕</button>`:''}</div>`;
+@@@ FIND
+<button data-act="rot90">Rotation 90°</button><button data-act="resettf">Réinitialiser</button>
+@@@ REPLACE
+<button data-act="rot90">${T('common.rotate90')}</button><button data-act="resettf">${T('insp.reset')}</button>
+@@@ FIND
+<label>Texte (une ligne par commande)</label>
+@@@ REPLACE
+<label>${T('insp.termText')}</label>
+@@@ FIND
+<div class="fld"><label>Texte</label><input data-k="p.label" data-t="s" type="text" value="${esc(p.label)}"></div>${R(T('insp.widthPct'),'p.w',10,100)}${CO(T('common.color'),'p.color')}<p class="hint">La barre se remplit pendant toute la durée du clip.</p>
+@@@ REPLACE
+<div class="fld"><label>${T('common.text')}</label><input data-k="p.label" data-t="s" type="text" value="${esc(p.label)}"></div>${R(T('insp.widthPct'),'p.w',10,100)}${CO(T('common.color'),'p.color')}<p class="hint">${T('insp.barHint')}</p>
+@@@ FIND
+<div class="fld"><label>Titre</label><input data-k="p.label"
+@@@ REPLACE
+<div class="fld"><label>${T('tpl.title')}</label><input data-k="p.label"
+@@@ FIND
+`<div class="seg w3">${SHAPES.map(([k,n])=>`<button data-shape="${k}" class="${(p.shape||'rect')===k?'on':''}">${n}</button>`).join('')}</div>`
+@@@ REPLACE
+`<div class="seg w3">${SHAPES.map(([k,n])=>`<button data-shape="${k}" class="${(p.shape||'rect')===k?'on':''}">${T(n)}</button>`).join('')}</div>`
+@@@ FIND
+    h+=S(T('common.templates'),`<div class="pre">${Object.entries(TPRE).map(([k,v])=>`<button data-tpl="${k}">${v.n}</button>`).join('')}</div>`);
+@@@ REPLACE
+    h+=S(T('common.templates'),`<div class="pre">${Object.entries(TPRE).map(([k,v])=>`<button data-tpl="${k}">${T(v.n)}</button>`).join('')}</div>`);
+@@@ FIND
+<div class="two"><div class="fld"><label>Entrée</label>${trSel('p.tin',p.tin)}</div><div class="fld"><label>Sortie</label>${trSel('p.tout',p.tout)}</div></div>${R(T('insp.durS'),'p.tdur',.1,2,.1)}<div class="pre" style="margin:0"><button data-act="cross" title="Fait chevaucher ce clip avec le précédent">Fondu enchaîné avec le précédent</button><button data-act="trall">Appliquer à tous</button></div>
+@@@ REPLACE
+<div class="two"><div class="fld"><label>${T('common.in')}</label>${trSel('p.tin',p.tin)}</div><div class="fld"><label>${T('common.out')}</label>${trSel('p.tout',p.tout)}</div></div>${R(T('insp.durS'),'p.tdur',.1,2,.1)}<div class="pre" style="margin:0"><button data-act="cross" title="${T('tr.crossTip')}">${T('tr.crossShort')}</button><button data-act="trall">${T('tr.applyAll')}</button></div>
+@@@ FIND
+<button data-act="kbin">Zoom avant lent</button><button data-act="kbout">Zoom arrière lent</button><button data-act="kbpan">Panoramique</button>${kf?'<button data-act="kfclear">Retirer</button>':''}</div><p class="hint" style="margin:8px 0 0">Crée 2 images clés (début et fin du clip). Modifiables dans « Base ».</p>
+@@@ REPLACE
+<button data-act="kbin">${T('motion.zoomIn')}</button><button data-act="kbout">${T('motion.zoomOut')}</button><button data-act="kbpan">${T('motion.pan')}</button>${kf?`<button data-act="kfclear">${T('common.remove')}</button>`:''}</div><p class="hint" style="margin:8px 0 0">${T('motion.hint')}</p>
+@@@ FIND
+    h+=S(T('common.filters'),`<div class="pre">${Object.entries(CPN).map(([k,n])=>`<button data-colpre="${k}">${n}</button>`).join('')}</div>`);
+@@@ REPLACE
+    h+=S(T('common.filters'),`<div class="pre">${Object.entries(CPN).map(([k,n])=>`<button data-colpre="${k}">${T(n)}</button>`).join('')}</div>`);
+@@@ FIND
+    h+=S(T('insp.styles'),`<div class="pre">${Object.entries(FXPRE).map(([k,v])=>`<button data-pre="${k}">${v.n}</button>`).join('')}</div>`);
+@@@ REPLACE
+    h+=S(T('insp.styles'),`<div class="pre">${Object.entries(FXPRE).map(([k,v])=>`<button data-pre="${k}">${T(v.n)}</button>`).join('')}</div>`);
+@@@ FIND
+'<p class="hint" style="margin:0">Un masque ne garde qu\'une partie de l\'image (le reste devient transparent).</p>'
+@@@ REPLACE
+'<p class="hint" style="margin:0">'+T('mask.hint')+'</p>'
+@@@ FIND
+<button data-ckc="#00ff00">Vert</button><button data-ckc="#0000ff">Bleu</button><button data-ckc="#ffffff">Blanc</button><button data-ckc="#000000">Noir</button>
+@@@ REPLACE
+<button data-ckc="#00ff00">${T('chroma.green')}</button><button data-ckc="#0000ff">${T('chroma.blue')}</button><button data-ckc="#ffffff">${T('chroma.white')}</button><button data-ckc="#000000">${T('common.black')}</button>
+@@@ FIND
+'<p class="hint" style="margin:0">La durée du clip s\'adapte automatiquement.</p>'
+@@@ REPLACE
+'<p class="hint" style="margin:0">'+T('speed.hint')+'</p>'
+@@@ FIND
+'<button data-act="detach">Détacher le son</button>'
+@@@ REPLACE
+'<button data-act="detach">'+T('audio.detach')+'</button>'
+@@@ FIND
+    h+=S(T('audio.eq'),`<div class="pre">${Object.entries(AUPRE).map(([k,v])=>`<button data-aupre="${k}">${v.n}</button>`).join('')}</div>`
+@@@ REPLACE
+    h+=S(T('audio.eq'),`<div class="pre">${Object.entries(AUPRE).map(([k,v])=>`<button data-aupre="${k}">${T(v.n)}</button>`).join('')}</div>`
+@@@ FIND
+<div class="fld"><label>Seuil de silence</label>
+@@@ REPLACE
+<div class="fld"><label>${T('audio.silThr')}</label>
+@@@ FIND
+<div class="fld"><label>Silence minimum</label>
+@@@ REPLACE
+<div class="fld"><label>${T('audio.silMin')}</label>
+@@@ FIND
+<button data-act="silence">✂ Couper les silences</button><button data-act="beats">♪ Marqueurs sur le rythme</button><button data-act="norm">Normaliser le volume</button>${c.track===2?'<button data-act="duck">Baisser sous la voix</button>':''}</div><p class="hint" style="margin:8px 0 0">Couper les silences enlève les blancs (idéal pour un commentaire). Les marqueurs du rythme aimantent tes coupes sur la musique.</p>
+@@@ REPLACE
+<button data-act="silence">${T('audio.cutSilences')}</button><button data-act="beats">${T('audio.beats')}</button><button data-act="norm">${T('audio.normalize')}</button>${c.track===2?`<button data-act="duck">${T('audio.duck')}</button>`:''}</div><p class="hint" style="margin:8px 0 0">${T('audio.toolsHint')}</p>
+@@@ FIND
+<button data-itab="${t}" class="${t===tab?'on':''}">${TABS[t]}</button>
+@@@ REPLACE
+<button data-itab="${t}" class="${t===tab?'on':''}">${T(TABS[t])}</button>
+@@@ FIND
+  return `<div class="sec"><h4>Changer la voix</h4>
+  <label class="chk"><span>Activer</span>
+@@@ REPLACE
+  return `<div class="sec"><h4>${T('voice.title')}</h4>
+  <label class="chk"><span>${T('voice.enable')}</span>
+@@@ FIND
+  <label class="chk"><span>Effet téléphone</span>
+@@@ REPLACE
+  <label class="chk"><span>${T('voice.phone')}</span>
+@@@ FIND
+const trSel=(key,val)=>`<select data-k="${key}" data-t="s">${Object.entries(TRN).map(([k,n])=>`<option value="${k}" ${(val||'none')===k?'selected':''}>${n}</option>`).join('')}</select>`;
+@@@ REPLACE
+const trSel=(key,val)=>`<select data-k="${key}" data-t="s">${Object.entries(TRN).map(([k,n])=>`<option value="${k}" ${(val||'none')===k?'selected':''}>${T(n)}</option>`).join('')}</select>`;
+@@@ FIND
+  return `<div class="ihead"><div class="ititle"><span class="badge">Projet</span><span>${esc(projName)}</span></div></div><div class="ibody">
+  <div class="sec"><h4>Projet</h4>
+    <div class="fld"><label>Couleur de fond</label><input type="color" data-proj="bg" value="${bgColor}"></div>
+    <div class="fld"><label>Format</label><div class="hint">${W} × ${H} — à changer sous l'aperçu</div></div>
+    <div class="fld"><label>Durée</label><div class="hint">${fmt(total())} · ${clips.length} clip(s) · ${media.length} média(s)</div></div>
+@@@ REPLACE
+  return `<div class="ihead"><div class="ititle"><span class="badge">${T('proj.title')}</span><span>${esc(projName)}</span></div></div><div class="ibody">
+  <div class="sec"><h4>${T('proj.title')}</h4>
+    <div class="fld"><label>${T('proj.bgColor')}</label><input type="color" data-proj="bg" value="${bgColor}"></div>
+    <div class="fld"><label>${T('export.format')}</label><div class="hint">${T('proj.formatHint',{w:W,h:H})}</div></div>
+    <div class="fld"><label>${T('common.duration')}</label><div class="hint">${fmt(total())} · ${T('home.clips',{count:clips.length})} · ${T('proj.mediaCount',{count:media.length})}</div></div>
+@@@ FIND
+  <div class="sec"><h4>Son général</h4><div class="fld"><label>Volume général<span>${masterVol} %</span></label><input type="range" data-proj="mvol" min="0" max="200" value="${masterVol}"></div><label class="chk"><span>Limiteur anti-saturation</span>
+@@@ REPLACE
+  <div class="sec"><h4>${T('proj.sound')}</h4><div class="fld"><label>${T('proj.masterVol')}<span>${masterVol} %</span></label><input type="range" data-proj="mvol" min="0" max="200" value="${masterVol}"></div><label class="chk"><span>${T('proj.limiter')}</span>
+@@@ FIND
+  <div class="sec"><h4>Format en 1 clic</h4><div class="pre" style="margin:0"><button data-pact="vert">Vertical 9:16 (TikTok, Shorts)</button><button data-pact="horiz">Horizontal 16:9 (YouTube)</button></div><p class="hint" style="margin:8px 0 0">Les vidéos gardent tout leur cadre avec un fond flou autour.</p></div>
+  <div class="sec"><h4>À propos</h4><p class="hint" style="margin:0 0 8px"><b style="color:var(--txt)">DedCut</b> ${appVersion()} — fait par <b style="color:var(--ac)">ByKemi</b></p><p class="hint" style="margin:0 0 8px">Construit avec Tauri (MIT/Apache-2.0), React (MIT), mp4box.js (BSD) et mp4-muxer (MIT), affiché par Microsoft Edge WebView2. Pas de FFmpeg, aucune police, musique ou IA tierce embarquée.</p><button class="sm" data-pact="lic">Voir les licences</button></div>
+  <div class="sec"><h4>Pour commencer</h4><p class="hint" style="margin:0">Importe tes médias à gauche, puis clique sur <b>+</b> ou glisse-les dans la timeline. Clique un clip (dans la timeline ou directement dans l'aperçu) pour le modifier ici.</p></div>
+  <div class="sec"><h4>Raccourcis</h4><div class="keys">
+    <kbd>Espace</kbd><span>Lecture / pause</span><kbd>S</kbd><span>Couper</span><kbd>Suppr</kbd><span>Supprimer</span><kbd>Maj+Suppr</kbd><span>Supprimer et resserrer</span>
+    <kbd>Ctrl+D</kbd><span>Dupliquer</span><kbd>Ctrl+C / V</kbd><span>Copier / coller</span><kbd>Ctrl+Z / Y</kbd><span>Annuler / rétablir</span>
+    <kbd>← →</kbd><span>Image par image (Maj = 1 s)</span><kbd>K</kbd><span>Image clé</span><kbd>M</kbd><span>Marqueur</span>
+    <kbd>Ctrl+molette</kbd><span>Zoom timeline</span><kbd>Ctrl+S</kbd><span>Sauvegarder</span><kbd>Ctrl+E</kbd><span>Exporter</span>
+@@@ REPLACE
+  <div class="sec"><h4>${T('proj.quickFormat')}</h4><div class="pre" style="margin:0"><button data-pact="vert">${T('proj.vertical')}</button><button data-pact="horiz">${T('proj.horizontal')}</button></div><p class="hint" style="margin:8px 0 0">${T('proj.formatHint2')}</p></div>
+  <div class="sec"><h4>${T('about.title')}</h4><p class="hint" style="margin:0 0 8px"><b style="color:var(--txt)">DedCut</b> ${appVersion()} — ${T('app.madeBy',{author:'<b style="color:var(--ac)">ByKemi</b>'})}</p><p class="hint" style="margin:0 0 8px">${T('proj.aboutText')}</p><button class="sm" data-pact="lic">${T('about.openLicences')}</button></div>
+  <div class="sec"><h4>${T('proj.start')}</h4><p class="hint" style="margin:0">${T('proj.startText')}</p></div>
+  <div class="sec"><h4>${T('proj.shortcuts')}</h4><div class="keys">
+    <kbd>${T('keys.space')}</kbd><span>${T('keys.playPause')}</span><kbd>S</kbd><span>${T('keys.split')}</span><kbd>${T('keys.del')}</kbd><span>${T('keys.delete')}</span><kbd>${T('keys.shiftDel')}</kbd><span>${T('keys.ripple')}</span>
+    <kbd>Ctrl+D</kbd><span>${T('keys.duplicate')}</span><kbd>Ctrl+C / V</kbd><span>${T('keys.copyPaste')}</span><kbd>Ctrl+Z / Y</kbd><span>${T('keys.undoRedo')}</span>
+    <kbd>← →</kbd><span>${T('keys.frame')}</span><kbd>K</kbd><span>${T('keys.keyframe')}</span><kbd>M</kbd><span>${T('keys.marker')}</span>
+    <kbd>${T('keys.wheel')}</kbd><span>${T('keys.zoom')}</span><kbd>Ctrl+S</kbd><span>${T('ui.save')}</span><kbd>Ctrl+E</kbd><span>${T('ui.export')}</span>
+@@@ FIND
+toast('Export rapide impossible ('+(e&&e.message||e)+') : export en temps réel')
+@@@ REPLACE
+toast(T('export.fastFailed',{error:T(e&&e.message||String(e))}))
+@@@ FIND
+  $('#xPct').textContent=Math.floor(q*100)+' %'+(q>.02?' · encore ~'+fmt(rest).replace(/\.\d$/,''):'');
+@@@ REPLACE
+  $('#xPct').textContent=window.i18n.fmt.percent(Math.min(1,q))+(q>.02?' · '+T('export.remaining',{time:fmt(rest).replace(/\.\d$/,'')}):'');
+@@@ FIND
+box.innerHTML='<div class="hint" style="grid-column:1/-1">Au démarrage, Windows te demandera quel écran ou quelle fenêtre partager. Pour le son du jeu, coche « Partager l\'audio du système » dans cette fenêtre.</div>';
+@@@ REPLACE
+box.innerHTML='<div class="hint" style="grid-column:1/-1">'+T('rec.pickerHint')+'</div>';
+@@@ FIND
+<span>'+(x.id.startsWith('screen')?'Écran : ':'')+esc(x.name)+'</span></button>').join('')||'<div class="hint">Aucune source trouvée.</div>';
+@@@ REPLACE
+<span>'+esc(x.id.startsWith('screen')?T('rec.screenPrefix',{name:x.name}):x.name)+'</span></button>').join('')||'<div class="hint">'+T('rec.noSource')+'</div>';
+@@@ FIND
+box.innerHTML='<div class="hint" style="grid-column:1/-1">Impossible de lister les écrans.</div>'
+@@@ REPLACE
+box.innerHTML='<div class="hint" style="grid-column:1/-1">'+T('rec.listError')+'</div>'
+@@@ FIND
+  sel.innerHTML='<option value="">Pas de micro</option>'+d.map((x,i)=>'<option value="'+esc(x.deviceId)+'">'+esc(x.deviceId==='default'?T('rec.defaultMic'):x.label||'Micro '+(i+1))+'</option>').join('');
+@@@ REPLACE
+  sel.innerHTML='<option value="">'+T('rec.noMic')+'</option>'+d.map((x,i)=>'<option value="'+esc(x.deviceId)+'">'+esc(x.deviceId==='default'?T('rec.defaultMic'):x.label||T('rec.micN',{n:i+1}))+'</option>').join('');
+@@@ FIND
+name='Enregistrement '+d.getFullYear()
+@@@ REPLACE
+name=T('rec.filePrefix')+' '+d.getFullYear()
+@@@ FIND
+$('#recInfo').textContent=(st.bytes/1048576).toFixed(0)+' Mo · '+(g.width||'?')+'×'+(g.height||'?')+(mic?' · micro':'')+(cam?' · facecam':'')+(disp.getAudioTracks().length?' · son du PC':'')
+@@@ REPLACE
+$('#recInfo').textContent=[T('rec.sizeMB',{n:Math.round(st.bytes/1048576)}),(g.width||'?')+'×'+(g.height||'?'),mic&&T('rec.withMic'),cam&&T('rec.withCam'),disp.getAudioTracks().length&&T('rec.withSys')].filter(Boolean).join(' · ')
+@@@ FIND
+{body:'Enregistrement terminé ('+recClock((Date.now()-st.t0)/1000)+')',silent:true}
+@@@ REPLACE
+{body:T('rec.finished',{time:recClock((Date.now()-st.t0)/1000)}),silent:true}
+@@@ FIND
+'<option value="'+esc(x.deviceId)+'">'+esc(x.label||'Caméra '+(i+1))+'</option>').join(''):'<option value="">Aucune caméra trouvée</option>';
+@@@ REPLACE
+'<option value="'+esc(x.deviceId)+'">'+esc(x.label||T('rec.camN',{n:i+1}))+'</option>').join(''):'<option value="">'+T('rec.noCam')+'</option>';
+@@@ FIND
+toast(runs+' silence(s) coupé(s) · vidéo raccourcie de '+removed.toFixed(1)+' s');
+@@@ REPLACE
+toast(T('audio.silencesCut',{count:runs,sec:Math.round(removed*10)/10}));
+@@@ FIND
+toast(out.length+' marqueurs posés sur le rythme — tes coupes s\'y aimantent');
+@@@ REPLACE
+toast(T('audio.beatsPlaced',{count:out.length}));
+@@@ FIND
+  $('#xInfo').textContent=expDims().join(' × ')+' · durée '+fmt(total())+' · taille ≈ '+(mb<10?mb.toFixed(1):Math.round(mb))+' Mo'
+    +(b.cbr&&b.v<1.5e6&&W*H>1e6?' · ⚠ vidéo longue : la qualité baisse pour tenir dans la limite':'')
+    +($('#xPre').value==='tiktok'&&W>H?' · astuce : passe en vertical (panneau Projet)':'')
+    +(Math.min(...expDims())>=2160?' · 4K : export plus long':'');
+@@@ REPLACE
+  const[ew,eh]=expDims();
+  $('#xInfo').textContent=[T('export.info',{w:ew,h:eh,dur:fmt(total()),size:window.i18n.fmt.bytes(mb*1048576)}),
+    b.cbr&&b.v<1.5e6&&W*H>1e6&&T('export.warnLong'),$('#xPre').value==='tiktok'&&W>H&&T('export.tipVertical'),Math.min(ew,eh)>=2160&&T('export.warn4k')].filter(Boolean).join(' · ');
+@@@ FIND
+toast('Volume réglé à '+c.p.vol+' %');
+@@@ REPLACE
+toast(T('audio.volumeSet',{vol:c.p.vol}));
+@@@ FIND
+  s.innerHTML='<option value="">Micro par défaut (Windows)</option>'+d.map((x,i)=>'<option value="'+esc(x.deviceId)+'">'+esc(x.label||'Micro '+(i+1))+'</option>').join('');
+@@@ REPLACE
+  s.innerHTML='<option value="">'+T('rec.defaultMic')+'</option>'+d.map((x,i)=>'<option value="'+esc(x.deviceId)+'">'+esc(x.label||T('rec.micN',{n:i+1}))+'</option>').join('');
+@@@ FIND
+new File(o.ch,'Voix off '+fmtTC(o.t0)
+@@@ REPLACE
+new File(o.ch,T('vo.filePrefix')+' '+fmtTC(o.t0)
+@@@ FIND
+$('#shplist').innerHTML=SHPLIB.map((s,i)=>'<button data-shp="'+i+'" title="'+s.n+'">'+ico('square',22).replace(ICO.square,s.i)+s.n+'</button>').join('');
+@@@ REPLACE
+function renderShapes(){$('#shplist').innerHTML=SHPLIB.map((s,i)=>'<button data-shp="'+i+'" title="'+esc(T(s.n))+'">'+ico('square',22).replace(ICO.square,s.i)+esc(T(s.n))+'</button>').join('')}
+renderShapes();
+@@@ FIND
+$('#themes').innerHTML=Object.entries(THEMES).map(([k,t])=>'<button data-th="'+k+'"><i style="background:linear-gradient(135deg,'+t[1]+','+t[2]+')"></i>'+t[0]+'</button>').join('');
+@@@ REPLACE
+function renderThemes(){$('#themes').innerHTML=Object.entries(THEMES).map(([k,t])=>'<button data-th="'+k+'" class="'+(k===ACCK?'on':'')+'"><i style="background:linear-gradient(135deg,'+t[1]+','+t[2]+')"></i>'+esc(T('themes.'+k))+'</button>').join('')}
+let ACCK='violet';
+renderThemes();
+@@@ FIND
+  $('#fxpre').innerHTML=Object.entries(FXPRE).map(([k,v])=>`<button data-fxpre="${k}">${v.n}</button>`).join('');
+  $('#fxlist').innerHTML=FX.map(k=>`<button data-fx="${k}">${FXN[k]}</button>`).join('');
+  $('#trlist').innerHTML=Object.entries(TRN).map(([k,n])=>`<button data-tr="${k}">${n}</button>`).join('');
+@@@ REPLACE
+  $('#fxpre').innerHTML=Object.entries(FXPRE).map(([k,v])=>`<button data-fxpre="${k}">${T(v.n)}</button>`).join('');
+  $('#fxlist').innerHTML=FX.map(k=>`<button data-fx="${k}">${T(FXN[k])}</button>`).join('');
+  $('#trlist').innerHTML=Object.entries(TRN).map(([k,n])=>`<button data-tr="${k}">${T(n)}</button>`).join('');
+@@@ FIND
+</i>${n}</button>`).join('');
+@@@ REPLACE
+</i>${T(n)}</button>`).join('');
+@@@ FIND
+<button data-tpl="${k}"><span style="${v.css}">${v.n}</span></button>
+@@@ REPLACE
+<button data-tpl="${k}"><span style="${v.css}">${T(v.n)}</span></button>
+@@@ FIND
+e.textContent=ok?'Clip : '+clipName(c):T('lib.targetHint')
+@@@ REPLACE
+e.textContent=ok?T('lib.target',{name:clipName(c)}):T('lib.targetHint')
+@@@ FIND
+e.textContent=fc?'Clip : '+clipName(fc):T('lib.targetVisualHint')
+@@@ REPLACE
+e.textContent=fc?T('lib.target',{name:clipName(fc)}):T('lib.targetVisualHint')
+@@@ FIND
+toast(made.length+' sous-titres créés');
+@@@ REPLACE
+toast(T('text.subsCreated',{count:made.length}));
+@@@ FIND
+<span>${esc(it.label)}</span>
+@@@ REPLACE
+<span>${esc(T(it.label))}</span>
+@@@ END

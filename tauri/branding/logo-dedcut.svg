@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".22"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- la coupe en diagonale sépare le « D » en deux morceaux -->
+    <clipPath id="haut"><polygon points="0,0 512,0 512,214 0,324"/></clipPath>
+    <clipPath id="bas"><polygon points="0,348 512,238 512,512 0,512"/></clipPath>
+    <!-- « D » avec un bouton lecture creusé à l'intérieur -->
+    <path id="d" fill="#fff" fill-rule="evenodd"
+      d="M132 108 H252 A148 148 0 0 1 252 404 H132 Q112 404 112 384 V128 Q112 108 132 108 Z
+         M196 186 V326 Q196 340 208 333 L318 266 Q330 256 318 246 L208 179 Q196 172 196 186 Z"/>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#g)"/>
+  <rect width="512" height="512" rx="116" fill="url(#s)"/>
+  <g clip-path="url(#haut)" transform="translate(-9,-7)"><use href="#d"/></g>
+  <g clip-path="url(#bas)" transform="translate(9,7)"><use href="#d"/></g>
+</svg>

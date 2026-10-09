@@ -1,0 +1,127 @@
+# Version Mac de DedCut : fabrication + tests sur un Mac de GitHub (personne n'a besoin d'un Mac).
+# Se lance :
+#   - à la main : onglet « Actions » > « DedCut Mac » > « Run workflow » ;
+#   - quand le message d'un commit contient [mac] ;
+#   - à chaque tag de version (v4.34.0…).
+# Attention : sur un dépôt privé, une minute de Mac compte pour 10 minutes du quota gratuit de GitHub.
+name: DedCut Mac
+
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  mac:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v') || contains(github.event.head_commit.message, '[mac]')
+    runs-on: macos-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: tauri
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tauri/package-lock.json
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tauri/src-tauri -> target
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      # 1) le moteur dans WebKit (le moteur de Safari, celui que DedCut utilise sur Mac)
+      - name: Tester le moteur dans WebKit
+        continue-on-error: true
+        run: |
+          npm i --no-save playwright@1.56.1
+          npx playwright install webkit
+          (npx vite --port 5199 --strictPort > ../vite.log 2>&1 &)
+          for i in $(seq 1 30); do curl -s -o /dev/null http://localhost:5199/ && break; sleep 1; done
+          node scripts/mac-check.mjs webkit ../mac-report
+
+      # 2) la vraie appli Mac « universelle » (Mac Apple M1/M2… et anciens Mac Intel), sans signature Apple.
+      #    Le fichier de mise à jour (.app.tar.gz) est signé plus tard, sur le PC de ByKemi, par scripts/publish-update.cjs :
+      #    la clé de signature ne quitte jamais son PC.
+      - name: Fabriquer DedCut pour Mac
+        run: |
+          npx tauri build --target universal-apple-darwin --bundles app,dmg --config '{"bundle":{"createUpdaterArtifacts":false}}'
+          V=$(node -p "require('./src-tauri/tauri.conf.json').version")
+          B=src-tauri/target/universal-apple-darwin/release/bundle
+          mkdir -p ../mac-maj
+          tar -czf "../mac-maj/DedCut_${V}_universal.app.tar.gz" -C "$B/macos" DedCut.app
+          cp "$B/dmg/"*.dmg ../mac-maj/
+          ls -la ../mac-maj
+
+      # 3) lancer l'appli et prendre des captures d'écran
+      - name: Lancer DedCut et prendre des captures
+        run: |
+          mkdir -p ../mac-report
+          APP=$(ls -d src-tauri/target/universal-apple-darwin/release/bundle/macos/*.app | head -1)
+          echo "Appli : $APP"
+          open "$APP"
+          sleep 25
+          screencapture -x ../mac-report/appli-demarrage.png
+          if pgrep -f "$(basename "$APP")/Contents/MacOS" > /dev/null; then echo "| L'appli Mac démarre et reste ouverte | ✅ | |" > ../mac-report/appli.md; else echo "| L'appli Mac démarre et reste ouverte | ❌ | elle s'est fermée |" > ../mac-report/appli.md; fi
+          sleep 10
+          screencapture -x ../mac-report/appli-apres-35s.png
+          pkill -f "$(basename "$APP")/Contents/MacOS" || true
+
+      - name: Résumé
+        if: always()
+        run: |
+          cat ../mac-report/rapport-webkit.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || echo "Test WebKit : pas de rapport" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Appli Mac" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Vérification | Résultat | Détail |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| --- | --- | --- |" >> "$GITHUB_STEP_SUMMARY"
+          cat ../mac-report/appli.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || echo "| Fabrication de l'appli | ❌ | voir le journal |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Captures d'écran et installateur .dmg : dans « Artifacts » en bas de cette page." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Captures d'écran et rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dedcut-mac-rapport
+          path: mac-report
+          if-no-files-found: ignore
+
+      # installateur .dmg + fichier de mise à jour : privés (visibles seulement par toi sur ce dépôt privé)
+      - name: Installateur Mac et fichier de mise à jour
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dedcut-mac-maj
+          path: mac-maj
+
+  # vérifie que le code compile toujours pour Windows (sans fabriquer l'installateur)
+  windows-check:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v') || contains(github.event.head_commit.message, '[mac]')
+    runs-on: windows-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: tauri/src-tauri
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tauri/src-tauri -> target
+      - name: Le code Rust compile pour Windows
+        run: |
+          mkdir ..\dist -Force | Out-Null
+          if (!(Test-Path ..\dist\index.html)) { Set-Content ..\dist\index.html '<html></html>' }
+          cargo check --release

@@ -1,0 +1,31 @@
+// v4.50 : effets « Visage » (accessoires et retouches qui suivent le visage) — colonnes : clé | fr | en | es | de | it | pt | ja | ko | zh-CN
+const L = (k, fr, en, es, de, it, pt, ja, ko, zh) => [k, fr, en, es, de, it, pt, ja, ko, zh];
+module.exports = [
+L('fxcat.face','Visage','Face','Cara','Gesicht','Viso','Rosto','顔','얼굴','脸部'),
+L('fx.fcglasses','Lunettes de soleil','Sunglasses','Gafas de sol','Sonnenbrille','Occhiali da sole','Óculos de sol','サングラス','선글라스','墨镜'),
+L('fx.fcheartgl','Lunettes cœur','Heart glasses','Gafas de corazón','Herzbrille','Occhiali a cuore','Óculos de coração','ハートのメガネ','하트 안경','爱心眼镜'),
+L('fx.fcpixelgl','Lunettes pixel','Pixel glasses','Gafas pixeladas','Pixelbrille','Occhiali pixel','Óculos pixelados','ドット絵メガネ','픽셀 안경','像素眼镜'),
+L('fx.fccrown','Couronne','Crown','Corona','Krone','Corona','Coroa','王冠','왕관','皇冠'),
+L('fx.fchalo','Auréole','Halo','Aureola','Heiligenschein','Aureola','Auréola','天使の輪','후광','光环'),
+L('fx.fccat','Oreilles et nez de chat','Cat ears and nose','Orejas y nariz de gato','Katzenohren und -nase','Orecchie e naso da gatto','Orelhas e nariz de gato','ネコ耳と鼻','고양이 귀와 코','猫耳和猫鼻'),
+L('fx.fcbunny','Oreilles de lapin','Bunny ears','Orejas de conejo','Hasenohren','Orecchie da coniglio','Orelhas de coelho','うさ耳','토끼 귀','兔耳朵'),
+L('fx.fcdevil','Petites cornes','Little horns','Cuernitos','Kleine Hörner','Cornetti','Chifrinhos','小さなツノ','작은 뿔','小恶魔角'),
+L('fx.fcparty','Chapeau de fête','Party hat','Gorro de fiesta','Partyhut','Cappello da festa','Chapéu de festa','パーティー帽','파티 모자','派对帽'),
+L('fx.fcflowers','Couronne de fleurs','Flower crown','Corona de flores','Blumenkranz','Corona di fiori','Coroa de flores','花冠','꽃 왕관','花环'),
+L('fx.fcblush','Joues roses','Rosy cheeks','Mejillas rosadas','Rosige Wangen','Guance rosa','Bochechas rosadas','ほっぺチーク','발그레한 볼','粉红脸颊'),
+L('fx.fchearts','Cœurs autour de la tête','Hearts around the head','Corazones alrededor de la cabeza','Herzen um den Kopf','Cuori intorno alla testa','Corações ao redor da cabeça','頭のまわりのハート','머리 주위 하트','头顶环绕爱心'),
+L('fx.fcdizzy','Étoiles qui tournent','Spinning stars','Estrellas que giran','Kreisende Sterne','Stelle che girano','Estrelas girando','くるくる星','빙글빙글 별','转圈星星'),
+L('fx.fcsparkle','Yeux qui brillent','Sparkling eyes','Ojos brillantes','Funkelnde Augen','Occhi scintillanti','Olhos brilhantes','キラキラの目','반짝이는 눈','闪亮眼睛'),
+L('fx.fcmustache','Moustache','Mustache','Bigote','Schnurrbart','Baffi','Bigode','口ひげ','콧수염','小胡子'),
+L('fx.fcnose','Nez rouge','Red nose','Nariz roja','Rote Nase','Naso rosso','Nariz vermelho','赤い鼻','빨간 코','红鼻子'),
+L('fx.fcbigeyes','Gros yeux','Big eyes','Ojos grandes','Große Augen','Occhi grandi','Olhos grandes','デカ目','왕눈이','大眼睛'),
+L('fx.fcbighead','Grosse tête','Big head','Cabeza grande','Großer Kopf','Testa grande','Cabeção','デカ顔','큰 머리','大头'),
+L('fx.fcsmooth','Peau lisse','Smooth skin','Piel suave','Glatte Haut','Pelle liscia','Pele lisa','美肌','매끈한 피부','磨皮'),
+L('fx.fcblur','Flouter le visage','Blur the face','Difuminar la cara','Gesicht verwischen','Sfoca il viso','Desfocar o rosto','顔をぼかす','얼굴 흐리게','模糊脸部'),
+L('fx.fcpixel','Pixeliser le visage','Pixelate the face','Pixelar la cara','Gesicht verpixeln','Pixela il viso','Pixelizar o rosto','顔にモザイク','얼굴 모자이크','脸部打码'),
+L('fx.fczoom','Zoom qui suit le visage','Zoom that follows the face','Zoom que sigue la cara','Zoom, der dem Gesicht folgt','Zoom che segue il viso','Zoom que segue o rosto','顔を追うズーム','얼굴 따라 줌','跟随脸部缩放'),
+L('fxpre.cutie','Mignon','Cute','Adorable','Niedlich','Carino','Fofo','かわいい','귀여움','可爱'),
+L('fxpre.royal','Royal','Royal','Realeza','Königlich','Regale','Realeza','ロイヤル','로열','王者'),
+L('fxpre.kitty','Chaton','Kitten','Gatito','Kätzchen','Gattino','Gatinho','子ネコ','아기 고양이','小猫咪'),
+L('fxpre.cool','Trop cool','So cool','Súper cool','Voll cool','Troppo cool','Muito estiloso','クール','완전 멋짐','超酷')
+];

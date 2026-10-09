@@ -1,0 +1,48 @@
+[package]
+name = "dedcut"
+version = "4.67.0"
+description = "DedCut - logiciel de montage vidéo (fait par ByKemi)"
+authors = ["ByKemi"]
+license = "GPL-3.0-or-later"
+edition = "2021"
+publish = false
+
+[lib]
+name = "dedcut_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+# Licences vérifiées : tout est MIT OR Apache-2.0 (voir THIRD_PARTY_LICENSES.md)
+[dependencies]
+tauri = { version = "2", features = ["protocol-asset"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri-plugin-process = "2"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+# Windows : « job » qui arrête le cerveau de DedCut IA avec DedCut (windows-sys, MIT / Apache-2.0, déjà utilisé par Tauri)
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security", "Win32_Security_Cryptography", "Win32_Storage_FileSystem", "Win32_System_JobObjects", "Win32_System_Threading"] }
+# Capture de l'écran / des fenêtres et du son du PC faite par DedCut (capture.rs) : mêmes versions que celles déjà livrées avec Tauri
+windows = { version = "0.62", features = ["Foundation", "Graphics", "Graphics_Capture", "Graphics_DirectX", "Graphics_DirectX_Direct3D11", "Win32_Foundation", "Win32_Graphics_Direct3D", "Win32_Graphics_Direct3D11", "Win32_Graphics_Dxgi", "Win32_Graphics_Dxgi_Common", "Win32_Graphics_Dwm", "Win32_Graphics_Gdi", "Win32_Storage_Xps", "Win32_Media_Audio", "Win32_System_Com", "Win32_System_Com_StructuredStorage", "Win32_System_Variant", "Win32_System_Threading", "Win32_System_WinRT", "Win32_System_WinRT_Direct3D11", "Win32_System_WinRT_Graphics_Capture", "Win32_UI_WindowsAndMessaging"] }
+windows-core = "0.62"
+webview2-com = "0.39"
+
+# seulement sur ordinateur (pas sur Android / iPhone)
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-updater = "2"
+# Direct RTMPS (live.rs) : mêmes briques que les mises à jour automatiques (déjà livrées), rien de nouveau
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+rustls-platform-verifier = "0.7"

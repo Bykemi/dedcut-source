@@ -1,0 +1,23 @@
+# Fichiers fabriqués ou téléchargés : ils ne vont pas dans le dépôt
+tauri/node_modules/
+tauri/dist/
+tauri/src-tauri/target/
+tauri/src-tauri/gen/
+tauri/build*.log
+site/
+# copie publique du code (dépôt Bykemi/dedcut-source), fabriquée par tauri/scripts/publier-code.cjs
+code-public/
+source/node_modules/
+source/dist/
+# ancienne version Electron compilée, anciens installateurs
+DedCut/
+anciennes-versions/
+*.exe
+# réglages locaux de Claude Code et profils de test
+.claude/
+
+# vidéos de présentation exportées à la racine
+/Presentation-*.mp4
+
+# images de l installateur : fabriquées à chaque compilation par tauri/src-tauri/installer/make-ui.cjs
+tauri/src-tauri/installer/ui/

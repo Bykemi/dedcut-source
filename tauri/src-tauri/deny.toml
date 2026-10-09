@@ -1,0 +1,31 @@
+# cargo-deny (MIT / Apache-2.0) : failles connues (base RustSec), licences et provenance des paquets Rust de DedCut.
+# Lancé par `npm run verifier` (dossier tauri) ou à la main : `cargo deny check` dans src-tauri.
+# Installation une seule fois : `cargo install cargo-deny --locked`.
+
+[graph]
+# seulement ce qui est livré : Windows, puis Mac (les paquets Linux / GTK ne sont pas dans l'installateur)
+targets = ["x86_64-pc-windows-msvc", "aarch64-apple-darwin", "x86_64-apple-darwin"]
+
+[advisories]
+version = 2
+
+[licenses]
+version = 2
+confidence-threshold = 0.8
+# règle de DedCut : licences libres et gratuites (MIT, Apache, BSD d'abord). MPL-2.0 : quelques briques de Tauri
+# (cssparser, selectors, dtoa-short, option-ext), utilisées sans modification : autorisé fichier par fichier.
+allow = [
+    "MIT", "MIT-0", "Apache-2.0", "Apache-2.0 WITH LLVM-exception", "BSD-2-Clause", "BSD-3-Clause", "ISC", "Zlib", "0BSD",
+    "CC0-1.0", "BSL-1.0", "Unicode-3.0", "Unicode-DFS-2016", "Unlicense", "CDLA-Permissive-2.0", "MPL-2.0",
+]
+
+[licenses.private]
+# DedCut lui-même (publish = false) n'a pas besoin de licence ici
+ignore = true
+
+[bans]
+multiple-versions = "allow"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
