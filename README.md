@@ -12,6 +12,7 @@
   <b><a href="https://github.com/Bykemi/DedCut-mises-a-jour/releases/latest/download/DedCut-Installation.exe">Télécharger pour Windows</a></b> ·
   <a href="https://dedcut.com">dedcut.com</a> ·
   <a href="https://dedcut.com/tutos.html">Tutos</a> ·
+  <a href="https://x.com/DedCutt">X @DedCutt</a> ·
   <a href="#english">English</a>
 </p>
 
@@ -102,7 +103,7 @@ in the app or at bugs@dedcut.com.
 - **Image**: layers, masks, text, automatic background removal, PSD and TIFF, pressure-sensitive tablets, thumbnail templates.
 - **Music**: step beats, piano roll, royalty-free instruments, vocals, tuner, pitch correction, automatic backing vocals.
 
-**Download:** https://github.com/Bykemi/DedCut-mises-a-jour/releases/latest — **Website:** https://dedcut.com/en/
+**Download:** https://github.com/Bykemi/DedCut-mises-a-jour/releases/latest — **Website:** https://dedcut.com/en/ — **X:** https://x.com/DedCutt
 
 The source code is **free software** under the **GNU GPL version 3 or later** (see [LICENSE](LICENSE)). Third-party
 components keep their own licences (see `tauri/THIRD_PARTY_LICENSES.md`). The **DedCut name and logo** belong to ByKemi
