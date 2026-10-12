@@ -130,6 +130,15 @@
       "on": "启动时显示标志被切开的动画",
       "replay": "重新播放动画",
       "sound": "播放音效（切开的声音和一小段旋律）"
+    },
+    "hw": {
+      "title": "万圣节特辑",
+      "text": "12 种特效、4 款跟随面部的装扮、10 款滤镜和 6 款直播叠加层，做出你的恐怖视频。",
+      "go": "试试万圣节特效"
+    },
+    "season": {
+      "title": "节日装饰",
+      "on": "万圣节期间装饰首页"
     }
   },
   "settings": {
@@ -724,7 +733,23 @@
     "fcsmooth": "磨皮",
     "fcblur": "模糊脸部",
     "fcpixel": "脸部打码",
-    "fczoom": "跟随脸部缩放"
+    "fczoom": "跟随脸部缩放",
+    "hwbats": "蝙蝠",
+    "hwghosts": "幽灵",
+    "hwpumpkins": "南瓜灯",
+    "hwspiders": "蜘蛛",
+    "hwmoon": "满月",
+    "hwmist": "女巫迷雾",
+    "hwcandy": "糖果",
+    "hwslime": "史莱姆",
+    "hweyes": "黑暗中的眼睛",
+    "hwcandle": "烛光",
+    "hwhaunted": "闹鬼",
+    "hwzombie": "僵尸",
+    "fcwitch": "女巫帽",
+    "fcvampire": "吸血鬼獠牙",
+    "fcskull": "骷髅妆",
+    "fcpumpkin": "南瓜头"
   },
   "tr": {
     "both": "两者",
@@ -963,7 +988,10 @@
     "cutie": "可爱",
     "royal": "王者",
     "kitty": "小猫咪",
-    "cool": "超酷"
+    "cool": "超酷",
+    "hwnight": "闹鬼之夜",
+    "hwparty": "万圣节派对",
+    "hwmonster": "怪物电影"
   },
   "save": {
     "saving": "正在保存…",
@@ -1561,7 +1589,8 @@
     "colorpop": "鲜艳色彩",
     "dark": "暗黑",
     "softc": "柔和粉彩",
-    "mono": "彩色单色"
+    "mono": "彩色单色",
+    "halloween": "万圣节"
   },
   "look": {
     "bright": "明亮",
@@ -1745,7 +1774,17 @@
     "mncyan": "青色单色",
     "mnorange": "橙色单色",
     "mnteal": "蓝绿单色",
-    "mnbrown": "咖啡单色"
+    "mnbrown": "咖啡单色",
+    "hwnight": "万圣夜",
+    "hwpumpkin": "南瓜",
+    "hwzombie": "僵尸",
+    "hwvampire": "吸血鬼",
+    "hwwitch": "女巫",
+    "hwghost": "幽灵",
+    "hwmanor": "鬼屋",
+    "hwbloodmoon": "血月",
+    "hwcandle": "烛火",
+    "hwswamp": "沼泽迷雾"
   },
   "fxcat": {
     "move": "运动",
@@ -1767,7 +1806,8 @@
     "screens": "老式屏幕",
     "magic": "魔法梦幻",
     "beatfx": "随节拍",
-    "face": "脸部"
+    "face": "脸部",
+    "halloween": "万圣节"
   },
   "trcat": {
     "basic": "基础",
@@ -2475,7 +2515,8 @@
     "thumb": "YouTube缩略图",
     "draw": "手绘",
     "hook": "开头钩子",
-    "game": "城市动作游戏（霓虹）"
+    "game": "城市动作游戏（霓虹）",
+    "halloween": "万圣节"
   },
   "wl": {
     "hint": "将鼠标悬停在元素上即可预览动画。单击 = 添加到播放头处，然后在预览中移动和缩放。",
@@ -4551,7 +4592,8 @@
       "hand": "手写",
       "card": "卡片",
       "banner": "横幅",
-      "party": "派对"
+      "party": "派对",
+      "halloween": "万圣节"
     }
   },
   "cx": {
@@ -8177,7 +8219,8 @@
       "border": "屏幕边框",
       "remind": "提醒",
       "amb": "氛围",
-      "game": "城市动作游戏（霓虹）"
+      "game": "城市动作游戏（霓虹）",
+      "halloween": "万圣节"
     },
     "s": {
       "cam-neon": "霓虹",
@@ -8214,7 +8257,13 @@
       "gm-mission": "任务完成",
       "gm-screen": "霓虹日落",
       "gm-cam": "手机边框",
-      "gm-stars": "通缉星级"
+      "gm-stars": "通缉星级",
+      "hw-screen": "闹鬼等待画面",
+      "hw-cam": "蛛网边框",
+      "hw-lt": "南瓜名牌",
+      "hw-border": "闹鬼边框",
+      "hw-amb": "糖果和蝙蝠",
+      "hw-sub": "南瓜订阅提示"
     },
     "t1": "主文字",
     "t2": "副文字",
@@ -8546,5 +8595,10 @@
     },
     "cmd": "向 ByKemi 报告问题（邮件）",
     "aiOpened": "正在打开「报告问题」窗口：请说明哪里出了问题，消息会从你的邮箱发送到 {mail}。"
+  },
+  "hw": {
+    "hint": "先添加一个视频，再点击万圣节特效即可加上。",
+    "cmd": "万圣节特效（南瓜、幽灵、蝙蝠…）",
+    "aiOpened": "这些是万圣节特效：点击即可加到视频上。万圣节滤镜在“滤镜”标签里。"
   }
 }

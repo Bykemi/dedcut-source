@@ -32,7 +32,8 @@ const GM_DRAW={
     for(let i=-4;i<=4;i++){g.lineWidth=R*(i%3?.045:.075);g.beginPath();g.moveTo(i*cell,-R*1.6);g.lineTo(i*cell,R*1.6);g.stroke()}
     for(let j=-4;j<=5;j++){g.lineWidth=R*((j-k)%3?.045:.075);g.beginPath();g.moveTo(-R*1.6,j*cell+off-cell);g.lineTo(R*1.6,j*cell+off-cell);g.stroke()}
     // itinéraire (GPS) le long des rues
-    const ty=-cell+off-(off>cell*.6?cell:0); // le virage reste devant la flècheg.strokeStyle=c1;g.lineWidth=R*.09;g.lineJoin='round';g.shadowColor=c1;g.shadowBlur=R*.25;
+    const ty=-cell+off-(off>cell*.6?cell:0); // le virage reste devant la flèche
+    g.strokeStyle=c1;g.lineWidth=R*.09;g.lineJoin='round';g.shadowColor=c1;g.shadowBlur=R*.25;
     g.beginPath();g.moveTo(0,R*.05);g.lineTo(0,ty);g.lineTo(cell,ty);g.lineTo(cell,-R*1.6);g.stroke();g.shadowBlur=0;
     g.rotate(-rot);g.fillStyle='#ffffff';g.beginPath();g.moveTo(0,-R*.14);g.lineTo(R*.1,R*.1);g.lineTo(0,R*.04);g.lineTo(-R*.1,R*.1);g.closePath();g.fill();
     g.restore();

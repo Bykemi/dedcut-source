@@ -131,6 +131,15 @@
       "on": "Mostra il logo che viene tagliato all'avvio",
       "replay": "Rivedi l'animazione",
       "sound": "Con il suono (il taglio e una breve melodia)"
+    },
+    "hw": {
+      "title": "Speciale Halloween",
+      "text": "12 effetti, 4 travestimenti che seguono il viso, 10 filtri e 6 overlay per la diretta: tutto per i tuoi video da paura.",
+      "go": "Prova gli effetti di Halloween"
+    },
+    "season": {
+      "title": "Decorazioni di stagione",
+      "on": "Decorare la schermata iniziale ad Halloween"
     }
   },
   "settings": {
@@ -731,7 +740,23 @@
     "fcsmooth": "Pelle liscia",
     "fcblur": "Sfoca il viso",
     "fcpixel": "Pixela il viso",
-    "fczoom": "Zoom che segue il viso"
+    "fczoom": "Zoom che segue il viso",
+    "hwbats": "Pipistrelli",
+    "hwghosts": "Fantasmi",
+    "hwpumpkins": "Zucche",
+    "hwspiders": "Ragni",
+    "hwmoon": "Luna piena",
+    "hwmist": "Nebbia stregata",
+    "hwcandy": "Caramelle",
+    "hwslime": "Slime",
+    "hweyes": "Occhi nel buio",
+    "hwcandle": "Luce di candela",
+    "hwhaunted": "Infestato",
+    "hwzombie": "Zombie",
+    "fcwitch": "Cappello da strega",
+    "fcvampire": "Denti da vampiro",
+    "fcskull": "Trucco da scheletro",
+    "fcpumpkin": "Testa di zucca"
   },
   "tr": {
     "both": "Entrambe",
@@ -970,7 +995,10 @@
     "cutie": "Carino",
     "royal": "Regale",
     "kitty": "Gattino",
-    "cool": "Troppo cool"
+    "cool": "Troppo cool",
+    "hwnight": "Notte stregata",
+    "hwparty": "Festa di Halloween",
+    "hwmonster": "Film di mostri"
   },
   "save": {
     "saving": "Salvataggio…",
@@ -1571,7 +1599,8 @@
     "colorpop": "Colori vivaci",
     "dark": "Scuro",
     "softc": "Pastello & tenue",
-    "mono": "Monocromi tinti"
+    "mono": "Monocromi tinti",
+    "halloween": "Halloween"
   },
   "look": {
     "bright": "Luminoso",
@@ -1755,7 +1784,17 @@
     "mncyan": "Mono ciano",
     "mnorange": "Mono arancio",
     "mnteal": "Mono verde acqua",
-    "mnbrown": "Mono caffè"
+    "mnbrown": "Mono caffè",
+    "hwnight": "Notte di Halloween",
+    "hwpumpkin": "Zucca",
+    "hwzombie": "Zombie",
+    "hwvampire": "Vampiro",
+    "hwwitch": "Strega",
+    "hwghost": "Fantasma",
+    "hwmanor": "Casa infestata",
+    "hwbloodmoon": "Luna di sangue",
+    "hwcandle": "Candela",
+    "hwswamp": "Nebbia di palude"
   },
   "fxcat": {
     "move": "Movimento",
@@ -1777,7 +1816,8 @@
     "screens": "Vecchi schermi",
     "magic": "Magia & sogno",
     "beatfx": "A ritmo",
-    "face": "Viso"
+    "face": "Viso",
+    "halloween": "Halloween"
   },
   "trcat": {
     "basic": "Essenziali",
@@ -2490,7 +2530,8 @@
     "thumb": "Miniature YouTube",
     "draw": "Disegno a mano",
     "hook": "Ganci",
-    "game": "Gioco in città (neon)"
+    "game": "Gioco in città (neon)",
+    "halloween": "Halloween"
   },
   "wl": {
     "hint": "Passa il mouse su un elemento per vederlo muoversi. Clic = aggiungilo alla testina, poi spostalo e ridimensionalo nell’anteprima.",
@@ -4574,7 +4615,8 @@
       "hand": "Scritto a mano",
       "card": "Scheda",
       "banner": "Banner",
-      "party": "Festa"
+      "party": "Festa",
+      "halloween": "Halloween"
     }
   },
   "cx": {
@@ -8203,7 +8245,8 @@
       "border": "Bordi dello schermo",
       "remind": "Promemoria",
       "amb": "Atmosfere",
-      "game": "Gioco in città (neon)"
+      "game": "Gioco in città (neon)",
+      "halloween": "Halloween"
     },
     "s": {
       "cam-neon": "Neon",
@@ -8240,7 +8283,13 @@
       "gm-mission": "Missione compiuta",
       "gm-screen": "Tramonto al neon",
       "gm-cam": "Cornice telefono",
-      "gm-stars": "Stelle di ricerca"
+      "gm-stars": "Stelle di ricerca",
+      "hw-screen": "Schermata d’attesa stregata",
+      "hw-cam": "Cornice ragnatela",
+      "hw-lt": "Banner zucca",
+      "hw-border": "Bordo stregato",
+      "hw-amb": "Caramelle e pipistrelli",
+      "hw-sub": "Iscriviti zucca"
     },
     "t1": "Testo principale",
     "t2": "Testo secondario",
@@ -8572,5 +8621,10 @@
     },
     "cmd": "Segnala un bug a ByKemi (messaggio e-mail)",
     "aiOpened": "Apro la finestra «Segnala un bug»: spiega cosa non funziona, il messaggio parte dalla tua posta verso {mail}."
+  },
+  "hw": {
+    "hint": "Aggiungi un video, poi clicca su un effetto di Halloween per applicarlo.",
+    "cmd": "Effetti di Halloween (zucche, fantasmi, pipistrelli…)",
+    "aiOpened": "Ecco gli effetti di Halloween: clicca su uno per metterlo sul video. I filtri di Halloween sono nella scheda Filtri."
   }
 }

@@ -131,6 +131,15 @@
       "on": "Mostrar el logo que se corta al iniciar",
       "replay": "Ver la animación otra vez",
       "sound": "Con sonido (el corte y una melodía corta)"
+    },
+    "hw": {
+      "title": "Especial Halloween",
+      "text": "12 efectos, 4 disfraces que siguen tu cara, 10 filtros y 6 overlays para el directo: todo para tus vídeos de miedo.",
+      "go": "Probar los efectos de Halloween"
+    },
+    "season": {
+      "title": "Decoración de temporada",
+      "on": "Decorar la pantalla de inicio en Halloween"
     }
   },
   "settings": {
@@ -731,7 +740,23 @@
     "fcsmooth": "Piel suave",
     "fcblur": "Difuminar la cara",
     "fcpixel": "Pixelar la cara",
-    "fczoom": "Zoom que sigue la cara"
+    "fczoom": "Zoom que sigue la cara",
+    "hwbats": "Murciélagos",
+    "hwghosts": "Fantasmas",
+    "hwpumpkins": "Calabazas",
+    "hwspiders": "Arañas",
+    "hwmoon": "Luna llena",
+    "hwmist": "Niebla embrujada",
+    "hwcandy": "Caramelos",
+    "hwslime": "Slime",
+    "hweyes": "Ojos en la oscuridad",
+    "hwcandle": "Luz de vela",
+    "hwhaunted": "Embrujado",
+    "hwzombie": "Zombi",
+    "fcwitch": "Sombrero de bruja",
+    "fcvampire": "Colmillos de vampiro",
+    "fcskull": "Maquillaje de calavera",
+    "fcpumpkin": "Cabeza de calabaza"
   },
   "tr": {
     "both": "Ambas",
@@ -970,7 +995,10 @@
     "cutie": "Adorable",
     "royal": "Realeza",
     "kitty": "Gatito",
-    "cool": "Súper cool"
+    "cool": "Súper cool",
+    "hwnight": "Noche embrujada",
+    "hwparty": "Fiesta de Halloween",
+    "hwmonster": "Película de monstruos"
   },
   "save": {
     "saving": "Guardando…",
@@ -1571,7 +1599,8 @@
     "colorpop": "Colores vivos",
     "dark": "Oscuro",
     "softc": "Pastel y suave",
-    "mono": "Monocromos teñidos"
+    "mono": "Monocromos teñidos",
+    "halloween": "Halloween"
   },
   "look": {
     "bright": "Luminoso",
@@ -1755,7 +1784,17 @@
     "mncyan": "Mono cian",
     "mnorange": "Mono naranja",
     "mnteal": "Mono verde azulado",
-    "mnbrown": "Mono café"
+    "mnbrown": "Mono café",
+    "hwnight": "Noche de Halloween",
+    "hwpumpkin": "Calabaza",
+    "hwzombie": "Zombi",
+    "hwvampire": "Vampiro",
+    "hwwitch": "Bruja",
+    "hwghost": "Fantasma",
+    "hwmanor": "Casa encantada",
+    "hwbloodmoon": "Luna de sangre",
+    "hwcandle": "Vela",
+    "hwswamp": "Niebla del pantano"
   },
   "fxcat": {
     "move": "Movimiento",
@@ -1777,7 +1816,8 @@
     "screens": "Pantallas antiguas",
     "magic": "Magia y sueño",
     "beatfx": "Al ritmo",
-    "face": "Cara"
+    "face": "Cara",
+    "halloween": "Halloween"
   },
   "trcat": {
     "basic": "Esenciales",
@@ -2490,7 +2530,8 @@
     "thumb": "Miniaturas de YouTube",
     "draw": "Dibujo a mano",
     "hook": "Ganchos",
-    "game": "Juego de ciudad (neón)"
+    "game": "Juego de ciudad (neón)",
+    "halloween": "Halloween"
   },
   "wl": {
     "hint": "Pasa el ratón sobre un elemento para verlo moverse. Clic = añadirlo en el cabezal; luego muévelo y cambia su tamaño en la vista previa.",
@@ -4574,7 +4615,8 @@
       "hand": "Escrito a mano",
       "card": "Tarjeta",
       "banner": "Banda",
-      "party": "Fiesta"
+      "party": "Fiesta",
+      "halloween": "Halloween"
     }
   },
   "cx": {
@@ -8203,7 +8245,8 @@
       "border": "Bordes de pantalla",
       "remind": "Recordatorios",
       "amb": "Ambientes",
-      "game": "Juego de ciudad (neón)"
+      "game": "Juego de ciudad (neón)",
+      "halloween": "Halloween"
     },
     "s": {
       "cam-neon": "Neón",
@@ -8240,7 +8283,13 @@
       "gm-mission": "Misión cumplida",
       "gm-screen": "Atardecer neón",
       "gm-cam": "Marco de teléfono",
-      "gm-stars": "Estrellas de búsqueda"
+      "gm-stars": "Estrellas de búsqueda",
+      "hw-screen": "Pantalla de espera embrujada",
+      "hw-cam": "Marco de telaraña",
+      "hw-lt": "Rótulo de calabaza",
+      "hw-border": "Borde embrujado",
+      "hw-amb": "Caramelos y murciélagos",
+      "hw-sub": "Suscríbete calabaza"
     },
     "t1": "Texto principal",
     "t2": "Texto secundario",
@@ -8572,5 +8621,10 @@
     },
     "cmd": "Informar de un error a ByKemi (mensaje por correo)",
     "aiOpened": "Abro la ventana «Informar de un error»: explica qué no funciona; el mensaje sale de tu correo hacia {mail}."
+  },
+  "hw": {
+    "hint": "Añade un vídeo y haz clic en un efecto de Halloween para aplicarlo.",
+    "cmd": "Efectos de Halloween (calabazas, fantasmas, murciélagos…)",
+    "aiOpened": "Aquí tienes los efectos de Halloween: haz clic en uno para ponerlo en tu vídeo. Los filtros de Halloween están en la pestaña Filtros."
   }
 }

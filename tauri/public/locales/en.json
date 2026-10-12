@@ -131,6 +131,15 @@
       "on": "Show the logo being cut at startup",
       "replay": "Replay the animation",
       "sound": "With sound (the cut and a short melody)"
+    },
+    "hw": {
+      "title": "Halloween special",
+      "text": "12 effects, 4 costumes that follow your face, 10 filters and 6 Live overlays: everything for your spooky videos.",
+      "go": "Try the Halloween effects"
+    },
+    "season": {
+      "title": "Seasonal decoration",
+      "on": "Decorate the home screen during Halloween"
     }
   },
   "settings": {
@@ -731,7 +740,23 @@
     "fcsmooth": "Smooth skin",
     "fcblur": "Blur the face",
     "fcpixel": "Pixelate the face",
-    "fczoom": "Zoom that follows the face"
+    "fczoom": "Zoom that follows the face",
+    "hwbats": "Bats",
+    "hwghosts": "Ghosts",
+    "hwpumpkins": "Pumpkins",
+    "hwspiders": "Spiders",
+    "hwmoon": "Full moon",
+    "hwmist": "Witch mist",
+    "hwcandy": "Candy",
+    "hwslime": "Slime",
+    "hweyes": "Eyes in the dark",
+    "hwcandle": "Candlelight",
+    "hwhaunted": "Haunted",
+    "hwzombie": "Zombie",
+    "fcwitch": "Witch hat",
+    "fcvampire": "Vampire fangs",
+    "fcskull": "Skeleton makeup",
+    "fcpumpkin": "Pumpkin head"
   },
   "tr": {
     "both": "Both",
@@ -970,7 +995,10 @@
     "cutie": "Cute",
     "royal": "Royal",
     "kitty": "Kitten",
-    "cool": "So cool"
+    "cool": "So cool",
+    "hwnight": "Haunted night",
+    "hwparty": "Halloween party",
+    "hwmonster": "Monster movie"
   },
   "save": {
     "saving": "Saving…",
@@ -1571,7 +1599,8 @@
     "colorpop": "Color pop",
     "dark": "Dark",
     "softc": "Pastel & soft",
-    "mono": "Tinted mono"
+    "mono": "Tinted mono",
+    "halloween": "Halloween"
   },
   "look": {
     "bright": "Bright",
@@ -1755,7 +1784,17 @@
     "mncyan": "Cyan mono",
     "mnorange": "Orange mono",
     "mnteal": "Teal mono",
-    "mnbrown": "Coffee mono"
+    "mnbrown": "Coffee mono",
+    "hwnight": "Halloween night",
+    "hwpumpkin": "Pumpkin",
+    "hwzombie": "Zombie",
+    "hwvampire": "Vampire",
+    "hwwitch": "Witch",
+    "hwghost": "Ghost",
+    "hwmanor": "Haunted house",
+    "hwbloodmoon": "Blood moon",
+    "hwcandle": "Candle",
+    "hwswamp": "Swamp fog"
   },
   "fxcat": {
     "move": "Motion",
@@ -1777,7 +1816,8 @@
     "screens": "Old screens",
     "magic": "Magic & dreams",
     "beatfx": "On the beat",
-    "face": "Face"
+    "face": "Face",
+    "halloween": "Halloween"
   },
   "trcat": {
     "basic": "Essentials",
@@ -2490,7 +2530,8 @@
     "thumb": "YouTube thumbnails",
     "draw": "Freehand drawing",
     "hook": "Hooks",
-    "game": "City action game (neon)"
+    "game": "City action game (neon)",
+    "halloween": "Halloween"
   },
   "wl": {
     "hint": "Hover an element to see it move. Click = add it at the playhead, then move and resize it in the preview.",
@@ -4574,7 +4615,8 @@
       "hand": "Handwritten",
       "card": "Card",
       "banner": "Banner",
-      "party": "Party"
+      "party": "Party",
+      "halloween": "Halloween"
     }
   },
   "cx": {
@@ -8203,7 +8245,8 @@
       "border": "Screen borders",
       "remind": "Reminders",
       "amb": "Ambiences",
-      "game": "City action game (neon)"
+      "game": "City action game (neon)",
+      "halloween": "Halloween"
     },
     "s": {
       "cam-neon": "Neon",
@@ -8240,7 +8283,13 @@
       "gm-mission": "Mission complete",
       "gm-screen": "Neon sunset",
       "gm-cam": "Phone frame",
-      "gm-stars": "Wanted stars"
+      "gm-stars": "Wanted stars",
+      "hw-screen": "Haunted waiting screen",
+      "hw-cam": "Spider web frame",
+      "hw-lt": "Pumpkin name banner",
+      "hw-border": "Haunted border",
+      "hw-amb": "Candy and bats",
+      "hw-sub": "Pumpkin subscribe"
     },
     "t1": "Main text",
     "t2": "Second text",
@@ -8572,5 +8621,10 @@
     },
     "cmd": "Report a bug to ByKemi (e-mail message)",
     "aiOpened": "I’m opening the “Report a bug” window: explain what isn’t working, the message goes from your e-mail to {mail}."
+  },
+  "hw": {
+    "hint": "Add a video, then click a Halloween effect to put it on.",
+    "cmd": "Halloween effects (pumpkins, ghosts, bats…)",
+    "aiOpened": "Here are the Halloween effects: click one to put it on your video. The Halloween filters are in the Filters tab."
   }
 }

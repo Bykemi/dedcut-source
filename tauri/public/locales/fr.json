@@ -131,6 +131,15 @@
       "on": "Montrer le logo qui se fait couper au démarrage",
       "replay": "Revoir l'animation",
       "sound": "Avec le son (la coupe et une petite mélodie)"
+    },
+    "hw": {
+      "title": "Spécial Halloween",
+      "text": "12 effets, 4 déguisements qui suivent le visage, 10 filtres et 6 overlays pour le Live : tout pour tes vidéos qui font peur.",
+      "go": "Essayer les effets Halloween"
+    },
+    "season": {
+      "title": "Décor de saison",
+      "on": "Décorer l’accueil pendant Halloween"
     }
   },
   "settings": {
@@ -731,7 +740,23 @@
     "fcsmooth": "Peau lisse",
     "fcblur": "Flouter le visage",
     "fcpixel": "Pixeliser le visage",
-    "fczoom": "Zoom qui suit le visage"
+    "fczoom": "Zoom qui suit le visage",
+    "hwbats": "Chauves-souris",
+    "hwghosts": "Fantômes",
+    "hwpumpkins": "Citrouilles",
+    "hwspiders": "Araignées",
+    "hwmoon": "Pleine lune",
+    "hwmist": "Brume sorcière",
+    "hwcandy": "Bonbons",
+    "hwslime": "Slime",
+    "hweyes": "Yeux dans le noir",
+    "hwcandle": "Lueur de bougie",
+    "hwhaunted": "Hanté",
+    "hwzombie": "Zombie",
+    "fcwitch": "Chapeau de sorcière",
+    "fcvampire": "Crocs de vampire",
+    "fcskull": "Maquillage squelette",
+    "fcpumpkin": "Tête de citrouille"
   },
   "tr": {
     "both": "Les deux",
@@ -970,7 +995,10 @@
     "cutie": "Mignon",
     "royal": "Royal",
     "kitty": "Chaton",
-    "cool": "Trop cool"
+    "cool": "Trop cool",
+    "hwnight": "Nuit hantée",
+    "hwparty": "Fête d’Halloween",
+    "hwmonster": "Film de monstres"
   },
   "save": {
     "saving": "Enregistrement…",
@@ -1571,7 +1599,8 @@
     "colorpop": "Couleurs vives",
     "dark": "Sombre",
     "softc": "Pastel & doux",
-    "mono": "Monochromes teintés"
+    "mono": "Monochromes teintés",
+    "halloween": "Halloween"
   },
   "look": {
     "bright": "Lumineux",
@@ -1755,7 +1784,17 @@
     "mncyan": "Mono cyan",
     "mnorange": "Mono orange",
     "mnteal": "Mono sarcelle",
-    "mnbrown": "Mono café"
+    "mnbrown": "Mono café",
+    "hwnight": "Nuit d’Halloween",
+    "hwpumpkin": "Citrouille",
+    "hwzombie": "Zombie",
+    "hwvampire": "Vampire",
+    "hwwitch": "Sorcière",
+    "hwghost": "Fantôme",
+    "hwmanor": "Manoir hanté",
+    "hwbloodmoon": "Lune de sang",
+    "hwcandle": "Bougie",
+    "hwswamp": "Brume des marais"
   },
   "fxcat": {
     "move": "Mouvement",
@@ -1777,7 +1816,8 @@
     "screens": "Vieux écrans",
     "magic": "Magie & rêve",
     "beatfx": "Au rythme",
-    "face": "Visage"
+    "face": "Visage",
+    "halloween": "Halloween"
   },
   "trcat": {
     "basic": "Essentielles",
@@ -2490,7 +2530,8 @@
     "thumb": "Miniatures YouTube",
     "draw": "Dessin à la main",
     "hook": "Accroches",
-    "game": "Jeu en ville (néon)"
+    "game": "Jeu en ville (néon)",
+    "halloween": "Halloween"
   },
   "wl": {
     "hint": "Passe la souris sur un élément pour le voir bouger. Clic = l’ajouter à la tête de lecture, puis déplace-le et agrandis-le dans l’aperçu.",
@@ -4574,7 +4615,8 @@
       "hand": "Écrit à la main",
       "card": "Carte",
       "banner": "Bandeau",
-      "party": "Fête"
+      "party": "Fête",
+      "halloween": "Halloween"
     }
   },
   "cx": {
@@ -8203,7 +8245,8 @@
       "border": "Contours d'écran",
       "remind": "Rappels",
       "amb": "Ambiances",
-      "game": "Jeu en ville (néon)"
+      "game": "Jeu en ville (néon)",
+      "halloween": "Halloween"
     },
     "s": {
       "cam-neon": "Néon",
@@ -8240,7 +8283,13 @@
       "gm-mission": "Mission réussie",
       "gm-screen": "Coucher de soleil néon",
       "gm-cam": "Cadre téléphone",
-      "gm-stars": "Étoiles de recherche"
+      "gm-stars": "Étoiles de recherche",
+      "hw-screen": "Écran d’attente hanté",
+      "hw-cam": "Cadre toile d’araignée",
+      "hw-lt": "Bandeau citrouille",
+      "hw-border": "Contour hanté",
+      "hw-amb": "Bonbons et chauves-souris",
+      "hw-sub": "Abonne-toi citrouille"
     },
     "t1": "Texte principal",
     "t2": "Texte secondaire",
@@ -8572,5 +8621,10 @@
     },
     "cmd": "Signaler un bug à ByKemi (message par e-mail)",
     "aiOpened": "J’ouvre la fenêtre « Signaler un bug » : explique ce qui ne marche pas, le message part de ta messagerie vers {mail}."
+  },
+  "hw": {
+    "hint": "Ajoute une vidéo, puis clique sur un effet Halloween pour le mettre dessus.",
+    "cmd": "Effets Halloween (citrouilles, fantômes, chauves-souris…)",
+    "aiOpened": "Voici les effets Halloween : clique sur un effet pour le mettre sur ta vidéo. Les filtres Halloween sont dans l’onglet Filtres."
   }
 }

@@ -131,6 +131,15 @@
       "on": "Mostrar o logo sendo cortado ao abrir",
       "replay": "Ver a animação de novo",
       "sound": "Com som (o corte e uma melodia curta)"
+    },
+    "hw": {
+      "title": "Especial de Halloween",
+      "text": "12 efeitos, 4 fantasias que seguem o rosto, 10 filtros e 6 overlays para a live: tudo para seus vídeos assustadores.",
+      "go": "Experimentar os efeitos de Halloween"
+    },
+    "season": {
+      "title": "Decoração da estação",
+      "on": "Decorar a tela inicial no Halloween"
     }
   },
   "settings": {
@@ -731,7 +740,23 @@
     "fcsmooth": "Pele lisa",
     "fcblur": "Desfocar o rosto",
     "fcpixel": "Pixelizar o rosto",
-    "fczoom": "Zoom que segue o rosto"
+    "fczoom": "Zoom que segue o rosto",
+    "hwbats": "Morcegos",
+    "hwghosts": "Fantasmas",
+    "hwpumpkins": "Abóboras",
+    "hwspiders": "Aranhas",
+    "hwmoon": "Lua cheia",
+    "hwmist": "Névoa de bruxa",
+    "hwcandy": "Doces",
+    "hwslime": "Gosma",
+    "hweyes": "Olhos no escuro",
+    "hwcandle": "Luz de vela",
+    "hwhaunted": "Assombrado",
+    "hwzombie": "Zumbi",
+    "fcwitch": "Chapéu de bruxa",
+    "fcvampire": "Presas de vampiro",
+    "fcskull": "Maquiagem de caveira",
+    "fcpumpkin": "Cabeça de abóbora"
   },
   "tr": {
     "both": "Ambas",
@@ -970,7 +995,10 @@
     "cutie": "Fofo",
     "royal": "Realeza",
     "kitty": "Gatinho",
-    "cool": "Muito estiloso"
+    "cool": "Muito estiloso",
+    "hwnight": "Noite assombrada",
+    "hwparty": "Festa de Halloween",
+    "hwmonster": "Filme de monstro"
   },
   "save": {
     "saving": "Salvando…",
@@ -1571,7 +1599,8 @@
     "colorpop": "Cores vivas",
     "dark": "Escuro",
     "softc": "Pastel e suave",
-    "mono": "Monocromáticos tingidos"
+    "mono": "Monocromáticos tingidos",
+    "halloween": "Halloween"
   },
   "look": {
     "bright": "Luminoso",
@@ -1755,7 +1784,17 @@
     "mncyan": "Mono ciano",
     "mnorange": "Mono laranja",
     "mnteal": "Mono azul-petróleo",
-    "mnbrown": "Mono café"
+    "mnbrown": "Mono café",
+    "hwnight": "Noite de Halloween",
+    "hwpumpkin": "Abóbora",
+    "hwzombie": "Zumbi",
+    "hwvampire": "Vampiro",
+    "hwwitch": "Bruxa",
+    "hwghost": "Fantasma",
+    "hwmanor": "Casa assombrada",
+    "hwbloodmoon": "Lua de sangue",
+    "hwcandle": "Vela",
+    "hwswamp": "Névoa do pântano"
   },
   "fxcat": {
     "move": "Movimento",
@@ -1777,7 +1816,8 @@
     "screens": "Telas antigas",
     "magic": "Magia e sonho",
     "beatfx": "No ritmo",
-    "face": "Rosto"
+    "face": "Rosto",
+    "halloween": "Halloween"
   },
   "trcat": {
     "basic": "Essenciais",
@@ -2490,7 +2530,8 @@
     "thumb": "Miniaturas do YouTube",
     "draw": "Desenho à mão",
     "hook": "Ganchos",
-    "game": "Jogo na cidade (neon)"
+    "game": "Jogo na cidade (neon)",
+    "halloween": "Halloween"
   },
   "wl": {
     "hint": "Passe o mouse sobre um elemento para vê-lo se mexer. Clique = adicionar no cursor; depois mova e redimensione na prévia.",
@@ -4574,7 +4615,8 @@
       "hand": "Escrito à mão",
       "card": "Cartão",
       "banner": "Faixa",
-      "party": "Festa"
+      "party": "Festa",
+      "halloween": "Halloween"
     }
   },
   "cx": {
@@ -8203,7 +8245,8 @@
       "border": "Bordas da tela",
       "remind": "Lembretes",
       "amb": "Ambientes",
-      "game": "Jogo na cidade (neon)"
+      "game": "Jogo na cidade (neon)",
+      "halloween": "Halloween"
     },
     "s": {
       "cam-neon": "Neon",
@@ -8240,7 +8283,13 @@
       "gm-mission": "Missão cumprida",
       "gm-screen": "Pôr do sol neon",
       "gm-cam": "Moldura de celular",
-      "gm-stars": "Estrelas de procurado"
+      "gm-stars": "Estrelas de procurado",
+      "hw-screen": "Tela de espera assombrada",
+      "hw-cam": "Moldura de teia",
+      "hw-lt": "Faixa de abóbora",
+      "hw-border": "Borda assombrada",
+      "hw-amb": "Doces e morcegos",
+      "hw-sub": "Inscreva-se abóbora"
     },
     "t1": "Texto principal",
     "t2": "Texto secundário",
@@ -8572,5 +8621,10 @@
     },
     "cmd": "Relatar um bug ao ByKemi (mensagem por e-mail)",
     "aiOpened": "Estou abrindo a janela «Relatar um bug»: explique o que não funciona; a mensagem sai do seu e-mail para {mail}."
+  },
+  "hw": {
+    "hint": "Adicione um vídeo e clique em um efeito de Halloween para aplicá-lo.",
+    "cmd": "Efeitos de Halloween (abóboras, fantasmas, morcegos…)",
+    "aiOpened": "Aqui estão os efeitos de Halloween: clique em um para colocá-lo no seu vídeo. Os filtros de Halloween estão na aba Filtros."
   }
 }

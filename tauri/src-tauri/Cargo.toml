@@ -1,6 +1,6 @@
 [package]
 name = "dedcut"
-version = "4.67.1"
+version = "4.67.2"
 description = "DedCut - logiciel de montage vidéo (fait par ByKemi)"
 authors = ["ByKemi"]
 license = "GPL-3.0-or-later"

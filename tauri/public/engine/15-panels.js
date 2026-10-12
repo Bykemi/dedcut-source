@@ -12,6 +12,9 @@ const FXPRE={
   party:{n:'fxpre.party',a:['confetti','sparkle','pulse']},
   love:{n:'fxpre.love',a:['hearts','bloom','leak']},
   winter:{n:'fxpre.winter',a:['snow','bloom']},
+  hwnight:{n:'fxpre.hwnight',a:['hwmoon','hwbats','hwmist']},
+  hwparty:{n:'fxpre.hwparty',a:['hwpumpkins','hwcandy','hwbats']},
+  hwmonster:{n:'fxpre.hwmonster',a:['hwzombie','hwslime','hweyes']},
   storm:{n:'fxpre.storm',a:['rain','flicker','vig']},
   vlog:{n:'fxpre.vlog',a:['handheld','zoomin']},
   magic:{n:'fxpre.magic',a:['sparkle','bloom','leak']},
@@ -300,12 +303,12 @@ const fxSrc=keys=>keys.some(k=>PERSON_FX.includes(k))?fxThumbs.pimg:fxThumbs.img
 function renderEffects(){
   effectThumbs();
   const th=k=>fxThumbs&&fxThumbs[k]?` style="background-image:url(${fxThumbs[k]})"`:'';
-  const cats=['all',...Object.keys(FX_CATS)];
+  const cats=['all',...hwOrder(Object.keys(FX_CATS))];
   $('#fxcats').innerHTML=cats.map(k=>`<button data-fxcat="${k}" class="${k===fxCat?'on':''}">${T(k==='all'?'lookcat.all':FXCATN[k])}</button>`).join('');
   $('#fxpre').innerHTML=Object.entries(FXPRE).map(([k,v])=>`<button data-fxpre="${k}"><i${th('pre:'+k)}></i><span>${T(v.n)}</span></button>`).join('');
   const item=k=>`<button data-fx="${k}"><i${th('fx:'+k)}></i><span>${T(FXN[k])}</span></button>`;
   $('#fxlist').innerHTML=fxCat==='all'
-    ?Object.keys(FX_CATS).map(cat=>`<h3>${T(FXCATN[cat])}</h3>${cat==='beatfx'?`<p class="hint">${T('fx.beatHint')}</p>`:''}<div class="filt">${FX_CATS[cat].map(item).join('')}</div>`).join('')
+    ?hwOrder(Object.keys(FX_CATS)).map(cat=>`<h3>${T(FXCATN[cat])}</h3>${cat==='beatfx'?`<p class="hint">${T('fx.beatHint')}</p>`:''}<div class="filt">${FX_CATS[cat].map(item).join('')}</div>`).join('')
     :`${fxCat==='beatfx'?`<p class="hint">${T('fx.beatHint')}</p>`:''}<div class="filt">${FX_CATS[fxCat].map(item).join('')}</div>`;
   syncLib();
 }
@@ -424,12 +427,12 @@ function lookThumb(src,k){
   return c.toDataURL('image/jpeg',.85);
 }
 function renderFilters(){
-  const cats=['all',...Object.keys(LOOK_CATS)];
+  const cats=['all',...hwOrder(Object.keys(LOOK_CATS))];
   $('#fcats').innerHTML=cats.map(k=>`<button data-fcat="${k}" class="${k===fCat?'on':''}">${T(k==='all'?'lookcat.all':LOOK_CATS[k])}</button>`).join('');
   const item=k=>`<button data-filt="${k}"><i${fThumbs[k]?` style="background-image:url(${fThumbs[k]})"`:''}></i><span>${T(LOOKS[k].n)}</span></button>`;
   const keys=Object.keys(LOOKS);
   $('#filtlist').innerHTML=fCat==='all'
-    ?Object.keys(LOOK_CATS).map(cat=>`<h3>${T(LOOK_CATS[cat])}</h3><div class="filt">${keys.filter(k=>LOOKS[k].cat===cat).map(item).join('')}</div>`).join('')
+    ?hwOrder(Object.keys(LOOK_CATS)).map(cat=>`<h3>${T(LOOK_CATS[cat])}</h3><div class="filt">${keys.filter(k=>LOOKS[k].cat===cat).map(item).join('')}</div>`).join('')
     :`<div class="filt">${keys.filter(k=>LOOKS[k].cat===fCat).map(item).join('')}</div>`;
   syncFilters(filtClip(false));
 }

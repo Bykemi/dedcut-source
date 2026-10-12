@@ -679,7 +679,7 @@ dependencies = [
 
 [[package]]
 name = "dedcut"
-version = "4.67.1"
+version = "4.67.2"
 dependencies = [
  "rustls",
  "rustls-platform-verifier",

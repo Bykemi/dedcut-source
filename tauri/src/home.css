@@ -315,3 +315,35 @@ button.dc-beta:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
 .dc-about-links{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
 .dc-about-links .dc-btn{display:inline-flex;align-items:center;gap:6px}
 .dc-about-links .dc-svg{width:16px;height:16px}
+
+/* ---------- v4.67.2 : Halloween (classe dc-hw du 1er octobre au 2 novembre, case dans les réglages) ----------
+   Dessins originaux : chauves-souris, toile, araignée, chapeau de sorcière sur le logo, carte avec une citrouille.
+   Le décor reste derrière le contenu et ne bouge pas si l'on a demandé moins d'animations. */
+.dc-hw .dc-glow{background:
+  radial-gradient(60vw 46vh at 6% 0%,rgba(249,115,22,.22),transparent 62%),
+  radial-gradient(42vw 40vh at 100% 16%,rgba(124,58,237,.22),transparent 62%),
+  radial-gradient(50vw 44vh at 70% 108%,rgba(132,204,22,.08),transparent 60%),
+  radial-gradient(40vw 40vh at 0% 100%,rgba(249,115,22,.1),transparent 60%)}
+.dc-hw .dc-hello h2{background-image:linear-gradient(90deg,var(--txt),var(--txt) 40%,#fb923c)}
+.dc-hwdeco{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.dc-hwbat{position:absolute;left:0;top:var(--y);animation:dcHwX var(--d) linear var(--del) infinite}
+.dc-hwbat i{display:block;animation:dcHwY var(--b) ease-in-out infinite alternate}
+.dc-hwbat svg{display:block;width:var(--s);fill:#1a0f26;filter:drop-shadow(0 0 1.5px rgba(253,186,116,.95)) drop-shadow(0 0 10px rgba(251,146,60,.45));animation:dcHwFlap .34s ease-in-out infinite alternate;transform-origin:50% 45%}
+@keyframes dcHwX{from{transform:translateX(-14vw)}to{transform:translateX(114vw)}}
+@keyframes dcHwY{to{transform:translateY(38px)}}
+@keyframes dcHwFlap{to{transform:scaleY(.62)}}
+.dc-hwweb{position:absolute;right:0;top:0;width:clamp(130px,13vw,220px);opacity:.4;fill:none;stroke:#e9e4f5;stroke-width:1.1}
+.dc-hwspider{position:absolute;right:clamp(48px,5vw,84px);top:0;width:20px;filter:drop-shadow(0 0 5px rgba(251,146,60,.55));animation:dcHwSpi 5s ease-in-out infinite alternate}
+.dc-hwspider:before{content:'';position:absolute;left:9.5px;bottom:100%;width:1px;height:400px;background:rgba(255,255,255,.3)}
+.dc-hwspider svg{display:block;width:20px;height:20px}
+@keyframes dcHwSpi{from{transform:translateY(60px)}to{transform:translateY(140px)}}
+.dc-brand{position:relative}
+.dc-hwhat{position:absolute;left:-12px;top:-16px;width:clamp(36px,2.2vw,46px);transform:rotate(-20deg);pointer-events:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6));z-index:1}
+.dc-hwcard{display:flex;align-items:center;gap:14px;width:max-content;max-width:100%;margin:16px auto 0;padding:10px 12px 10px 14px;border-radius:14px;border:1px solid rgba(251,146,60,.45);background:linear-gradient(120deg,rgba(251,146,60,.14),rgba(124,58,237,.16));text-align:left}
+.dc-hwcard svg{width:42px;height:42px;flex:none;filter:drop-shadow(0 0 10px rgba(251,146,60,.6))}
+.dc-hwcard b{display:block;font-size:15px;color:#ffedd5}
+.dc-hwcard span{display:block;font-size:13px;color:var(--dim);line-height:1.4;margin-top:2px}
+.dc-hwcard .dc-hwgo{flex:none;background:linear-gradient(120deg,#f97316,#7c3aed);border:0;color:#fff;font-weight:600;padding:9px 14px}
+.dc-hwcard .dc-hwgo:hover{filter:brightness(1.1)}
+@media (max-width:640px){.dc-hwcard{flex-wrap:wrap}.dc-hwbat:nth-child(n+4),.dc-hwspider{display:none}}
+@media (prefers-reduced-motion:reduce){.dc-hwbat,.dc-hwspider{display:none}}

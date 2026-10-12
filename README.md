@@ -33,7 +33,7 @@ DedCut is in **beta**: everything works, but some bugs may remain. Found one? Cl
 
 | | |
 |---|---|
-| **Edit** | Multitrack timeline, automatic subtitles made on your PC, edit by deleting words in the transcript, automatic Shorts, multicam, object tracking and moving blur, stabilisation, 225 effects, 189 filters, 82 transitions, export up to 4K, vertical or GIF |
+| **Edit** | Multitrack timeline, automatic subtitles made on your PC, edit by deleting words in the transcript, automatic Shorts, multicam, object tracking and moving blur, stabilisation, 263 effects (including Halloween), 199 filters, 82 transitions, export up to 4K, vertical or GIF |
 | **Record** | Screen, game, PC sound, mic and webcam with scenes and sources (like OBS), background blur or removal without a green screen, live voice effects for your mic |
 | **Live** | YouTube, Twitch, Facebook, Kick and TikTok at the same time, vertical 9:16 studio, chat and alerts on screen, animated overlays, phone remote control |
 | **Image** | Layers, masks, text and shapes, automatic background removal, PSD and TIFF files, pressure-sensitive graphics tablets, thumbnail templates, QR codes |
@@ -104,7 +104,7 @@ Pas de compte, pas de pub, pas de filigrane : tout se passe sur ton PC. Traduit 
 signaler un bug, clique sur la pastille « bêta » dans DedCut (ou Menu > Signaler un bug), ou écris à bugs@dedcut.com.
 
 - **Montage** : timeline multipiste, sous-titres automatiques faits sur le PC, montage en effaçant des mots, Shorts
-  automatiques, multicam, suivi d'objet, stabilisation, 225 effets, export jusqu'à la 4K, vertical ou GIF.
+  automatiques, multicam, suivi d'objet, stabilisation, 263 effets (dont Halloween), export jusqu'à la 4K, vertical ou GIF.
 - **Enregistrer** : écran, jeu, son du PC, micro et webcam avec scènes et sources (comme OBS), fond retiré sans fond vert.
 - **Live** : YouTube, Twitch, Facebook, Kick et TikTok en même temps, studio vertical 9:16, chat et alertes à l'écran.
 - **Image** : calques, masques, détourage automatique, fichiers PSD et TIFF, tablettes graphiques, modèles de miniatures.

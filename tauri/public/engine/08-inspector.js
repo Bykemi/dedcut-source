@@ -10,7 +10,7 @@ const BLEND=[['source-over','common.normal'],['screen','blend.screen'],['multipl
 /* filtres : réglages propres à DedCut (aucun n'est repris d'un autre logiciel).
    br/ct/sa/hue/sep/gs/inv = filtres CSS ; t1/t2 = teintes (couleur, mode de fusion, opacité) ; fade = noirs délavés ;
    vig = vignette ; grain = grain de pellicule ; leak = halo de lumière (couleur leakc) */
-const LOOK_CATS={basic:'lookcat.basic',trend:'lookcat.trend',aesth:'lookcat.aesth',film:'lookcat.film',season:'lookcat.season',travel:'lookcat.travel',colorpop:'lookcat.colorpop',dark:'lookcat.dark',softc:'lookcat.softc',mono:'lookcat.mono',cine:'lookcat.cine',retro:'lookcat.retro',bw:'lookcat.bw',mood:'lookcat.mood',creative:'lookcat.creative',portrait:'lookcat.portrait',nature:'lookcat.nature',street:'lookcat.street'};
+const LOOK_CATS={basic:'lookcat.basic',trend:'lookcat.trend',aesth:'lookcat.aesth',film:'lookcat.film',season:'lookcat.season',halloween:'lookcat.halloween',travel:'lookcat.travel',colorpop:'lookcat.colorpop',dark:'lookcat.dark',softc:'lookcat.softc',mono:'lookcat.mono',cine:'lookcat.cine',retro:'lookcat.retro',bw:'lookcat.bw',mood:'lookcat.mood',creative:'lookcat.creative',portrait:'lookcat.portrait',nature:'lookcat.nature',street:'lookcat.street'};
 const SL='soft-light',OV='overlay',MU='multiply',SC='screen',CO='color';
 const LOOKS={
   none:{cat:'basic',n:'filter.original',c:{}},
@@ -154,6 +154,17 @@ const LOOKS={
   sfog:{cat:'season',n:'look.sfog',c:{br:110,ct:80,sa:70,fade:24,t1c:'#e2e8f0',t1m:SC,t1o:16}},
   ssunrise:{cat:'season',n:'look.ssunrise',c:{br:106,ct:104,sa:120,t1c:'#fb923c',t1m:SL,t1o:24,leak:20,leakc:'#fdba74'}},
   sstormy:{cat:'season',n:'look.sstormy',c:{br:88,ct:122,sa:70,t1c:'#1e293b',t1m:SL,t1o:30,vig:40}},
+  // Halloween (v4.67.2) : réglages propres à DedCut
+  hwnight:{cat:'halloween',n:'look.hwnight',c:{br:78,ct:126,sa:90,hue:12,t1c:'#2e1065',t1m:SL,t1o:58,t2c:'#f97316',t2m:SL,t2o:12,vig:58}},
+  hwpumpkin:{cat:'halloween',n:'look.hwpumpkin',c:{br:98,ct:116,sa:130,hue:-10,t1c:'#f97316',t1m:SL,t1o:34,vig:35}},
+  hwzombie:{cat:'halloween',n:'look.hwzombie',c:{br:92,ct:118,sa:55,t1c:'#4d7c0f',t1m:SL,t1o:40,t2c:'#1f2937',t2m:MU,t2o:15,vig:40,grain:10}},
+  hwvampire:{cat:'halloween',n:'look.hwvampire',c:{br:92,ct:132,sa:42,t1c:'#991b1b',t1m:OV,t1o:30,t2c:'#cbd5e1',t2m:SC,t2o:10,vig:55}},
+  hwwitch:{cat:'halloween',n:'look.hwwitch',c:{br:92,ct:118,sa:120,hue:10,t1c:'#7c3aed',t1m:SL,t1o:50,t2c:'#16a34a',t2m:SL,t2o:24,vig:45}},
+  hwghost:{cat:'halloween',n:'look.hwghost',c:{br:108,ct:84,sa:35,fade:22,t1c:'#a5f3fc',t1m:SC,t1o:14,vig:30}},
+  hwmanor:{cat:'halloween',n:'look.hwmanor',c:{br:88,ct:125,sa:55,sep:30,t1c:'#3f2a14',t1m:SL,t1o:26,vig:60,grain:22}},
+  hwbloodmoon:{cat:'halloween',n:'look.hwbloodmoon',c:{br:90,ct:120,sa:110,t1c:'#b91c1c',t1m:SL,t1o:36,t2c:'#1e1b4b',t2m:MU,t2o:18,vig:45}},
+  hwcandle:{cat:'halloween',n:'look.hwcandle',c:{br:96,ct:112,sa:115,t1c:'#f59e0b',t1m:OV,t1o:26,leak:22,leakc:'#fb923c',vig:55}},
+  hwswamp:{cat:'halloween',n:'look.hwswamp',c:{br:104,ct:82,sa:60,fade:26,t1c:'#94a3b8',t1m:SC,t1o:14,t2c:'#4c1d95',t2m:SL,t2o:12}},
   tparis:{cat:'travel',n:'look.tparis',c:{br:104,ct:100,sa:96,t1c:'#f9a8d4',t1m:SL,t1o:16,fade:10}},
   tla:{cat:'travel',n:'look.tla',c:{br:106,ct:112,sa:122,hue:-6,t1c:'#fb923c',t1m:SL,t1o:22,t2c:'#14b8a6',t2m:SL,t2o:12}},
   tnyc:{cat:'travel',n:'look.tnyc',c:{br:96,ct:120,sa:85,t1c:'#475569',t1m:SL,t1o:22,t2c:'#f59e0b',t2m:SL,t2o:10,vig:25}},

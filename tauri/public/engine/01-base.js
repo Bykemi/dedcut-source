@@ -187,9 +187,10 @@ const FX_CATS={
   pattern:['knit','blocks','pointil','crossstitch','weave','paper','linescreen','gridline','checkfx','brickwall'],
   screens:['vhsfull','oldtv','cga','teletext','sepiamovie','cctv','jpegfx','riso','onebit','amber'],
   magic:['starsky','magicdust','rainglass','zoomecho','hologram','underwater','bokehblur','oilspill','galaxy','flames'],
+  halloween:['hwbats','hwghosts','hwpumpkins','hwspiders','hwmoon','hwmist','hwcandy','hwslime','hweyes','hwcandle','hwhaunted','hwzombie'], // v4.67.2, dessinés dans 06c-halloween.js
   art:['comic','stained','shatter','engrave','blueprint','xray','edgeglow','hexpix','trimosaic','tilefx','lcd','liquid','frosted','pinch','binoc'],
   person:['outline','neonline','aura','bgblur','bggray','bgblack','bgcolor','bgspace','bgpixel','bgzoom','spot','pgray','ppixel','pholo','pglitch','silhouette','shadow','pghost','pclone','outline2','prainbow','pdash','pelec','psticker'],
-  face:['fcglasses','fcheartgl','fcpixelgl','fccrown','fchalo','fccat','fcbunny','fcdevil','fcparty','fcflowers','fcblush','fchearts','fcdizzy','fcsparkle','fcmustache','fcnose','fcbigeyes','fcbighead','fcsmooth','fcblur','fcpixel','fczoom'],
+  face:['fcglasses','fcheartgl','fcpixelgl','fccrown','fchalo','fccat','fcbunny','fcdevil','fcparty','fcflowers','fcblush','fchearts','fcdizzy','fcsparkle','fcmustache','fcnose','fcbigeyes','fcbighead','fcsmooth','fcblur','fcpixel','fczoom','fcwitch','fcvampire','fcskull','fcpumpkin'],
   move:['shake','handheld','sway','zoomin','pulse','zoomblur','impact','zoompunch','whip','motionblur'],
   lens:['lens','fisheye','tiltshift','halation','flare','prism','letterbox','sharpen','blur','chroma'],
   glitch:['glitch','glitchblock','rgb','slices','vhstrack','crt','pixel','strobe','flicker'],

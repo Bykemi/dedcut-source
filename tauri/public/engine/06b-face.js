@@ -169,6 +169,39 @@ function fcRedNose(g,f){
   const n=fcLocal(f,f.nx,f.ny),gr=g.createRadialGradient(n.x-7,n.y-12,3,n.x,n.y-4,26);
   gr.addColorStop(0,'#fecaca');gr.addColorStop(.35,'#ef4444');gr.addColorStop(1,'#991b1b');g.beginPath();g.arc(n.x,n.y-4,24,0,TAU);g.fillStyle=gr;g.fill();
 }
+/* Halloween (v4.67.2) : chapeau de sorcière, crocs de vampire, maquillage squelette, tête de citrouille */
+function fcWitchHat(g){
+  g.save();g.rotate(-.08);g.lineJoin='round';
+  // cône pointu un peu tordu, puis le bord par-dessus, le ruban orange et la boucle dorée
+  g.beginPath();g.moveTo(-98,-176);g.quadraticCurveTo(-60,-280,-10,-360);g.quadraticCurveTo(14,-410,74,-425);g.quadraticCurveTo(42,-398,36,-358);g.quadraticCurveTo(62,-270,98,-176);g.closePath();
+  g.fillStyle=fcGrad(g,-90,0,90,0,['#2e1650','#4c1d95','#2a1247']);g.fill();g.strokeStyle='#0d0618';g.lineWidth=4;g.stroke();
+  g.beginPath();g.ellipse(0,-168,178,34,0,0,TAU);g.fillStyle=fcGrad(g,0,-202,0,-134,['#3b1d5e','#1a0b2e']);g.fill();g.stroke();
+  g.beginPath();g.moveTo(-94,-196);g.quadraticCurveTo(0,-176,94,-196);g.lineTo(90,-224);g.quadraticCurveTo(0,-204,-88,-224);g.closePath();g.fillStyle='#f97316';g.fill();
+  g.fillStyle='#fbbf24';g.fillRect(-20,-228,40,34);g.fillStyle='#4c1d95';g.fillRect(-11,-220,22,18);
+  g.restore();
+}
+function fcFangs(g,f){
+  const m=fcLocal(f,f.mx,f.my),y=m.y-8;
+  for(const sx of[-1,1]){const x=m.x+sx*20;g.beginPath();g.moveTo(x-9,y);g.lineTo(x+9,y);g.quadraticCurveTo(x+3,y+16,x+sx*2,y+35);g.quadraticCurveTo(x-4,y+16,x-9,y);g.closePath();
+    g.fillStyle=fcGrad(g,0,y,0,y+35,['#ffffff','#e5e7eb']);g.fill();g.strokeStyle='rgba(60,60,70,.55)';g.lineWidth=2;g.stroke()}
+}
+function fcSkull(g,f,a){
+  const n=fcLocal(f,f.nx,f.ny),m=fcLocal(f,f.mx,f.my),dark='rgba(8,8,12,';
+  g.save();
+  // teint pâle
+  g.save();g.translate(0,42);g.scale(1,145/112);const gr=g.createRadialGradient(0,0,40,0,0,112);gr.addColorStop(0,'rgba(245,245,250,'+(.3+.25*a)+')');gr.addColorStop(.75,'rgba(245,245,250,'+(.18+.15*a)+')');gr.addColorStop(1,'rgba(245,245,250,0)');g.fillStyle=gr;g.beginPath();g.arc(0,0,112,0,TAU);g.fill();g.restore();
+  // orbites
+  for(const sx of[-1,1]){const r=g.createRadialGradient(sx*50,4,8,sx*50,4,44);r.addColorStop(0,dark+'.95)');r.addColorStop(.7,dark+'.85)');r.addColorStop(1,dark+'0)');g.fillStyle=r;g.beginPath();g.ellipse(sx*50,4,44,40,0,0,TAU);g.fill()}
+  // nez en cœur à l'envers
+  g.fillStyle=dark+'.92)';g.beginPath();g.moveTo(n.x,n.y-18);g.quadraticCurveTo(n.x-14,n.y+6,n.x-4,n.y+8);g.lineTo(n.x,n.y+2);g.lineTo(n.x+4,n.y+8);g.quadraticCurveTo(n.x+14,n.y+6,n.x,n.y-18);g.fill();
+  // dents cousues sur la bouche
+  g.strokeStyle=dark+'.9)';g.lineWidth=4;g.lineCap='round';g.beginPath();g.moveTo(m.x-62,m.y-2);g.quadraticCurveTo(m.x,m.y+10,m.x+62,m.y-2);
+  for(let k=-5;k<=5;k++){const x=m.x+k*11,yy=m.y+4-Math.abs(k)*.4;g.moveTo(x,yy-11);g.lineTo(x,yy+11)}g.stroke();
+  // joues creuses
+  for(const sx of[-1,1]){const r=g.createRadialGradient(sx*78,70,4,sx*78,70,40);r.addColorStop(0,'rgba(20,20,30,'+(.35*a+.15)+')');r.addColorStop(1,'rgba(20,20,30,0)');g.fillStyle=r;g.fillRect(sx*78-40,30,80,80)}
+  g.restore();
+}
+function fcPumpkinHead(g,t){hwPumpkin(g,0,52,168,.6+.25*Math.sin(t*11)+.15*hash(Math.floor(t*12)))}
 
 /* ---------- retouches de l'image autour du visage ---------- */
 /** grossit le disque (cx, cy, R) comme une loupe déformante, sans bord net (anneaux de plus en plus agrandis) */
@@ -216,8 +249,11 @@ function faceFX(p,fx,t,a){
     const sz=.82+.36*a;
     ctx.save();ctx.translate(f.ex,f.ey);ctx.rotate(f.ang);ctx.scale(f.k,f.k);
     if(fx.fcblush)fcBlush(ctx,a);
+    if(fx.fcskull)fcSkull(ctx,f,a);
+    if(fx.fcpumpkin)fcPumpkinHead(ctx,t);
     // accessoires du haut de la tête : posés sur les cheveux (un peu plus bas que le haut du cadre du visage)
     ctx.save();ctx.translate(0,46);ctx.scale(sz,sz);
+    if(fx.fcwitch)fcWitchHat(ctx);
     if(fx.fchalo)fcHalo(ctx,t);
     if(fx.fchearts)fcHeartsOrbit(ctx,t);
     if(fx.fcdizzy)fcDizzy(ctx,t);
@@ -231,6 +267,7 @@ function faceFX(p,fx,t,a){
     if(fx.fccat)fcCatFace(ctx,f);
     if(fx.fcbunny)fcBunnyNose(ctx,f);
     if(fx.fcmustache)fcMustache(ctx,f);
+    if(fx.fcvampire)fcFangs(ctx,f);
     if(fx.fcnose)fcRedNose(ctx,f);
     if(fx.fcglasses)fcSunglasses(ctx);
     if(fx.fcheartgl)fcHeartGlasses(ctx);

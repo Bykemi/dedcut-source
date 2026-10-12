@@ -1,6 +1,7 @@
 // Écran d'accueil de DedCut (cahier des charges §3, §24, §25, §30).
 // Tous les textes passent par t() : aucun texte visible écrit en dur.
 import { useCallback, useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
 import { t, fmt, useLang, getLanguages, setLang, getLang } from './i18n';
 import { DONATE_URL } from './config';
 import { introOn, setIntroOn } from './intro';
@@ -29,6 +30,7 @@ interface DedcutAPI {
   openLink(url: string): unknown;
   space?(m: 'edit' | 'rec' | 'live' | 'image' | 'music'): boolean;
   studioState?(): { live: boolean; rec: boolean; phone: boolean; mode: string };
+  halloween?(): boolean;
   snapshots(): Promise<Snap[]>;
   restoreSnapshot(t: number): Promise<boolean>;
   crashed(): boolean;
@@ -70,6 +72,40 @@ const Ico = ({ d, fill }: { d: string; fill?: boolean }) => (
 
 const logo = () => (document.getElementById('hlogo') as HTMLImageElement | null)?.src || '';
 
+// Halloween (v4.67.2) : l'accueil se décore tout seul du 1er octobre au 2 novembre (case à décocher dans les réglages).
+// Dessins originaux faits ici (chauves-souris, toile, araignée, chapeau de sorcière, citrouille).
+const SEASON_KEY = 'dedcut-season';
+const hwNow = () => { const d = new Date(), m = d.getMonth(); return m === 9 || (m === 10 && d.getDate() <= 2); };
+const seasonPref = () => { try { return localStorage.getItem(SEASON_KEY) !== 'off'; } catch { return true; } };
+const BAT_HALF = 'M32 10.5 35.2 7.2 35.8 11.6C40 8.5 50 5.5 62 10Q58 12.6 55.5 15.4 52.5 13.6 49.5 16.4 46.5 15 43.5 18.6 38.5 19.5 32 25Z';
+// taille, hauteur, durée de la traversée, départ, durée du balancement
+const BATS: [number, string, number, number, number][] = [[64, '12%', 26, -3, 2.4], [46, '34%', 34, -14, 2.9], [78, '6%', 21, -11, 2.2], [40, '58%', 40, -27, 3.2], [54, '24%', 30, -21, 2.7]];
+// toile : rayons depuis le coin haut droit, fils qui pendent un peu entre deux rayons
+const WEB = (() => {
+  const P = (r: number, a: number) => [(220 + r * Math.cos(a * Math.PI / 180)).toFixed(1), (r * Math.sin(a * Math.PI / 180)).toFixed(1)], A = [90, 108, 126, 144, 162, 180];
+  let w = '';
+  A.forEach(a => { const p = P(230, a); w += `M220 0L${p[0]} ${p[1]}`; });
+  [42, 80, 118, 156, 194].forEach(r => A.forEach((a, k) => { const p = P(r, a); if (!k) { w += `M${p[0]} ${p[1]}`; return; } const c = P(r * .84, a - 9); w += `Q${c[0]} ${c[1]} ${p[0]} ${p[1]}`; }));
+  return w;
+})();
+const HwDeco = () => (
+  <div className="dc-hwdeco" aria-hidden="true">
+    {BATS.map(([s, y, d, del, b], i) => (
+      <div key={i} className="dc-hwbat" style={{ '--s': s + 'px', '--y': y, '--d': d + 's', '--del': del + 's', '--b': b + 's' } as CSSProperties}>
+        <i><svg viewBox="0 0 64 32"><path d={BAT_HALF} /><path d={BAT_HALF} transform="matrix(-1 0 0 1 64 0)" /><ellipse cx="32" cy="15.5" rx="4" ry="7" /></svg></i>
+      </div>
+    ))}
+    <svg className="dc-hwweb" viewBox="0 0 220 220"><path d={WEB} /></svg>
+    <div className="dc-hwspider"><svg viewBox="0 0 22 22"><path d="M8 9 3 5 1 8M8 11 2 10 0 13M8 13 3 15 1 19M9 14 5 18 4 21M14 9 19 5 21 8M14 11 20 10 22 13M14 13 19 15 21 19M13 14 17 18 18 21" fill="none" stroke="#130b1d" strokeWidth="1.6" strokeLinecap="round" /><ellipse cx="11" cy="12" rx="4.6" ry="5.4" fill="#130b1d" /><circle cx="11" cy="6.6" r="2.8" fill="#130b1d" /><circle cx="10" cy="6.4" r=".7" fill="#fb923c" /><circle cx="12" cy="6.4" r=".7" fill="#fb923c" /></svg></div>
+  </div>
+);
+const WitchHat = () => (
+  <svg className="dc-hwhat" viewBox="0 0 30 24" aria-hidden="true"><path d="M8 18.5 14.6 4.4Q17-.6 21 2.6 17.6 2.8 17.6 6.8L22 18.5Z" fill="#1c1030" stroke="#a78bfa" strokeWidth=".9" /><path d="M8.9 15.6h12.3l.6 2.8H7.8z" fill="#fb923c" /><ellipse cx="15" cy="19.6" rx="14" ry="3.5" fill="#1c1030" stroke="#a78bfa" strokeWidth=".9" /></svg>
+);
+const Pumpkin = () => (
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 8.2c-.6-2.8.2-4.8 2.6-5.8" fill="none" stroke="#65a30d" strokeWidth="2.4" strokeLinecap="round" /><ellipse cx="10.6" cy="18.6" rx="7.6" ry="10" fill="#c2410c" /><ellipse cx="21.4" cy="18.6" rx="7.6" ry="10" fill="#c2410c" /><ellipse cx="16" cy="18.6" rx="7.4" ry="10.6" fill="#f97316" /><path d="M9.4 16.4l3-3.8 1.9 4zM22.6 16.4l-3-3.8-1.9 4zM15 19l1-1.7 1 1.7z" fill="#fde047" /><path d="M9.4 20.6Q16 27 22.6 20.6l-1.8 1-1 1.7-1.4-1.2-2.4 1.9-2.4-1.9-1.4 1.2-1-1.7z" fill="#fde047" /></svg>
+);
+
 export default function Home() {
   useLang(); // se réaffiche quand la langue change
   const [visible, setVisible] = useState(true);
@@ -85,6 +121,8 @@ export default function Home() {
   const [del, setDel] = useState<Recent | null>(null);
   const [intro, setIntro] = useState(introOn());
   const [introSnd, setIntroSnd] = useState(introSoundOn());
+  const [season, setSeason] = useState(seasonPref());
+  const hw = season && hwNow();
   // la petite barre de titre (TitleBar) ne s'affiche qu'avec l'accueil ; dans l'éditeur, l'en-tête la remplace
   useEffect(() => { document.body.classList.toggle('home-on', visible); }, [visible]);
 
@@ -141,13 +179,17 @@ export default function Home() {
   const onTheme = (id: string) => { api?.setTheme(id); setThemeState(id); };
   const onDonate = () => { if (DONATE_URL) api?.openLink(DONATE_URL); else setNote(t('support.soon')); };
   const openSupport = () => { setNote(''); setModal('support'); };
+  const onHalloween = () => { if (api?.halloween?.()) setVisible(false); };
+  const onSeason = (on: boolean) => { setSeason(on); try { localStorage.setItem(SEASON_KEY, on ? 'on' : 'off'); } catch { /* réglage gardé pour cette fois seulement */ } };
 
   return (
-    <div className="dc-home" role="dialog" aria-label="DedCut">
+    <div className={'dc-home' + (hw ? ' dc-hw' : '')} role="dialog" aria-label="DedCut">
       <div className="dc-glow" />
+      {hw && <HwDeco />}
       <div className="dc-home-in">
         <header className="dc-top">
           <div className="dc-brand">
+            {hw && <WitchHat />}
             <img src={logo()} alt="" />
             <div>
               <h1>Ded<b>Cut</b><button type="button" className="dc-beta" title={t('bug.betaTip')} onClick={openBug}>{t('app.beta')}</button></h1>
@@ -165,6 +207,13 @@ export default function Home() {
             <section className="dc-hello">
               <h2>{t('home.sp.title')}</h2>
               <p>{t('home.sp.sub')}</p>
+              {hw && (
+                <div className="dc-hwcard">
+                  <Pumpkin />
+                  <div><b>{t('home.hw.title')}</b><span>{t('home.hw.text')}</span></div>
+                  <button className="dc-btn dc-hwgo" onClick={onHalloween}>{t('home.hw.go')}</button>
+                </div>
+              )}
             </section>
 
             <section className={'dc-spaces' + (sp.phone ? ' dc-one' : '')}>
@@ -383,6 +432,8 @@ export default function Home() {
                 <label className="dc-chk"><input type="checkbox" checked={intro} onChange={e => { setIntro(e.target.checked); setIntroOn(e.target.checked); }} /><span>{t('home.intro.on')}</span></label>
                 <label className={'dc-chk' + (intro ? '' : ' off')}><input type="checkbox" checked={introSnd} disabled={!intro} onChange={e => { setIntroSnd(e.target.checked); setIntroSoundOn(e.target.checked); }} /><span>{t('home.intro.sound')}</span></label>
                 <button className="dc-btn" onClick={() => { setModal(null); window.dispatchEvent(new Event('dedcut-intro')); }}>{t('home.intro.replay')}</button>
+                <h4>{t('home.season.title')}</h4>
+                <label className="dc-chk"><input type="checkbox" checked={season} onChange={e => onSeason(e.target.checked)} /><span>{t('home.season.on')}</span></label>
                 <h4>{t('settings.folder')}</h4>
                 <button className="dc-btn" onClick={() => api?.openFolder()}>{t('settings.openFolder')}</button>
                 <h4>{t('settings.privacy')}</h4>

@@ -655,6 +655,7 @@ function applyFX(p,t,loc){
       ctx.globalAlpha=.85*Math.max(0,Math.min(1,y*3));ctx.fillStyle=i%3?'#ff4d6d':'#ff8fab';heartPath(ctx,x*W,y*H,sz);ctx.fill()}
     ctx.restore();
   }
+  hwFX(fx,t,a,u,n0); // Halloween (06c-halloween.js)
   fxPro(fx,t,a,u,n0);
 }
 /* lumières, atmosphère et particules « pro » (dessinées par-dessus) */

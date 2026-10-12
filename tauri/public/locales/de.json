@@ -131,6 +131,15 @@
       "on": "Beim Start das Logo zeigen, das zerschnitten wird",
       "replay": "Animation noch einmal ansehen",
       "sound": "Mit Ton (der Schnitt und eine kurze Melodie)"
+    },
+    "hw": {
+      "title": "Halloween-Special",
+      "text": "12 Effekte, 4 Verkleidungen, die deinem Gesicht folgen, 10 Filter und 6 Live-Overlays: alles für deine Gruselvideos.",
+      "go": "Halloween-Effekte ausprobieren"
+    },
+    "season": {
+      "title": "Saison-Deko",
+      "on": "Startbildschirm zu Halloween schmücken"
     }
   },
   "settings": {
@@ -731,7 +740,23 @@
     "fcsmooth": "Glatte Haut",
     "fcblur": "Gesicht verwischen",
     "fcpixel": "Gesicht verpixeln",
-    "fczoom": "Zoom, der dem Gesicht folgt"
+    "fczoom": "Zoom, der dem Gesicht folgt",
+    "hwbats": "Fledermäuse",
+    "hwghosts": "Geister",
+    "hwpumpkins": "Kürbisse",
+    "hwspiders": "Spinnen",
+    "hwmoon": "Vollmond",
+    "hwmist": "Hexennebel",
+    "hwcandy": "Süßigkeiten",
+    "hwslime": "Schleim",
+    "hweyes": "Augen im Dunkeln",
+    "hwcandle": "Kerzenschein",
+    "hwhaunted": "Spuk",
+    "hwzombie": "Zombie",
+    "fcwitch": "Hexenhut",
+    "fcvampire": "Vampirzähne",
+    "fcskull": "Skelett-Schminke",
+    "fcpumpkin": "Kürbiskopf"
   },
   "tr": {
     "both": "Beide",
@@ -970,7 +995,10 @@
     "cutie": "Niedlich",
     "royal": "Königlich",
     "kitty": "Kätzchen",
-    "cool": "Voll cool"
+    "cool": "Voll cool",
+    "hwnight": "Spuknacht",
+    "hwparty": "Halloween-Party",
+    "hwmonster": "Monsterfilm"
   },
   "save": {
     "saving": "Wird gespeichert…",
@@ -1571,7 +1599,8 @@
     "colorpop": "Knallfarben",
     "dark": "Dunkel",
     "softc": "Pastell & sanft",
-    "mono": "Getönte Monochrome"
+    "mono": "Getönte Monochrome",
+    "halloween": "Halloween"
   },
   "look": {
     "bright": "Hell",
@@ -1755,7 +1784,17 @@
     "mncyan": "Mono Cyan",
     "mnorange": "Mono Orange",
     "mnteal": "Mono Petrol",
-    "mnbrown": "Mono Kaffee"
+    "mnbrown": "Mono Kaffee",
+    "hwnight": "Halloween-Nacht",
+    "hwpumpkin": "Kürbis",
+    "hwzombie": "Zombie",
+    "hwvampire": "Vampir",
+    "hwwitch": "Hexe",
+    "hwghost": "Gespenst",
+    "hwmanor": "Spukhaus",
+    "hwbloodmoon": "Blutmond",
+    "hwcandle": "Kerze",
+    "hwswamp": "Sumpfnebel"
   },
   "fxcat": {
     "move": "Bewegung",
@@ -1777,7 +1816,8 @@
     "screens": "Alte Bildschirme",
     "magic": "Magie & Traum",
     "beatfx": "Im Takt",
-    "face": "Gesicht"
+    "face": "Gesicht",
+    "halloween": "Halloween"
   },
   "trcat": {
     "basic": "Basis",
@@ -2490,7 +2530,8 @@
     "thumb": "YouTube-Thumbnails",
     "draw": "Freihandzeichnen",
     "hook": "Hooks",
-    "game": "Stadt-Actionspiel (Neon)"
+    "game": "Stadt-Actionspiel (Neon)",
+    "halloween": "Halloween"
   },
   "wl": {
     "hint": "Fahre über ein Element, um es in Bewegung zu sehen. Klick = am Abspielkopf einfügen, dann in der Vorschau verschieben und vergrößern.",
@@ -4574,7 +4615,8 @@
       "hand": "Handschrift",
       "card": "Karte",
       "banner": "Banner",
-      "party": "Party"
+      "party": "Party",
+      "halloween": "Halloween"
     }
   },
   "cx": {
@@ -8203,7 +8245,8 @@
       "border": "Bildschirmränder",
       "remind": "Hinweise",
       "amb": "Stimmungen",
-      "game": "Stadt-Actionspiel (Neon)"
+      "game": "Stadt-Actionspiel (Neon)",
+      "halloween": "Halloween"
     },
     "s": {
       "cam-neon": "Neon",
@@ -8240,7 +8283,13 @@
       "gm-mission": "Mission geschafft",
       "gm-screen": "Neon-Sonnenuntergang",
       "gm-cam": "Handy-Rahmen",
-      "gm-stars": "Fahndungssterne"
+      "gm-stars": "Fahndungssterne",
+      "hw-screen": "Spukiger Wartebildschirm",
+      "hw-cam": "Spinnennetz-Rahmen",
+      "hw-lt": "Kürbis-Namensband",
+      "hw-border": "Spukrahmen",
+      "hw-amb": "Süßes und Fledermäuse",
+      "hw-sub": "Kürbis-Abo-Hinweis"
     },
     "t1": "Haupttext",
     "t2": "Zweiter Text",
@@ -8572,5 +8621,10 @@
     },
     "cmd": "Fehler an ByKemi melden (E-Mail)",
     "aiOpened": "Ich öffne das Fenster „Fehler melden“: Beschreibe, was nicht funktioniert – die Nachricht geht von deinem E-Mail-Programm an {mail}."
+  },
+  "hw": {
+    "hint": "Füge ein Video hinzu und klicke dann auf einen Halloween-Effekt, um ihn anzuwenden.",
+    "cmd": "Halloween-Effekte (Kürbisse, Geister, Fledermäuse …)",
+    "aiOpened": "Hier sind die Halloween-Effekte: Klicke auf einen, um ihn auf dein Video zu legen. Die Halloween-Filter sind im Tab „Filter“."
   }
 }
