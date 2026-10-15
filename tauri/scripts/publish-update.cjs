@@ -5,7 +5,9 @@
 //    Le script récupère sa fabrication sur le dépôt privé (gh run download) et la signe ICI, avec la même clé :
 //    la clé ne quitte jamais ce PC. Sans fabrication Mac pour cette version, seul Windows est publié.
 // 3) node scripts/publish-update.cjs "Texte des nouveautés"        (ajouter --sans-mac pour publier Windows seulement,
-//    --apk pour joindre l'APK Android de test de cette version, fabriqué par « DedCut Android » sur GitHub)
+//    --apk pour joindre l'APK Android de test de cette version, fabriqué par « DedCut Android » sur GitHub,
+//    --windows-github pour publier l'installateur fabriqué par « DedCut Windows » sur le dépôt public et signé par SignPath
+//    au lieu de celui du PC ; la clé des mises à jour sert quand même, ici, à signer le .sig)
 // Le fichier latest.json indique la version, l'adresse de chaque installateur et sa signature ; DedCut le lit au démarrage
 // et chaque système (Windows, Mac Apple, Mac Intel) prend seulement le sien.
 const fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
@@ -14,6 +16,30 @@ const root = path.resolve(__dirname, '..');
 const version = JSON.parse(fs.readFileSync(path.join(root, 'src-tauri', 'tauri.conf.json'), 'utf8')).version;
 const dir = path.join(root, 'src-tauri', 'target', 'release', 'bundle', 'nsis');
 const exe = path.join(dir, `DedCut_${version}_x64-setup.exe`);
+/* ---------- Windows fabriqué par GitHub (--windows-github) : installateur signé par SignPath (Authenticode),
+   récupéré sur le dépôt public, puis signature de la mise à jour (.sig) faite ICI avec la clé de ByKemi ---------- */
+if (process.argv.includes('--windows-github')) {
+  const PUB = 'Bykemi/dedcut-source', winDir = path.join(root, 'src-tauri', 'target', 'windows-github');
+  let got = null;
+  const runs = JSON.parse(execFileSync('gh', ['run', 'list', '--repo', PUB, '--workflow', 'windows.yml', '--status', 'success', '--limit', '10', '--json', 'databaseId'], { encoding: 'utf8' }));
+  for (const r of runs) {
+    fs.rmSync(winDir, { recursive: true, force: true });
+    try { execFileSync('gh', ['run', 'download', String(r.databaseId), '--repo', PUB, '-n', 'DedCut-Windows-signe', '-D', winDir], { stdio: 'ignore' }); } catch { continue; }
+    const f = path.join(winDir, path.basename(exe));
+    if (fs.existsSync(f)) { got = f; break; }
+  }
+  if (!got) throw new Error(`pas d'installateur signé par SignPath pour ${version} sur ${PUB} : lancer « DedCut Windows » sur GitHub et approuver la signature sur signpath.io`);
+  const ps = execFileSync('powershell', ['-NoProfile', '-Command', `(Get-AuthenticodeSignature -LiteralPath '${got.replace(/'/g, "''")}').Status`], { encoding: 'utf8' }).trim();
+  if (ps !== 'Valid') throw new Error('signature Windows de l\'installateur de GitHub : ' + ps);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.copyFileSync(got, exe);
+  // « tauri signer sign » veut le contenu de la clé (pas son chemin)
+  const env = { ...process.env }, k = env.TAURI_SIGNING_PRIVATE_KEY || '';
+  if (!k) throw new Error('TAURI_SIGNING_PRIVATE_KEY manquant : la clé des mises à jour de ByKemi');
+  if (fs.existsSync(k)) env.TAURI_SIGNING_PRIVATE_KEY = fs.readFileSync(k, 'utf8').trim();
+  execFileSync(process.execPath, [path.join(root, 'node_modules', '@tauri-apps', 'cli', 'tauri.js'), 'signer', 'sign', exe], { cwd: root, env, stdio: 'inherit' });
+  console.log('Windows : installateur de GitHub signé par SignPath (' + ps + '), mise à jour signée ici');
+}
 if (!fs.existsSync(exe) || !fs.existsSync(exe + '.sig')) throw new Error('installateur signé introuvable pour ' + version + ' : relancer la fabrication avec la clé');
 if (fs.statSync(exe + '.sig').mtimeMs < fs.statSync(exe).mtimeMs - 5000) throw new Error('signature plus ancienne que l\'installateur');
 const args = process.argv.slice(2), noMac = args.includes('--sans-mac');

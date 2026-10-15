@@ -1,0 +1,86 @@
+# Installateur Windows de DedCut fabriqué par GitHub à partir du code (fabrication vérifiable : c'est ce que demande
+# SignPath Foundation pour signer gratuitement les logiciels libres, https://signpath.org).
+# Se lance :
+#   - à la main : onglet « Actions » > « DedCut Windows » > « Run workflow » ;
+#   - à chaque tag de version (v4.67.4…) ;
+#   - quand le message d'un commit contient [windows].
+# Signature Windows (Authenticode) : quand SignPath a accepté DedCut, ajouter dans les réglages du dépôt PUBLIC
+# Bykemi/dedcut-source la variable SIGNPATH_ORGANIZATION_ID et le secret SIGNPATH_API_TOKEN. L'installateur est alors
+# envoyé à SignPath, signé seulement après l'accord de ByKemi sur signpath.io, et rendu comme fichier « DedCut-Windows-signe ».
+# La signature des mises à jour (.sig) est faite ensuite sur le PC de ByKemi (node scripts/publish-update.cjs … --windows-github) :
+# la clé des mises à jour ne quitte jamais son PC.
+name: DedCut Windows
+
+on:
+  workflow_dispatch:
+  push:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  windows:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v') || contains(github.event.head_commit.message, '[windows]')
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: tauri
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tauri/package-lock.json
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tauri/src-tauri -> target
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      # sans la clé des mises à jour (elle reste sur le PC de ByKemi) : pas de fichier .sig ici
+      - name: Fabriquer l'installateur
+        run: npx tauri build --bundles nsis --config '{"bundle":{"createUpdaterArtifacts":false}}'
+
+      - name: Ranger l'installateur
+        run: |
+          V=$(node -p "require('./src-tauri/tauri.conf.json').version")
+          mkdir -p ../win
+          cp "src-tauri/target/release/bundle/nsis/DedCut_${V}_x64-setup.exe" ../win/
+          sha256sum ../win/*.exe
+
+      - name: Garder l'installateur (non signé)
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: DedCut-Windows
+          path: win/*.exe
+          if-no-files-found: error
+
+      - name: Signer avec SignPath (après l'accord de ByKemi)
+        if: vars.SIGNPATH_ORGANIZATION_ID != ''
+        uses: signpath/github-action-submit-signing-request@v1
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: dedcut
+          signing-policy-slug: release-signing
+          github-artifact-id: ${{ steps.upload.outputs.artifact-id }}
+          wait-for-completion: true
+          output-artifact-directory: signed
+
+      - name: Garder l'installateur signé
+        if: vars.SIGNPATH_ORGANIZATION_ID != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: DedCut-Windows-signe
+          path: signed
+          if-no-files-found: error
