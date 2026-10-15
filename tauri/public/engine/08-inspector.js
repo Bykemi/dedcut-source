@@ -10,7 +10,7 @@ const BLEND=[['source-over','common.normal'],['screen','blend.screen'],['multipl
 /* filtres : réglages propres à DedCut (aucun n'est repris d'un autre logiciel).
    br/ct/sa/hue/sep/gs/inv = filtres CSS ; t1/t2 = teintes (couleur, mode de fusion, opacité) ; fade = noirs délavés ;
    vig = vignette ; grain = grain de pellicule ; leak = halo de lumière (couleur leakc) */
-const LOOK_CATS={basic:'lookcat.basic',trend:'lookcat.trend',aesth:'lookcat.aesth',film:'lookcat.film',season:'lookcat.season',halloween:'lookcat.halloween',travel:'lookcat.travel',colorpop:'lookcat.colorpop',dark:'lookcat.dark',softc:'lookcat.softc',mono:'lookcat.mono',cine:'lookcat.cine',retro:'lookcat.retro',bw:'lookcat.bw',mood:'lookcat.mood',creative:'lookcat.creative',portrait:'lookcat.portrait',nature:'lookcat.nature',street:'lookcat.street'};
+const LOOK_CATS={basic:'lookcat.basic',trend:'lookcat.trend',aesth:'lookcat.aesth',film:'lookcat.film',season:'lookcat.season',halloween:'lookcat.halloween',aucozy:'lookcat.aucozy',travel:'lookcat.travel',colorpop:'lookcat.colorpop',dark:'lookcat.dark',softc:'lookcat.softc',mono:'lookcat.mono',cine:'lookcat.cine',retro:'lookcat.retro',bw:'lookcat.bw',mood:'lookcat.mood',creative:'lookcat.creative',portrait:'lookcat.portrait',nature:'lookcat.nature',street:'lookcat.street'};
 const SL='soft-light',OV='overlay',MU='multiply',SC='screen',CO='color';
 const LOOKS={
   none:{cat:'basic',n:'filter.original',c:{}},
@@ -165,6 +165,17 @@ const LOOKS={
   hwbloodmoon:{cat:'halloween',n:'look.hwbloodmoon',c:{br:90,ct:120,sa:110,t1c:'#b91c1c',t1m:SL,t1o:36,t2c:'#1e1b4b',t2m:MU,t2o:18,vig:45}},
   hwcandle:{cat:'halloween',n:'look.hwcandle',c:{br:96,ct:112,sa:115,t1c:'#f59e0b',t1m:OV,t1o:26,leak:22,leakc:'#fb923c',vig:55}},
   hwswamp:{cat:'halloween',n:'look.hwswamp',c:{br:104,ct:82,sa:60,fade:26,t1c:'#94a3b8',t1m:SC,t1o:14,t2c:'#4c1d95',t2m:SL,t2o:12}},
+  // v4.67.3 : Automne & cosy
+  auamber:{cat:'aucozy',n:'look.auamber',c:{br:102,ct:110,sa:115,hue:-6,t1c:'#f59e0b',t1m:SL,t1o:34,vig:25}},
+  aumaple:{cat:'aucozy',n:'look.aumaple',c:{br:98,ct:118,sa:135,hue:-12,t1c:'#dc2626',t1m:SL,t1o:22,t2c:'#f97316',t2m:SL,t2o:18,vig:30}},
+  aufog:{cat:'aucozy',n:'look.aufog',c:{br:106,ct:84,sa:70,t1c:'#cbd5e1',t1m:SC,t1o:22,fade:30,vig:15}},
+  aucider:{cat:'aucozy',n:'look.aucider',c:{br:104,ct:96,sa:92,t1c:'#d97706',t1m:SL,t1o:30,fade:22,grain:8}},
+  aucocoa:{cat:'aucozy',n:'look.aucocoa',c:{br:94,ct:112,sa:80,hue:-4,t1c:'#78350f',t1m:SL,t1o:40,t2c:'#fde68a',t2m:SC,t2o:8,vig:35}},
+  auforest:{cat:'aucozy',n:'look.auforest',c:{br:94,ct:116,sa:96,t1c:'#065f46',t1m:SL,t1o:32,t2c:'#f59e0b',t2m:SL,t2o:14,vig:40}},
+  aurainy:{cat:'aucozy',n:'look.aurainy',c:{br:96,ct:104,sa:62,t1c:'#475569',t1m:SL,t1o:36,fade:14,vig:30}},
+  auhearth:{cat:'aucozy',n:'look.auhearth',c:{br:92,ct:114,sa:105,t1c:'#ea580c',t1m:SL,t1o:38,vig:60,leak:30,leakc:'#f97316'}},
+  auharvest:{cat:'aucozy',n:'look.auharvest',c:{br:104,ct:112,sa:128,hue:-8,t1c:'#eab308',t1m:SL,t1o:30,vig:20}},
+  aupolar:{cat:'aucozy',n:'look.aupolar',c:{br:106,ct:92,sa:88,t1c:'#fb923c',t1m:SL,t1o:20,fade:26,grain:12,leak:25,leakc:'#fbbf24',vig:22}},
   tparis:{cat:'travel',n:'look.tparis',c:{br:104,ct:100,sa:96,t1c:'#f9a8d4',t1m:SL,t1o:16,fade:10}},
   tla:{cat:'travel',n:'look.tla',c:{br:106,ct:112,sa:122,hue:-6,t1c:'#fb923c',t1m:SL,t1o:22,t2c:'#14b8a6',t2m:SL,t2o:12}},
   tnyc:{cat:'travel',n:'look.tnyc',c:{br:96,ct:120,sa:85,t1c:'#475569',t1m:SL,t1o:22,t2c:'#f59e0b',t2m:SL,t2o:10,vig:25}},

@@ -3,6 +3,8 @@
 //   puis vérifié (taille + SHA-256) avant d'être gardé ;
 // - la voix est analysée par morceaux (~25 s, coupés dans les silences) dans un worker ;
 // - rien n'est envoyé nulle part : ni l'audio, ni la vidéo, ni le texte.
+import { invoke } from '@tauri-apps/api/core';
+import { listen } from '@tauri-apps/api/event';
 import MODELS from './whisper-models.json';
 
 const CACHE = 'dedcut-whisper-v1';
@@ -10,10 +12,17 @@ const SR = 16000;
 
 export interface CapWord { t: string; s: number; e: number }
 type Prog = (done: number, total: number, file: string) => void;
+type MFile = { path: string; size: number; sha256: string };
 
-const M: Record<string, { repo: string; revision: string; license: string; totalBytes: number; files: { path: string; size: number; sha256: string }[] }> = MODELS as any;
+const M: Record<string, { repo: string; revision: string; license: string; totalBytes: number; files: MFile[] }> = MODELS as any;
+// adresse officielle : sert aussi de clé dans le cache (captions.worker.ts lit le modèle par elle)
 const urlOf = (key: string, path: string) => `https://huggingface.co/${M[key].repo}/resolve/${M[key].revision}/${path}`;
 const marker = (key: string) => `https://dedcut.invalid/verified/${key}`;
+// huggingface.co est bloqué en Chine : on essaie ensuite son miroir hf-mirror.com, puis le téléchargement par
+// DedCut lui-même (curl, ai.rs) si le miroir refuse les téléchargements faits depuis la page.
+const HOSTS = ['https://huggingface.co', 'https://hf-mirror.com'];
+const srcOf = (host: string, key: string, path: string) => `${host}/${M[key].repo}/resolve/${M[key].revision}/${path}`;
+let hostIdx = 0; // ce qui a marché pour le fichier d'avant (HOSTS.length = téléchargement par DedCut)
 
 async function sha256(buf: ArrayBuffer): Promise<string> {
   const d = new Uint8Array(await crypto.subtle.digest('SHA-256', buf));
@@ -54,6 +63,47 @@ function killWorker() {
 /* ---------- modèles ---------- */
 let dlAbort: AbortController | null = null;
 
+// un fichier par la page ; abandonné si le site ne répond pas en 20 s ou n'envoie plus rien pendant 30 s
+async function fromPage(url: string, f: MFile, onBytes: (n: number) => void): Promise<Blob> {
+  const ac = new AbortController(), stop = () => ac.abort(), user = dlAbort!.signal;
+  user.addEventListener('abort', stop);
+  let timer = setTimeout(stop, 20000);
+  try {
+    const res = await fetch(url, { signal: ac.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
+    if (!res.ok || !res.body) throw new Error('http ' + res.status);
+    const reader = res.body.getReader();
+    const parts: Uint8Array[] = [];
+    let got = 0;
+    for (;;) {
+      clearTimeout(timer); timer = setTimeout(stop, 30000);
+      const { done: end, value } = await reader.read();
+      if (end) break;
+      parts.push(value); got += value.length;
+      onBytes(got);
+    }
+    if (got !== f.size) throw new Error('size ' + f.path);
+    return new Blob(parts as BlobPart[]);
+  } finally {
+    clearTimeout(timer);
+    user.removeEventListener('abort', stop);
+  }
+}
+// un fichier par DedCut (curl : miroir puis huggingface.co) ; seulement dans l'application installée
+async function fromApp(key: string, f: MFile, onBytes: (n: number) => void): Promise<Blob> {
+  if (!(window as any).__TAURI_INTERNALS__) throw new Error('unsupported');
+  const user = dlAbort!.signal, stop = () => { invoke('ai_hf_cancel').catch(() => {}); };
+  const un = await listen<{ file: string; done: number }>('hf-progress', e => { if (e.payload.file === f.path) onBytes(e.payload.done); });
+  user.addEventListener('abort', stop);
+  try {
+    const buf = await invoke<ArrayBuffer>('ai_hf_file', { model: key, file: f.path });
+    if (buf.byteLength !== f.size) throw new Error('size ' + f.path);
+    return new Blob([buf]);
+  } finally {
+    un();
+    user.removeEventListener('abort', stop);
+  }
+}
+
 export const captions = {
   models() {
     return Object.entries(M).map(([key, m]) => ({ key, repo: m.repo, license: m.license, bytes: m.totalBytes, revision: m.revision }));
@@ -70,20 +120,24 @@ export const captions = {
     let done = 0;
     try {
       for (const f of m.files) {
-        const res = await fetch(urlOf(key, f.path), { signal: dlAbort.signal, credentials: 'omit', referrerPolicy: 'no-referrer' });
-        if (!res.ok || !res.body) throw new Error('http ' + res.status);
-        const reader = res.body.getReader();
-        const parts: Uint8Array[] = [];
-        let got = 0;
-        for (;;) {
-          const { done: end, value } = await reader.read();
-          if (end) break;
-          parts.push(value); got += value.length;
-          onProgress(done + got, m.totalBytes, f.path);
+        const prog = (n: number) => onProgress(done + n, m.totalBytes, f.path);
+        const tries: [number, () => Promise<Blob>][] = [];
+        for (let h = hostIdx; h < HOSTS.length; h++) tries.push([h, () => fromPage(srcOf(HOSTS[h], key, f.path), f, prog)]);
+        tries.push([HOSTS.length, () => fromApp(key, f, prog)]);
+        let blob: Blob | null = null, lastErr: unknown = null;
+        for (const [h, get] of tries) {
+          try {
+            const b = await get();
+            // vérifié d'où qu'il vienne : un fichier modifié (par un miroir ou en route) est refusé
+            if ((await sha256(await b.arrayBuffer())) !== f.sha256) throw new Error('sha256 ' + f.path);
+            blob = b; hostIdx = h;
+            break;
+          } catch (e) {
+            if (dlAbort.signal.aborted) throw e;
+            lastErr = e;
+          }
         }
-        if (got !== f.size) throw new Error('size ' + f.path);
-        const blob = new Blob(parts as BlobPart[]);
-        if ((await sha256(await blob.arrayBuffer())) !== f.sha256) throw new Error('sha256 ' + f.path);
+        if (!blob) throw lastErr;
         await cache.put(urlOf(key, f.path), new Response(blob, { headers: { 'content-type': 'application/octet-stream', 'content-length': String(f.size) } }));
         done += f.size;
       }

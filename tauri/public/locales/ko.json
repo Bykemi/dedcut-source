@@ -749,7 +749,17 @@
     "fcwitch": "마녀 모자",
     "fcvampire": "뱀파이어 송곳니",
     "fcskull": "해골 분장",
-    "fcpumpkin": "호박 머리"
+    "fcpumpkin": "호박 머리",
+    "auwind": "돌풍",
+    "aulights": "줄 조명",
+    "austeam": "김",
+    "aufire": "난롯가",
+    "aupuddle": "웅덩이 반사",
+    "audrizzle": "이슬비",
+    "scanlight": "스캐너",
+    "coderain": "코드 비",
+    "fireworks": "불꽃놀이",
+    "speedlines": "속도선"
   },
   "tr": {
     "both": "둘 다",
@@ -836,7 +846,17 @@
     "circles": "버블",
     "portal": "포털",
     "melt": "녹아내림",
-    "tvOff": "TV 꺼짐"
+    "tvOff": "TV 꺼짐",
+    "prismsplit": "프리즘 분할",
+    "stripes": "교차 줄무늬",
+    "shockring": "충격 링",
+    "pixelrain": "픽셀 비",
+    "hyperspace": "하이퍼스페이스",
+    "fold": "접기",
+    "triangles": "삼각형",
+    "laser": "레이저 스캔",
+    "glassbrk": "깨진 유리",
+    "smoke": "연기"
   },
   "filt": {
     "hint": "세부 조정: 오른쪽 “색상” 탭."
@@ -991,7 +1011,10 @@
     "cool": "완전 멋짐",
     "hwnight": "으스스한 밤",
     "hwparty": "할로윈 파티",
-    "hwmonster": "괴물 영화"
+    "hwmonster": "괴물 영화",
+    "aucozy": "포근한 밤",
+    "aurainy": "빗속에서",
+    "aufeast": "축하"
   },
   "save": {
     "saving": "저장 중…",
@@ -1351,7 +1374,7 @@
     "mBase": "균형",
     "mSmall": "정확",
     "stateNone": "모델이 다운로드되지 않음",
-    "dlInfo": "huggingface.co에서 한 번만 다운로드합니다({size}, 라이선스 {license}). 파일은 검증(SHA-256)된 후 PC에 저장됩니다.",
+    "dlInfo": "huggingface.co(막혀 있으면 미러 hf-mirror.com)에서 한 번만 다운로드합니다({size}, 라이선스 {license}). 파일은 검증(SHA-256)된 후 PC에 저장됩니다.",
     "download": "모델 다운로드",
     "downloading": "다운로드 중… {pct}",
     "verifying": "검증 중…",
@@ -1590,7 +1613,8 @@
     "dark": "다크",
     "softc": "파스텔",
     "mono": "컬러 모노",
-    "halloween": "할로윈"
+    "halloween": "할로윈",
+    "aucozy": "가을 & 아늑함"
   },
   "look": {
     "bright": "밝게",
@@ -1784,7 +1808,17 @@
     "hwmanor": "유령의 집",
     "hwbloodmoon": "핏빛 달",
     "hwcandle": "촛불",
-    "hwswamp": "늪 안개"
+    "hwswamp": "늪 안개",
+    "auamber": "황금 호박색",
+    "aumaple": "단풍",
+    "aufog": "안개 낀 아침",
+    "aucider": "사과주",
+    "aucocoa": "핫초코",
+    "auforest": "깊은 숲",
+    "aurainy": "비 오는 날",
+    "auhearth": "아늑한 저녁",
+    "auharvest": "수확",
+    "aupolar": "가을 스냅"
   },
   "fxcat": {
     "move": "움직임",
@@ -1807,7 +1841,8 @@
     "magic": "마법 & 꿈",
     "beatfx": "비트에 맞춰",
     "face": "얼굴",
-    "halloween": "할로윈"
+    "halloween": "할로윈",
+    "aucozy": "가을 & 아늑함"
   },
   "trcat": {
     "basic": "기본",
@@ -1943,7 +1978,8 @@
     "spooky": "오싹",
     "tech": "테크 & 미래",
     "chic": "시크 & 매거진",
-    "school": "발표"
+    "school": "발표",
+    "aucozy": "가을 & 아늑함"
   },
   "txs": {
     "classic": "제목",
@@ -2149,7 +2185,13 @@
     "xkids": "초등학생",
     "xrecap": "요약",
     "karaoke": "가라오케 자막",
-    "wordpop": "단어별"
+    "wordpop": "단어별",
+    "autitle": "가을 제목",
+    "aumug": "아늑하게",
+    "aukraft": "크라프트 라벨",
+    "auslate": "칠판",
+    "auglow": "따뜻한 빛",
+    "aufall": "낙엽"
   },
   "tani": {
     "fade": "페이드",

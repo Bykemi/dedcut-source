@@ -756,7 +756,17 @@
     "fcwitch": "Hexenhut",
     "fcvampire": "Vampirzähne",
     "fcskull": "Skelett-Schminke",
-    "fcpumpkin": "Kürbiskopf"
+    "fcpumpkin": "Kürbiskopf",
+    "auwind": "Windstoß",
+    "aulights": "Lichterkette",
+    "austeam": "Dampf",
+    "aufire": "Kaminfeuer",
+    "aupuddle": "Pfützenspiegelung",
+    "audrizzle": "Nieselregen",
+    "scanlight": "Scanner",
+    "coderain": "Code-Regen",
+    "fireworks": "Feuerwerk",
+    "speedlines": "Speedlines"
   },
   "tr": {
     "both": "Beide",
@@ -843,7 +853,17 @@
     "circles": "Blasen",
     "portal": "Portal",
     "melt": "Schmelzen",
-    "tvOff": "TV aus"
+    "tvOff": "TV aus",
+    "prismsplit": "Prisma-Split",
+    "stripes": "Kreuzende Streifen",
+    "shockring": "Schockring",
+    "pixelrain": "Pixelregen",
+    "hyperspace": "Hyperraum",
+    "fold": "Falten",
+    "triangles": "Dreiecke",
+    "laser": "Laser-Scan",
+    "glassbrk": "Zerbrochenes Glas",
+    "smoke": "Rauch"
   },
   "filt": {
     "hint": "Feinabstimmung: Reiter „Farben“ rechts."
@@ -998,7 +1018,10 @@
     "cool": "Voll cool",
     "hwnight": "Spuknacht",
     "hwparty": "Halloween-Party",
-    "hwmonster": "Monsterfilm"
+    "hwmonster": "Monsterfilm",
+    "aucozy": "Kuschelabend",
+    "aurainy": "Im Regen",
+    "aufeast": "Feier"
   },
   "save": {
     "saving": "Wird gespeichert…",
@@ -1359,7 +1382,7 @@
     "mBase": "Ausgewogen",
     "mSmall": "Genau",
     "stateNone": "Modell nicht heruntergeladen",
-    "dlInfo": "Einmaliger Download von huggingface.co ({size}, Lizenz {license}). Die Datei wird geprüft (SHA-256) und auf deinem PC gespeichert.",
+    "dlInfo": "Einmaliger Download von huggingface.co oder, falls gesperrt, vom Spiegel hf-mirror.com ({size}, Lizenz {license}). Die Datei wird geprüft (SHA-256) und auf deinem PC gespeichert.",
     "download": "Modell herunterladen",
     "downloading": "Wird heruntergeladen… {pct}",
     "verifying": "Wird geprüft…",
@@ -1600,7 +1623,8 @@
     "dark": "Dunkel",
     "softc": "Pastell & sanft",
     "mono": "Getönte Monochrome",
-    "halloween": "Halloween"
+    "halloween": "Halloween",
+    "aucozy": "Herbst & gemütlich"
   },
   "look": {
     "bright": "Hell",
@@ -1794,7 +1818,17 @@
     "hwmanor": "Spukhaus",
     "hwbloodmoon": "Blutmond",
     "hwcandle": "Kerze",
-    "hwswamp": "Sumpfnebel"
+    "hwswamp": "Sumpfnebel",
+    "auamber": "Goldener Bernstein",
+    "aumaple": "Ahorn",
+    "aufog": "Nebliger Morgen",
+    "aucider": "Apfelmost",
+    "aucocoa": "Heiße Schokolade",
+    "auforest": "Tiefer Wald",
+    "aurainy": "Regentag",
+    "auhearth": "Gemütlicher Abend",
+    "auharvest": "Ernte",
+    "aupolar": "Herbstfoto"
   },
   "fxcat": {
     "move": "Bewegung",
@@ -1817,7 +1851,8 @@
     "magic": "Magie & Traum",
     "beatfx": "Im Takt",
     "face": "Gesicht",
-    "halloween": "Halloween"
+    "halloween": "Halloween",
+    "aucozy": "Herbst & gemütlich"
   },
   "trcat": {
     "basic": "Basis",
@@ -1953,7 +1988,8 @@
     "spooky": "Grusel",
     "tech": "Tech & Zukunft",
     "chic": "Chic & Magazin",
-    "school": "Referat"
+    "school": "Referat",
+    "aucozy": "Herbst & gemütlich"
   },
   "txs": {
     "classic": "Titel",
@@ -2159,7 +2195,13 @@
     "xkids": "Grundschule",
     "xrecap": "Zusammenfassung",
     "karaoke": "Karaoke-Untertitel",
-    "wordpop": "Wort für Wort"
+    "wordpop": "Wort für Wort",
+    "autitle": "Herbsttitel",
+    "aumug": "Gemütlich",
+    "aukraft": "Kraftpapier-Etikett",
+    "auslate": "Schiefertafel",
+    "auglow": "Warmes Leuchten",
+    "aufall": "Herbstblatt"
   },
   "tani": {
     "fade": "Einblenden",

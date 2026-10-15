@@ -181,13 +181,14 @@ const FX_CATS={
   beatfx:['bpulse','bbounce','bspin','bshake','brgb','bcolor','bflash','bstrobe','bzoomout','bslide','bmirror','bblur','binvert','bvig'],
   trend:['holo','planet','vaporwave','dreamy','pixelsort','datamosh','tear','anaglyph','ghost3','retrogame','bit8','jelly','tunnel','spinblur','focus'],
   colorfx:['huecycle','gmsunset','gmocean','gmfire','gmice','gmtoxic','keepred','keepblue','popgrid','solarize'],
-  lightfx:['godrays','bokehfx','sunflare','glints','rimlight','spotfx','discofx','prismleak','caustics','aurorafx'],
+  lightfx:['godrays','bokehfx','sunflare','glints','rimlight','spotfx','discofx','prismleak','caustics','aurorafx','scanlight'],
   frames:['polaroid','filmstrip','roundmask','circlemask','heartmask','viewfinder','tvshape','burnedge','blurframe','insetline'],
   warp:['mirror4','mirrortop','twist','squeeze','drunk','shockwave','vortex','hstretch','spinzoom','flagwave'],
   pattern:['knit','blocks','pointil','crossstitch','weave','paper','linescreen','gridline','checkfx','brickwall'],
-  screens:['vhsfull','oldtv','cga','teletext','sepiamovie','cctv','jpegfx','riso','onebit','amber'],
+  screens:['vhsfull','oldtv','cga','teletext','sepiamovie','cctv','jpegfx','riso','onebit','amber','coderain'],
   magic:['starsky','magicdust','rainglass','zoomecho','hologram','underwater','bokehblur','oilspill','galaxy','flames'],
   halloween:['hwbats','hwghosts','hwpumpkins','hwspiders','hwmoon','hwmist','hwcandy','hwslime','hweyes','hwcandle','hwhaunted','hwzombie'], // v4.67.2, dessinés dans 06c-halloween.js
+  aucozy:['auwind','aulights','austeam','aufire','aupuddle','audrizzle'], // v4.67.3, dessinés dans 06d-automne.js (avec scanlight, coderain, fireworks, speedlines)
   art:['comic','stained','shatter','engrave','blueprint','xray','edgeglow','hexpix','trimosaic','tilefx','lcd','liquid','frosted','pinch','binoc'],
   person:['outline','neonline','aura','bgblur','bggray','bgblack','bgcolor','bgspace','bgpixel','bgzoom','spot','pgray','ppixel','pholo','pglitch','silhouette','shadow','pghost','pclone','outline2','prainbow','pdash','pelec','psticker'],
   face:['fcglasses','fcheartgl','fcpixelgl','fccrown','fchalo','fccat','fcbunny','fcdevil','fcparty','fcflowers','fcblush','fchearts','fcdizzy','fcsparkle','fcmustache','fcnose','fcbigeyes','fcbighead','fcsmooth','fcblur','fcpixel','fczoom','fcwitch','fcvampire','fcskull','fcpumpkin'],
@@ -196,8 +197,8 @@ const FX_CATS={
   glitch:['glitch','glitchblock','rgb','slices','vhstrack','crt','pixel','strobe','flicker'],
   retro:['noise','scan','scratch','vig','sepia','gray','dither','filmburn','nightvision'],
   light:['bloom','leak','sparkle','rainbow','rays','shine','disco','lightning','lasers'],
-  particles:['snow','rain','confetti','hearts','fireflies','embers','petals','leaves','bubbles','dust','warp','fog','starry','glitter','balloons'],
-  stylize:['neon','sketch','oil','halftone','emboss','poster','thermal','invert','green','cartoon','watercolor','dots'],
+  particles:['snow','rain','confetti','hearts','fireflies','embers','petals','leaves','bubbles','dust','warp','fog','starry','glitter','balloons','fireworks'],
+  stylize:['neon','sketch','oil','halftone','emboss','poster','thermal','invert','green','cartoon','watercolor','dots','speedlines'],
   distort:['wave','ripple','swirl','heat','fluted','kaleido','mirror','echo','grid4','grid9','reflect','bulge','rgbwave']
 };
 const FX=Object.values(FX_CATS).flat();

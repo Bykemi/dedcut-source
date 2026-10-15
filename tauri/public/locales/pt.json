@@ -756,7 +756,17 @@
     "fcwitch": "Chapéu de bruxa",
     "fcvampire": "Presas de vampiro",
     "fcskull": "Maquiagem de caveira",
-    "fcpumpkin": "Cabeça de abóbora"
+    "fcpumpkin": "Cabeça de abóbora",
+    "auwind": "Rajada de vento",
+    "aulights": "Varal de luzes",
+    "austeam": "Vapor",
+    "aufire": "Perto da lareira",
+    "aupuddle": "Reflexo na poça",
+    "audrizzle": "Garoa",
+    "scanlight": "Scanner",
+    "coderain": "Chuva de código",
+    "fireworks": "Fogos de artifício",
+    "speedlines": "Linhas de velocidade"
   },
   "tr": {
     "both": "Ambas",
@@ -843,7 +853,17 @@
     "circles": "Bolhas",
     "portal": "Portal",
     "melt": "Derreter",
-    "tvOff": "TV desligando"
+    "tvOff": "TV desligando",
+    "prismsplit": "Prisma dividido",
+    "stripes": "Faixas cruzadas",
+    "shockring": "Anel de choque",
+    "pixelrain": "Chuva de pixels",
+    "hyperspace": "Hiperespaço",
+    "fold": "Dobra",
+    "triangles": "Triângulos",
+    "laser": "Varredura a laser",
+    "glassbrk": "Vidro quebrado",
+    "smoke": "Fumaça"
   },
   "filt": {
     "hint": "Ajustes finos: aba “Cores” à direita."
@@ -998,7 +1018,10 @@
     "cool": "Muito estiloso",
     "hwnight": "Noite assombrada",
     "hwparty": "Festa de Halloween",
-    "hwmonster": "Filme de monstro"
+    "hwmonster": "Filme de monstro",
+    "aucozy": "Noite em casa",
+    "aurainy": "Na chuva",
+    "aufeast": "Celebração"
   },
   "save": {
     "saving": "Salvando…",
@@ -1359,7 +1382,7 @@
     "mBase": "Equilibrado",
     "mSmall": "Preciso",
     "stateNone": "Modelo não baixado",
-    "dlInfo": "Download único de huggingface.co ({size}, licença {license}). O arquivo é verificado (SHA-256) e guardado no seu PC.",
+    "dlInfo": "Download único de huggingface.co, ou do espelho hf-mirror.com se estiver bloqueado ({size}, licença {license}). O arquivo é verificado (SHA-256) e guardado no seu PC.",
     "download": "Baixar o modelo",
     "downloading": "Baixando… {pct}",
     "verifying": "Verificando…",
@@ -1600,7 +1623,8 @@
     "dark": "Escuro",
     "softc": "Pastel e suave",
     "mono": "Monocromáticos tingidos",
-    "halloween": "Halloween"
+    "halloween": "Halloween",
+    "aucozy": "Outono aconchegante"
   },
   "look": {
     "bright": "Luminoso",
@@ -1794,7 +1818,17 @@
     "hwmanor": "Casa assombrada",
     "hwbloodmoon": "Lua de sangue",
     "hwcandle": "Vela",
-    "hwswamp": "Névoa do pântano"
+    "hwswamp": "Névoa do pântano",
+    "auamber": "Âmbar dourado",
+    "aumaple": "Bordo",
+    "aufog": "Manhã de névoa",
+    "aucider": "Sidra",
+    "aucocoa": "Chocolate quente",
+    "auforest": "Floresta profunda",
+    "aurainy": "Dia de chuva",
+    "auhearth": "Noite aconchegante",
+    "auharvest": "Colheita",
+    "aupolar": "Foto de outono"
   },
   "fxcat": {
     "move": "Movimento",
@@ -1817,7 +1851,8 @@
     "magic": "Magia e sonho",
     "beatfx": "No ritmo",
     "face": "Rosto",
-    "halloween": "Halloween"
+    "halloween": "Halloween",
+    "aucozy": "Outono aconchegante"
   },
   "trcat": {
     "basic": "Essenciais",
@@ -1953,7 +1988,8 @@
     "spooky": "Arrepio",
     "tech": "Tech e futuro",
     "chic": "Chique e revista",
-    "school": "Apresentação"
+    "school": "Apresentação",
+    "aucozy": "Outono aconchegante"
   },
   "txs": {
     "classic": "Título",
@@ -2159,7 +2195,13 @@
     "xkids": "Ensino fundamental",
     "xrecap": "Resumo",
     "karaoke": "Legendas karaokê",
-    "wordpop": "Palavra por palavra"
+    "wordpop": "Palavra por palavra",
+    "autitle": "Título de outono",
+    "aumug": "Aconchegante",
+    "aukraft": "Etiqueta kraft",
+    "auslate": "Lousa",
+    "auglow": "Brilho quente",
+    "aufall": "Folha de outono"
   },
   "tani": {
     "fade": "Fade",

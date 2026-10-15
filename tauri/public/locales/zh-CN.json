@@ -749,7 +749,17 @@
     "fcwitch": "女巫帽",
     "fcvampire": "吸血鬼獠牙",
     "fcskull": "骷髅妆",
-    "fcpumpkin": "南瓜头"
+    "fcpumpkin": "南瓜头",
+    "auwind": "一阵风",
+    "aulights": "串灯",
+    "austeam": "热气",
+    "aufire": "炉火",
+    "aupuddle": "水洼倒影",
+    "audrizzle": "毛毛雨",
+    "scanlight": "扫描光",
+    "coderain": "代码雨",
+    "fireworks": "烟花",
+    "speedlines": "速度线"
   },
   "tr": {
     "both": "两者",
@@ -836,7 +846,17 @@
     "circles": "气泡",
     "portal": "传送门",
     "melt": "融化",
-    "tvOff": "电视关机"
+    "tvOff": "电视关机",
+    "prismsplit": "棱镜分光",
+    "stripes": "交错条纹",
+    "shockring": "冲击环",
+    "pixelrain": "像素雨",
+    "hyperspace": "超空间",
+    "fold": "折叠",
+    "triangles": "三角形",
+    "laser": "激光扫描",
+    "glassbrk": "碎玻璃",
+    "smoke": "烟雾"
   },
   "filt": {
     "hint": "精细调整：右侧“颜色”标签页。"
@@ -991,7 +1011,10 @@
     "cool": "超酷",
     "hwnight": "闹鬼之夜",
     "hwparty": "万圣节派对",
-    "hwmonster": "怪物电影"
+    "hwmonster": "怪物电影",
+    "aucozy": "温暖小窝",
+    "aurainy": "雨中",
+    "aufeast": "庆祝"
   },
   "save": {
     "saving": "正在保存…",
@@ -1351,7 +1374,7 @@
     "mBase": "均衡",
     "mSmall": "精确",
     "stateNone": "模型尚未下载",
-    "dlInfo": "仅从 huggingface.co 下载一次（{size}，许可证 {license}）。文件经过校验（SHA-256）后保存在你的电脑上。",
+    "dlInfo": "仅从 huggingface.co 下载一次，无法访问时自动改用镜像 hf-mirror.com（{size}，许可证 {license}）。文件经过校验（SHA-256）后保存在你的电脑上。",
     "download": "下载模型",
     "downloading": "正在下载… {pct}",
     "verifying": "正在校验…",
@@ -1590,7 +1613,8 @@
     "dark": "暗黑",
     "softc": "柔和粉彩",
     "mono": "彩色单色",
-    "halloween": "万圣节"
+    "halloween": "万圣节",
+    "aucozy": "秋日温馨"
   },
   "look": {
     "bright": "明亮",
@@ -1784,7 +1808,17 @@
     "hwmanor": "鬼屋",
     "hwbloodmoon": "血月",
     "hwcandle": "烛火",
-    "hwswamp": "沼泽迷雾"
+    "hwswamp": "沼泽迷雾",
+    "auamber": "金色琥珀",
+    "aumaple": "枫叶",
+    "aufog": "雾蒙蒙的早晨",
+    "aucider": "苹果酒",
+    "aucocoa": "热可可",
+    "auforest": "深林",
+    "aurainy": "雨天",
+    "auhearth": "温馨夜晚",
+    "auharvest": "丰收",
+    "aupolar": "秋日快照"
   },
   "fxcat": {
     "move": "运动",
@@ -1807,7 +1841,8 @@
     "magic": "魔法梦幻",
     "beatfx": "随节拍",
     "face": "脸部",
-    "halloween": "万圣节"
+    "halloween": "万圣节",
+    "aucozy": "秋日温馨"
   },
   "trcat": {
     "basic": "基础",
@@ -1943,7 +1978,8 @@
     "spooky": "惊悚",
     "tech": "科技未来",
     "chic": "时尚杂志",
-    "school": "演讲"
+    "school": "演讲",
+    "aucozy": "秋日温馨"
   },
   "txs": {
     "classic": "标题",
@@ -2149,7 +2185,13 @@
     "xkids": "小学",
     "xrecap": "总结",
     "karaoke": "卡拉OK字幕",
-    "wordpop": "逐词"
+    "wordpop": "逐词",
+    "autitle": "秋日标题",
+    "aumug": "温馨",
+    "aukraft": "牛皮纸标签",
+    "auslate": "小黑板",
+    "auglow": "暖光",
+    "aufall": "落叶"
   },
   "tani": {
     "fade": "淡入",

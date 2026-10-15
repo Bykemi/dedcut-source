@@ -749,7 +749,17 @@
     "fcwitch": "魔女の帽子",
     "fcvampire": "吸血鬼の牙",
     "fcskull": "ガイコツメイク",
-    "fcpumpkin": "かぼちゃ頭"
+    "fcpumpkin": "かぼちゃ頭",
+    "auwind": "突風",
+    "aulights": "ストリングライト",
+    "austeam": "湯気",
+    "aufire": "暖炉の灯り",
+    "aupuddle": "水たまりの反射",
+    "audrizzle": "霧雨",
+    "scanlight": "スキャナー",
+    "coderain": "コードの雨",
+    "fireworks": "花火",
+    "speedlines": "集中線"
   },
   "tr": {
     "both": "両方",
@@ -836,7 +846,17 @@
     "circles": "バブル",
     "portal": "ポータル",
     "melt": "メルト",
-    "tvOff": "テレビオフ"
+    "tvOff": "テレビオフ",
+    "prismsplit": "分光プリズム",
+    "stripes": "交差ストライプ",
+    "shockring": "衝撃リング",
+    "pixelrain": "ピクセルの雨",
+    "hyperspace": "ハイパースペース",
+    "fold": "折りたたみ",
+    "triangles": "三角形",
+    "laser": "レーザースキャン",
+    "glassbrk": "割れたガラス",
+    "smoke": "煙"
   },
   "filt": {
     "hint": "細かい調整は右の「カラー」タブで。"
@@ -991,7 +1011,10 @@
     "cool": "クール",
     "hwnight": "呪いの夜",
     "hwparty": "ハロウィンパーティー",
-    "hwmonster": "モンスター映画"
+    "hwmonster": "モンスター映画",
+    "aucozy": "おうち時間",
+    "aurainy": "雨の中",
+    "aufeast": "お祝い"
   },
   "save": {
     "saving": "保存中…",
@@ -1351,7 +1374,7 @@
     "mBase": "バランス",
     "mSmall": "高精度",
     "stateNone": "モデル未ダウンロード",
-    "dlInfo": "huggingface.co から 1 回だけダウンロードします（{size}、ライセンス {license}）。ファイルは検証（SHA-256）され、PC に保存されます。",
+    "dlInfo": "huggingface.co（つながらない場合はミラーの hf-mirror.com）から 1 回だけダウンロードします（{size}、ライセンス {license}）。ファイルは検証（SHA-256）され、PC に保存されます。",
     "download": "モデルをダウンロード",
     "downloading": "ダウンロード中… {pct}",
     "verifying": "検証中…",
@@ -1590,7 +1613,8 @@
     "dark": "ダーク",
     "softc": "パステル",
     "mono": "色付きモノクロ",
-    "halloween": "ハロウィン"
+    "halloween": "ハロウィン",
+    "aucozy": "秋とぬくもり"
   },
   "look": {
     "bright": "明るい",
@@ -1784,7 +1808,17 @@
     "hwmanor": "お化け屋敷",
     "hwbloodmoon": "ブラッドムーン",
     "hwcandle": "ろうそく",
-    "hwswamp": "沼の霧"
+    "hwswamp": "沼の霧",
+    "auamber": "黄金の琥珀",
+    "aumaple": "もみじ",
+    "aufog": "霧の朝",
+    "aucider": "シードル",
+    "aucocoa": "ホットココア",
+    "auforest": "深い森",
+    "aurainy": "雨の日",
+    "auhearth": "くつろぎの夜",
+    "auharvest": "収穫",
+    "aupolar": "秋のスナップ"
   },
   "fxcat": {
     "move": "動き",
@@ -1807,7 +1841,8 @@
     "magic": "魔法・夢",
     "beatfx": "ビートに合わせて",
     "face": "顔",
-    "halloween": "ハロウィン"
+    "halloween": "ハロウィン",
+    "aucozy": "秋とぬくもり"
   },
   "trcat": {
     "basic": "ベーシック",
@@ -1943,7 +1978,8 @@
     "spooky": "ホラー",
     "tech": "テック・未来",
     "chic": "シック・雑誌",
-    "school": "発表"
+    "school": "発表",
+    "aucozy": "秋とぬくもり"
   },
   "txs": {
     "classic": "タイトル",
@@ -2149,7 +2185,13 @@
     "xkids": "小学生",
     "xrecap": "要約",
     "karaoke": "カラオケ字幕",
-    "wordpop": "1語ずつ"
+    "wordpop": "1語ずつ",
+    "autitle": "秋のタイトル",
+    "aumug": "ほっこり",
+    "aukraft": "クラフトラベル",
+    "auslate": "黒板",
+    "auglow": "あたたかな光",
+    "aufall": "落ち葉"
   },
   "tani": {
     "fade": "フェード",

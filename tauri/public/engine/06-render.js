@@ -656,6 +656,7 @@ function applyFX(p,t,loc){
     ctx.restore();
   }
   hwFX(fx,t,a,u,n0); // Halloween (06c-halloween.js)
+  auFX(fx,t,a,u,n0); // Automne & cosy (06d-automne.js)
   fxPro(fx,t,a,u,n0);
 }
 /* lumières, atmosphère et particules « pro » (dessinées par-dessus) */

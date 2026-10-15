@@ -472,7 +472,7 @@ pub fn run() {
             tts::tts_voices, tts::tts_make, tts::tts_settings, tts::tts_live, trash_project, remote::remote_start, remote::remote_stop, remote::remote_state, secret::secret_protect, secret::secret_unprotect, image::img_open, image::img_save_dialog, image::img_write, image::img_pick_dir,
             mcp::mcp_enable, mcp::mcp_reply, mcp::mcp_status, mcp::mcp_install_claude,
             chat::chat_key_get, chat::chat_key_set, chat::chat_tools, chat::chat_post, chat::chat_cancel,
-            ai::ai_status, ai::ai_hardware, ai::ai_download, ai::ai_cancel, ai::ai_delete, ai::ai_generate, ai::ai_set_ref, ai::ai_clear_frames,
+            ai::ai_status, ai::ai_hardware, ai::ai_download, ai::ai_cancel, ai::ai_hf_file, ai::ai_hf_cancel, ai::ai_delete, ai::ai_generate, ai::ai_set_ref, ai::ai_clear_frames,
             brain::brain_status, brain::brain_start, brain::brain_stop,
             music::music_catalog, music::music_get,
             musicfs::mus_open, musicfs::mus_allow, musicfs::mus_save_dialog, musicfs::mus_pick_dir, musicfs::mus_write, musicfs::mus_copy, musicfs::mus_dir, musicfs::mus_free,

@@ -368,6 +368,15 @@ struct Progress {
     n: usize,
 }
 
+/// Adresses où chercher un fichier : celle écrite ici, puis pour huggingface.co le miroir hf-mirror.com
+/// (huggingface.co est bloqué en Chine). Le fichier est de toute façon vérifié par sa taille et son empreinte SHA-256.
+fn sources(url: &str) -> Vec<String> {
+    match url.strip_prefix("https://huggingface.co/") {
+        Some(rest) => vec![url.to_string(), format!("https://hf-mirror.com/{rest}")],
+        None => vec![url.to_string()],
+    }
+}
+
 /// Télécharge (reprise possible) et vérifie les morceaux manquants d'un modèle, l'un après l'autre
 #[tauri::command]
 pub async fn ai_download(app: AppHandle, st: State<'_, AiState>, model_id: String) -> Result<(), String> {
@@ -383,6 +392,7 @@ pub async fn ai_download(app: AppHandle, st: State<'_, AiState>, model_id: Strin
         let dir = ai_dir(&app2)?;
         let todo: Vec<&Part> = parts.iter().map(|id| part(id)).filter(|p| !part_ok(&dir, p)).collect();
         let n = todo.len();
+        let mut mirror = false; // le miroir a déjà servi : on commence par lui pour les morceaux suivants
         for (idx, p) in todo.iter().enumerate() {
             let dest = dir.join(p.file);
             let tmp = dir.join(format!("{}.part", p.file));
@@ -390,6 +400,8 @@ pub async fn ai_download(app: AppHandle, st: State<'_, AiState>, model_id: Strin
                 // fichier déjà là mais pas encore vérifié (ou modifié) : on le revérifie plutôt que de le retélécharger
                 let _ = fs::rename(&dest, &tmp);
             }
+            let srcs = sources(p.url);
+            let mut si = if mirror { srcs.len() - 1 } else { 0 };
             let mut tries = 0;
             while !fs::metadata(&tmp).map(|x| x.len() == p.size).unwrap_or(false) {
                 tries += 1;
@@ -398,9 +410,9 @@ pub async fn ai_download(app: AppHandle, st: State<'_, AiState>, model_id: Strin
                 }
                 let before = fs::metadata(&tmp).map(|x| x.len()).unwrap_or(0);
                 let child = hidden(Command::new(sys32("curl.exe")))
-                    .args(["-L", "--fail", "--silent", "--show-error", "--retry", "3", "--speed-limit", "20000", "--speed-time", "30", "-C", "-", "-o"])
+                    .args(["-L", "--fail", "--silent", "--show-error", "--retry", "3", "--connect-timeout", "20", "--speed-limit", "20000", "--speed-time", "30", "-C", "-", "-o"])
                     .arg(&tmp)
-                    .arg(p.url)
+                    .arg(&srcs[si])
                     .stdout(Stdio::null())
                     .stderr(Stdio::piped())
                     .spawn()
@@ -427,6 +439,12 @@ pub async fn ai_download(app: AppHandle, st: State<'_, AiState>, model_id: Strin
                             let now = fs::metadata(&tmp).map(|x| x.len()).unwrap_or(0);
                             if now > before && tries < 6 {
                                 break; // ça avançait : on reprend où on en était
+                            }
+                            if si + 1 < srcs.len() {
+                                // site injoignable (bloqué en Chine ?) : on essaie le miroir
+                                si += 1;
+                                mirror = true;
+                                break;
                             }
                             return Err(format!("téléchargement impossible : {}", msg.trim()));
                         }
@@ -468,6 +486,104 @@ pub async fn ai_download(app: AppHandle, st: State<'_, AiState>, model_id: Strin
 pub fn ai_cancel(st: State<AiState>) {
     st.cancel.store(true, Ordering::SeqCst);
     if let Some(c) = st.child.lock().unwrap().as_mut() {
+        let _ = c.kill();
+    }
+}
+
+/* ---------- fichiers des sous-titres automatiques, quand la page n'a pas pu les télécharger ---------- */
+// La page télécharge elle-même les modèles Whisper (src/captions.ts). En Chine huggingface.co est bloqué et le miroir
+// hf-mirror.com peut refuser les téléchargements faits depuis une page : on passe alors par curl, miroir d'abord.
+// La page ne donne que le modèle et le nom du fichier : l'adresse est tirée de la liste figée whisper-models.json
+// (jamais reçue de la page). La page vérifie ensuite l'empreinte SHA-256 avant de garder le fichier.
+static HF_CHILD: Mutex<Option<Child>> = Mutex::new(None);
+static HF_CANCEL: AtomicBool = AtomicBool::new(false);
+static HF_N: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
+
+#[derive(Serialize, Clone)]
+struct HfProgress {
+    file: String,
+    done: u64,
+    total: u64,
+}
+
+#[tauri::command]
+pub async fn ai_hf_file(app: AppHandle, model: String, file: String) -> Result<tauri::ipc::Response, String> {
+    let list: serde_json::Value = serde_json::from_str(include_str!("../../src/whisper-models.json")).map_err(err)?;
+    let m = list.get(&model).ok_or("unknown model")?;
+    let f = m["files"].as_array().and_then(|v| v.iter().find(|f| f["path"] == file.as_str())).ok_or("unknown file")?;
+    let (repo, rev, size) = (m["repo"].as_str().unwrap_or(""), m["revision"].as_str().unwrap_or(""), f["size"].as_u64().unwrap_or(0));
+    if repo.is_empty() || rev.is_empty() || size == 0 {
+        return Err("bad model list".into());
+    }
+    let curl = super::chat::curl_path();
+    if !curl.is_file() {
+        return Err("unsupported".into());
+    }
+    let rest = format!("{repo}/resolve/{rev}/{file}");
+    HF_CANCEL.store(false, Ordering::SeqCst);
+    tauri::async_runtime::spawn_blocking(move || {
+        let tmp = std::env::temp_dir().join(format!("dedcut-whisper-{}-{}.part", std::process::id(), HF_N.fetch_add(1, Ordering::SeqCst)));
+        let mut last = String::new();
+        for host in ["https://hf-mirror.com/", "https://huggingface.co/"] {
+            if HF_CANCEL.load(Ordering::SeqCst) {
+                break;
+            }
+            let _ = fs::remove_file(&tmp);
+            let child = hidden(Command::new(&curl))
+                .args(["-L", "--fail", "--silent", "--show-error", "--proto", "=https", "--proto-redir", "=https", "--retry", "2"])
+                .args(["--connect-timeout", "20", "--speed-limit", "20000", "--speed-time", "30", "-o"])
+                .arg(&tmp)
+                .arg(format!("{host}{rest}"))
+                .stdout(Stdio::null())
+                .stderr(Stdio::piped())
+                .spawn()
+                .map_err(err)?;
+            *HF_CHILD.lock().unwrap() = Some(child);
+            // None = annulé ; Some((réussi, message de curl))
+            let end = loop {
+                std::thread::sleep(std::time::Duration::from_millis(300));
+                let done = fs::metadata(&tmp).map(|x| x.len()).unwrap_or(0);
+                let _ = app.emit("hf-progress", HfProgress { file: file.clone(), done, total: size });
+                let mut g = HF_CHILD.lock().unwrap();
+                let Some(c) = g.as_mut() else { break None };
+                if HF_CANCEL.load(Ordering::SeqCst) {
+                    let _ = c.kill();
+                    *g = None;
+                    break None;
+                }
+                if let Some(status) = c.try_wait().map_err(err)? {
+                    let mut msg = String::new();
+                    if let Some(mut e) = c.stderr.take() {
+                        let _ = e.read_to_string(&mut msg);
+                    }
+                    *g = None;
+                    break Some((status.success(), msg));
+                }
+            };
+            match end {
+                None => break,
+                Some((true, _)) if fs::metadata(&tmp).map(|x| x.len()).unwrap_or(0) == size => {
+                    let bytes = fs::read(&tmp).map_err(err);
+                    let _ = fs::remove_file(&tmp);
+                    return bytes.map(|b| tauri::ipc::Response::new(b));
+                }
+                Some((_, msg)) => last = msg.trim().to_string(),
+            }
+        }
+        let _ = fs::remove_file(&tmp);
+        if HF_CANCEL.load(Ordering::SeqCst) {
+            return Err("cancelled".to_string());
+        }
+        Err(format!("téléchargement impossible : {last}"))
+    })
+    .await
+    .map_err(err)?
+}
+
+#[tauri::command]
+pub fn ai_hf_cancel() {
+    HF_CANCEL.store(true, Ordering::SeqCst);
+    if let Some(c) = HF_CHILD.lock().unwrap().as_mut() {
         let _ = c.kill();
     }
 }
@@ -757,5 +873,11 @@ mod tests {
     fn cartes() {
         for n in ["NVIDIA GeForce RTX 3060", "NVIDIA GeForce RTX 4090 Laptop GPU", "NVIDIA RTX A4000", "AMD Radeon RX 6700 XT", "AMD Radeon RX 7900 XTX", "AMD Radeon RX 9070", "Intel(R) Arc(TM) A770 Graphics", "Intel(R) Arc(TM) B580 Graphics", "NVIDIA GeForce RTX 2060 SUPER"] { assert!(super::recent_gpu(n), "{n}"); }
         for n in ["AMD Radeon RX 580 2048SP", "AMD Radeon RX 5700 XT", "NVIDIA GeForce GTX 1080 Ti", "NVIDIA GeForce GTX 1660", "Radeon RX Vega", "Intel(R) UHD Graphics 630", "AMD Radeon(TM) Graphics", "NVIDIA GeForce RTX 980"] { assert!(!super::recent_gpu(n), "{n}"); }
+    }
+    #[test]
+    fn miroir_chine() {
+        let s = super::sources("https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/e87f176/Qwen3.5-4B-Q4_K_M.gguf");
+        assert_eq!(s, ["https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/e87f176/Qwen3.5-4B-Q4_K_M.gguf", "https://hf-mirror.com/unsloth/Qwen3.5-4B-GGUF/resolve/e87f176/Qwen3.5-4B-Q4_K_M.gguf"]);
+        assert_eq!(super::sources("https://github.com/ggml-org/llama.cpp/releases/download/b1/x.zip").len(), 1);
     }
 }

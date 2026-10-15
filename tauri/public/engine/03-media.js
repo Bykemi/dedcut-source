@@ -335,9 +335,16 @@ const TPRE={
   xconclusion:{n:'txs.xconclusion',s:{font:'Sora',color:'#ffffff',gradOn:true,grad:'#22d3ee',shadow:true,anim:'rise'}},
   xwarning:{n:'txs.xwarning',s:{font:'Black Ops One',color:'#111111',bg:true,bgc:'#fbbf24',bgo:100,anim:'shakein'}},
   xkids:{n:'txs.xkids',s:{font:'Sniglet',color:'#ffffff',stroke:true,sc:'#3b82f6',sw:9,anim:'bounce',aloop:'hop'}},
-  xrecap:{n:'txs.xrecap',s:{font:'Space Grotesk',color:'#ffffff',bg:true,bgc:'#0f172a',bgs:'box',bgo:88,anim:'slidel',aout:'slider'}}
+  xrecap:{n:'txs.xrecap',s:{font:'Space Grotesk',color:'#ffffff',bg:true,bgc:'#0f172a',bgs:'box',bgo:88,anim:'slidel',aout:'slider'}},
+  // v4.67.3 : Automne & cosy
+  autitle:{n:'txs.autitle',s:{font:'Yeseva One',color:'#fde68a',gradOn:true,grad:'#ea580c',shadow:true,anim:'rise',aout:'fade'}},
+  aumug:{n:'txs.aumug',s:{font:'Caveat',bold:false,color:'#fff7ed',bg:true,bgc:'#7c2d12',bgs:'pill',bgo:88,anim:'pop'}},
+  aukraft:{n:'txs.aukraft',s:{font:'Patrick Hand',bold:false,color:'#3f2a14',bg:true,bgc:'#d6b48a',bgs:'box',bgo:100,anim:'drop'}},
+  auslate:{n:'txs.auslate',s:{font:'Gloria Hallelujah',bold:false,color:'#f5f5f4',bg:true,bgc:'#1f2a24',bgs:'box',bgo:94,anim:'type'}},
+  auglow:{n:'txs.auglow',s:{font:'Great Vibes',bold:false,color:'#ffedd5',neon:true,glowc:'#f97316',anim:'fade',aloop:'flicker'}},
+  aufall:{n:'txs.aufall',s:{font:'Lobster',bold:false,color:'#fb923c',stroke:true,sc:'#431407',sw:7,anim:'drop',aloop:'swing'}}
 };
-const TXT_CATS={basic:['classic','clean','contour','elegant','minimal','machine'],school:['xtitle','xsub','xkey','xnote','xlabel','xchalk','xbigtitle','xserif','xhistory','xscience','xmath','xgeo','xlit','xart','xsport','xmusic','xenglish','xquestion','xanswer','xwrong','xfact','xsticky','xpen','xredpen','xhighlight','xpinkhl','xunder','xcaption','xsource','xnumber','xdate','xname','xconclusion','xwarning','xkids','xrecap'],trend:['hook','acidgreen','aesthetic','quote','pov','boldcap'],y2k:['y2kchrome','bubblegum','glittertxt','cyberpink','holotext','starlight'],social:['jaune','viral','story','thumb','marker','comic'],
+const TXT_CATS={basic:['classic','clean','contour','elegant','minimal','machine'],aucozy:['autitle','aumug','aukraft','auslate','auglow','aufall'],school:['xtitle','xsub','xkey','xnote','xlabel','xchalk','xbigtitle','xserif','xhistory','xscience','xmath','xgeo','xlit','xart','xsport','xmusic','xenglish','xquestion','xanswer','xwrong','xfact','xsticky','xpen','xredpen','xhighlight','xpinkhl','xunder','xcaption','xsource','xnumber','xdate','xname','xconclusion','xwarning','xkids','xrecap'],trend:['hook','acidgreen','aesthetic','quote','pov','boldcap'],y2k:['y2kchrome','bubblegum','glittertxt','cyberpink','holotext','starlight'],social:['jaune','viral','story','thumb','marker','comic'],
   neon:['neon','neonblue','neongreen','neonred','neonhollow','cyber'],retro:['retro80','vhs','arcade','disco','vintage','popart'],
   cinema:['cine','trailer','horror','epic','credits','docu'],outline:['double','hollow','extrude','extrude2','sticker','hardshadow'],
   gradient:['sunset','ocean','candy','fire','mint','chrome'],label:['encadre','rouge','pill','glass','tag','underline'],

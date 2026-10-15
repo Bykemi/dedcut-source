@@ -756,7 +756,17 @@
     "fcwitch": "Witch hat",
     "fcvampire": "Vampire fangs",
     "fcskull": "Skeleton makeup",
-    "fcpumpkin": "Pumpkin head"
+    "fcpumpkin": "Pumpkin head",
+    "auwind": "Gust of wind",
+    "aulights": "String lights",
+    "austeam": "Steam",
+    "aufire": "Fireside",
+    "aupuddle": "Puddle reflection",
+    "audrizzle": "Drizzle",
+    "scanlight": "Scanner",
+    "coderain": "Code rain",
+    "fireworks": "Fireworks",
+    "speedlines": "Speed lines"
   },
   "tr": {
     "both": "Both",
@@ -843,7 +853,17 @@
     "circles": "Bubbles",
     "portal": "Portal",
     "melt": "Melt",
-    "tvOff": "TV switch-off"
+    "tvOff": "TV switch-off",
+    "prismsplit": "Prism split",
+    "stripes": "Crossing stripes",
+    "shockring": "Shock ring",
+    "pixelrain": "Pixel rain",
+    "hyperspace": "Hyperspace",
+    "fold": "Fold",
+    "triangles": "Triangles",
+    "laser": "Laser sweep",
+    "glassbrk": "Broken glass",
+    "smoke": "Smoke"
   },
   "filt": {
     "hint": "Fine-tuning: “Colours” tab on the right."
@@ -998,7 +1018,10 @@
     "cool": "So cool",
     "hwnight": "Haunted night",
     "hwparty": "Halloween party",
-    "hwmonster": "Monster movie"
+    "hwmonster": "Monster movie",
+    "aucozy": "Cozy night in",
+    "aurainy": "In the rain",
+    "aufeast": "Celebration"
   },
   "save": {
     "saving": "Saving…",
@@ -1359,7 +1382,7 @@
     "mBase": "Balanced",
     "mSmall": "Accurate",
     "stateNone": "Model not downloaded",
-    "dlInfo": "One-time download from huggingface.co ({size}, {license} licence). The file is verified (SHA-256) then kept on your PC.",
+    "dlInfo": "One-time download from huggingface.co, or its mirror hf-mirror.com if it is blocked ({size}, {license} licence). The file is verified (SHA-256) then kept on your PC.",
     "download": "Download the model",
     "downloading": "Downloading… {pct}",
     "verifying": "Verifying…",
@@ -1600,7 +1623,8 @@
     "dark": "Dark",
     "softc": "Pastel & soft",
     "mono": "Tinted mono",
-    "halloween": "Halloween"
+    "halloween": "Halloween",
+    "aucozy": "Autumn & cozy"
   },
   "look": {
     "bright": "Bright",
@@ -1794,7 +1818,17 @@
     "hwmanor": "Haunted house",
     "hwbloodmoon": "Blood moon",
     "hwcandle": "Candle",
-    "hwswamp": "Swamp fog"
+    "hwswamp": "Swamp fog",
+    "auamber": "Golden amber",
+    "aumaple": "Maple",
+    "aufog": "Misty morning",
+    "aucider": "Cider",
+    "aucocoa": "Hot cocoa",
+    "auforest": "Deep forest",
+    "aurainy": "Rainy day",
+    "auhearth": "Cozy evening",
+    "auharvest": "Harvest",
+    "aupolar": "Autumn snapshot"
   },
   "fxcat": {
     "move": "Motion",
@@ -1817,7 +1851,8 @@
     "magic": "Magic & dreams",
     "beatfx": "On the beat",
     "face": "Face",
-    "halloween": "Halloween"
+    "halloween": "Halloween",
+    "aucozy": "Autumn & cozy"
   },
   "trcat": {
     "basic": "Essentials",
@@ -1953,7 +1988,8 @@
     "spooky": "Spooky",
     "tech": "Tech & future",
     "chic": "Chic & magazine",
-    "school": "Presentation"
+    "school": "Presentation",
+    "aucozy": "Autumn & cozy"
   },
   "txs": {
     "classic": "Title",
@@ -2159,7 +2195,13 @@
     "xkids": "Primary school",
     "xrecap": "Summary",
     "karaoke": "Karaoke subtitles",
-    "wordpop": "Word by word"
+    "wordpop": "Word by word",
+    "autitle": "Autumn title",
+    "aumug": "Cozy",
+    "aukraft": "Kraft label",
+    "auslate": "Slate",
+    "auglow": "Warm glow",
+    "aufall": "Autumn leaf"
   },
   "tani": {
     "fade": "Fade",
